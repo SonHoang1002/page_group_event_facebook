@@ -1,7 +1,66 @@
 different cubit and bloc block
 
 
+Autocomplete(
+            // optionsMaxHeight: 4,
+            optionsBuilder: ((textEditingValue) {
+              if (textEditingValue.text == "") {
+                return Iterable<String>.empty();
+              } else {
+                List<String> matches = [];
+                matches.addAll(Common.listSelection);
+                matches.retainWhere((element) {
+                  return element
+                          .toLowerCase()
+                          .contains(textEditingValue.text) ||
+                      element.toUpperCase().contains(textEditingValue.text);
+                });
+                return matches;
+              }
+            }),
+            onSelected: ((value) {
+              print(value);
+            }),
+            fieldViewBuilder:
+                (context, textEditingController, focusNode, onFieldSubmitted) {
+              return TextFormField(
+                decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10)))),
+                controller: textEditingController,
+                focusNode: focusNode,
+                onSaved: (value) {},
+              );
+            },
+            optionsViewBuilder: (context, onSelected, options) {
+              final newOptions = options.toList();
+              final List<String> finalOptions = [];
+              for (int i = 0; i < newOptions.length; i++) {
+                if (i < 7) {
+                  finalOptions.add(newOptions[i]);
+                }
+              }
+              return Material(
+                child: Container(
+                  color: Colors.red,
+                    height: 100,
+                    child: ListView.builder(
+                      itemCount: finalOptions.length,
+                      itemBuilder: ((context, index) {
+                        return  GestureDetector(
+                        child: suggestComponent(finalOptions[index]),
+                        onTap: () {
+                          onSelected(finalOptions[index]);
+                        },
+                      );
+                    
 
+                      }),
+                    )),
+              );
+            },
+          ),
+      
 
 
 

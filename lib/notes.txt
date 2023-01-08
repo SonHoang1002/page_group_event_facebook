@@ -1,0 +1,180 @@
+different cubit and bloc block
+
+
+
+
+
+
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:self_facebook_project/modules/page/blocs/current_number_page.dart';
+import 'package:self_facebook_project/modules/page/blocs/name_bloc.dart';
+import 'package:self_facebook_project/modules/page/model/name_model.dart';
+
+const List<String> QUESTION_NAME = [
+  "Tên Trang của bạn là gì ?",
+  "Hãy dùng tên doanh nghiệp/thương hiệu/tổ chức của bạn hoặc tên góp phần giải thích về Trang"
+];
+const String next = "Tiếp";
+const String done = "Xong";
+
+class TestWidget extends StatefulWidget {
+  @override
+  State<TestWidget> createState() => _TestWidgetState();
+}
+
+class _TestWidgetState extends State<TestWidget> {
+  late double width = 0;
+  late NamePageModel namePageModel;
+  @override
+  Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    width = size.width;
+    return Scaffold(
+      appBar: AppBar(
+          leading: IconButton(
+        icon: const Icon(Icons.arrow_back),
+        onPressed: () {
+          //
+        },
+      )),
+      body: BlocBuilder<NamePageCubit, NamePageModel>(
+          builder: (context, namePageState) {
+        namePageModel = BlocProvider.of<NamePageCubit>(context).state;
+        return Column(children: [
+          Expanded(
+            child: Container(
+              color: Colors.black,
+              child: Container(
+                padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
+                child: Column(
+                  children: [
+                    Center(
+                      child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              fixedSize: Size(width * 0.9, 40),
+                              backgroundColor: namePageModel.nameController.text
+                                          .trim()
+                                          .length ==
+                                      0 || namePageModel.nameController.text
+                                          .trim() =="" || namePageModel.nameController.text
+                                          .trim() ==null
+                                  ? Colors.grey
+                                  : Colors.blue),
+                          onPressed: () {},
+                          child: Text('fgdfg')),
+                    ),
+                    Container(
+                      height: 80,
+                      child: TextFormField(
+                        controller: namePageModel.nameController,
+                        onChanged: ((value) {
+                          context
+                              .read<NamePageCubit>()
+                              .updateNamePageCubit(namePageModel);
+                        }),
+                        style: TextStyle(color: Colors.white),
+                        decoration: InputDecoration(
+                            enabledBorder: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.grey, width: 2),
+                            ),
+                            hintText: "Tên Trang",
+                            // fillColor: Colors.red,
+                            // filled: true,
+                            hintStyle: TextStyle(color: Colors.grey),
+                            border: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(.10)))),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ]);
+      }),
+    );
+  }
+}
+
+
+// class TestWidget extends StatefulWidget {
+//   @override
+//   State<TestWidget> createState() => _TestWidgetState();
+// }
+
+// class _TestWidgetState extends State<TestWidget> {
+//   late double width = 0;
+//   late NamePageModel namePageModel;
+//   @override
+//   Widget build(BuildContext context) {
+//     final size = MediaQuery.of(context).size;
+//     width = size.width;
+//     return Scaffold(
+//       appBar: AppBar(
+//           leading: IconButton(
+//         icon: const Icon(Icons.arrow_back),
+//         onPressed: () {
+//           //
+//         },
+//       )),
+//       body: BlocBuilder<NamePageBloc, NamePageState>(
+//           builder: (context, namePageState) {
+//         namePageModel = BlocProvider.of<NamePageBloc>(context).state.namePageModel;
+//         return Column(children: [
+//           Expanded(
+//             child: Container(
+//               color: Colors.black,
+//               child: Container(
+//                 padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
+//                 child: Column(
+//                   children: [
+//                     Center(
+//                       child: ElevatedButton(
+//                           style: ElevatedButton.styleFrom(
+//                               fixedSize: Size(width * 0.9, 40),
+//                               backgroundColor: namePageModel.nameController.text
+//                                           .trim()
+//                                           .length ==
+//                                       0
+//                                   ? Colors.grey
+//                                   : Colors.blue),
+//                           onPressed: () {},
+//                           child: Text('fgdfg')),
+//                     ),
+//                     Container(
+//                       height: 80,
+//                       child: TextFormField(
+//                         controller: namePageModel.nameController,
+//                         onChanged: ((value) {
+//                           context
+//                               .read<NamePageBloc>()
+//                               .add(UpdateNamePageEvent(namePageModel));
+//                         }),
+//                         style: TextStyle(color: Colors.white),
+//                         decoration: InputDecoration(
+//                             enabledBorder: OutlineInputBorder(
+//                               borderSide:
+//                                   BorderSide(color: Colors.grey, width: 2),
+//                             ),
+//                             hintText: "Tên Trang",
+//                             // fillColor: Colors.red,
+//                             // filled: true,
+//                             hintStyle: TextStyle(color: Colors.grey),
+//                             border: OutlineInputBorder(
+//                                 borderRadius:
+//                                     BorderRadius.all(Radius.circular(.10)))),
+//                       ),
+//                     )
+//                   ],
+//                 ),
+//               ),
+//             ),
+//           ),
+//         ]);
+//       }),
+//     );
+//   }
+// }

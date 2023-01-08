@@ -10,7 +10,7 @@ class SearchCategoryBloc
       //     element.contains(event.searchString.toLowerCase()) ||
       //     element.contains(event.searchString.toUpperCase()));
       List<String> searchValueList = [];
-      List<String> primaryList = Common.listSelection;
+      List<String> primaryList = Category.listSelection;
       for (int i = 0; i < primaryList.length; i++) {
         if (primaryList[i].contains(event.searchString.toLowerCase()) ||
             primaryList[i].contains(event.searchString.toLowerCase())) {
@@ -18,7 +18,7 @@ class SearchCategoryBloc
         }
       }
       print(searchValueList.length);
-      emit(UpdateSeachCategoryState(searchValueList));
+      emit(UpdateSearchCategoryState(searchValueList));
     });
   }
 }
@@ -36,10 +36,10 @@ abstract class SearchCategoryState {
 }
 
 class InitSearchCategoryState extends SearchCategoryState {
-  InitSearchCategoryState() : super(Common.listSelection);
+  InitSearchCategoryState() : super(Category.listSelection);
 }
 
-class UpdateSeachCategoryState extends SearchCategoryState {
+class UpdateSearchCategoryState extends SearchCategoryState {
   final List<String> list;
-  UpdateSeachCategoryState(this.list) : super(list);
+  UpdateSearchCategoryState(this.list) : super(list);
 }

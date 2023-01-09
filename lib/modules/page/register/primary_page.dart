@@ -4,8 +4,6 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:self_facebook_project/general/common.dart';
 import 'dart:io' as Platform;
-
-import 'package:self_facebook_project/modules/page/register/parts/category.dart';
 import 'package:self_facebook_project/modules/page/register/parts/name_page.dart';
 
 final TextStyle textStyle = TextStyle(color: Colors.white);

@@ -2,6 +2,7 @@ class Common {
   static String PATH_IMG = "assets/images/";
   static const String NEXT = "Tiếp";
   static const String DONE = "Xong";
+  static const String SKIP = "Bỏ qua";
 }
 
 class Category {
@@ -17,7 +18,10 @@ class Category {
     "Nghệ thuật",
     "Nhạc sỹ/ Ban nhạc"
   ];
-  static const String WARNING_MESSAGE = "Bạn đã chọn hạng mục này !!";
+  static const List<String> WARNING_MESSAGE = [
+    "Bạn đã chọn hạng mục này !!",
+    "Bạn đã vượt quá 3 hạng mục !!"
+  ];
   static const List<String> listSelection = [
     "Sản phẩm/ Dịch vụ",
     "Dịch vụ kinh doanh",
@@ -162,4 +166,90 @@ class Category {
     "Quán ba",
     "Bar & Grill"
   ];
+}
+
+class Information {
+  static const List<String> TITLE_INFO = [
+    "Hoàn tất thiết lập Trang của bạn",
+    "Thành công rồi! Bạn đã tạo được NAME_OF_PAGE. Hãy bổ sung thông tin chi tiết để mọi người dễ dàng kết nối với bạn nhé",
+    "Chung",
+    "Thông tin liên hệ",
+    "Vị trí",
+    "Giờ làm việc",
+  ];
+  static const SUB_TITLE_WORK_TIME =
+      "Thông báo về giờ làm việc tại vị trí của bạn";
+  static const List<List<String>> CONTENT_OF_WORK_TIME = [
+    ["Không có giờ làm việc", "Không hiển thị giờ làm việc"],
+    ["Luôn mở cửa", "Bạn đang mở cửa 24 giờ mỗi ngày"],
+    ["Giờ làm việc tiêu chuẩn", "Nhập khung giờ cụ thể"],
+  ];
+  static const List<String> PLACEHOLDER_INFO = [
+    "Tiểu sử",
+    "Trang web",
+    "Email",
+    "Số điện thoại",
+    "Địa chỉ",
+    "Tỉnh/ Thành phố/ Thị xã/ Thị trấn",
+    "Mã ZIP"
+  ];
+}
+
+class Avatar {
+  static const List<String> TITLE_AVATAR = [
+    "Tùy chỉnh trang",
+    "Ảnh đại diện của bạn là một trong những thứ đầu tiên mọi người nhìn thấy. Hãy thử dùng logo hoặc hình ảnh đơn giản khiến họ dễ liên tưởng dến bạn",
+    "Chỉnh sửa nút hành động",
+  ];
+}
+
+class Phone {
+  static const List<String> TITLE_PHONE = [
+    "Kết nối WhatsApp với Trang của bạn",
+    "Sau khi kết nối tài khoản WhatsApp, bạn có thể thêm nút để đối tượng của Trang nhắn tin cho bạn trên WhatsApp",
+    "Để bắt đầu, chúng tôi sẽ gửi cho bạn một mã trên WhatsApp. Bạn chỉ cần nhập số điện thoại liên kết với tài khoản WhatsApp của mình",
+    "Nhận mã"
+  ];
+  static const List<String> PLACEHOLDER_PHONE = ["Số điện thoại", "Nhận mã"];
+  static const List<String> LIST_PHONE = [
+    'US +1',
+    'AL +355',
+    'VN +84',
+    'AC +34',
+    'JP +99',
+    'UK +100',
+    "AF +93",
+    "AL +355",
+    "DZ +213",
+    "AS +1-684",
+    "AD +376",
+    "AO +244",
+    "AI +1-264",
+    "AQ +672",
+    "ER +1-268 ",
+    "AR +54",
+    "AM +374",
+    "AW +297",
+    "AU +61",
+    "AT +43",
+  ];
+}
+
+class RequestFr {
+  static const List<String> TITLE_REQUEST = [
+    "Xây dựng đối tượng cho Trang",
+    "Hãy mời bạn bè kết nối với NAME_OF_PAGE",
+    "Mời bạn bè"
+  ];
+  static const List<String> PLACEHOLDER_PHONE = ["Số điện thoại", "Nhận mã"];
+  static const List<double> LIST_DEMO = [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+  ];
+  static const FIRST_WORD_OF_PAGE_NAME = "B";
 }

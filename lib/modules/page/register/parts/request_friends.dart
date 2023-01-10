@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:self_facebook_project/general/common.dart';
+import 'package:self_facebook_project/general/common_page.dart';
 import 'package:self_facebook_project/general/format_input.dart';
 import 'package:self_facebook_project/modules/page/blocs/current_number_page.dart';
 import 'package:self_facebook_project/modules/page/blocs/name_bloc.dart';
 import 'package:self_facebook_project/modules/page/model/name_model.dart';
+import 'package:self_facebook_project/modules/page/register/parts/settting_page.dart';
 
 class RequestFriends extends StatefulWidget {
   @override
@@ -25,7 +26,9 @@ class _RequestFriendsState extends State<RequestFriends> {
             leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
-            //
+            context.read<CurrentNumberPageCubit>().updateCurrentNumberPageCubit(
+                context.read<CurrentNumberPageCubit>().state - 1);
+            Navigator.of(context).pop();
           },
         )),
         body: GestureDetector(
@@ -45,6 +48,7 @@ class _RequestFriendsState extends State<RequestFriends> {
                         margin: EdgeInsets.only(top: 30),
                         child: Center(
                           child: Container(
+                            margin: EdgeInsets.only(bottom: 15),
                             height: 50,
                             width: 50,
                             decoration: BoxDecoration(
@@ -77,20 +81,21 @@ class _RequestFriendsState extends State<RequestFriends> {
                         child: Text(RequestFr.TITLE_REQUEST[1],
                             textAlign: TextAlign.center,
                             style: const TextStyle(
-                                color: Colors.white, fontSize: 15)),
+                                color: Colors.white, fontSize: 16)),
                       ),
                       const SizedBox(
-                        height: 10,
+                        height: 15,
                       ),
                       Center(
                         child: Container(
+                          margin: EdgeInsets.only(bottom: 15),
                           height: 30,
                           // color: Colors.red,
                           child: Center(
                             child: Stack(
                                 children: RequestFr.LIST_DEMO.map((e) {
                               return Container(
-                                margin: EdgeInsets.only(right:width*0.25),
+                                margin: EdgeInsets.only(right: width * 0.25),
                                 child: Align(
                                     alignment: Alignment.centerRight,
                                     child: Container(
@@ -103,6 +108,11 @@ class _RequestFriendsState extends State<RequestFriends> {
                                         borderRadius: BorderRadius.circular(15),
                                         color: Colors.white,
                                       ),
+                                      child: Image.asset(
+                                        RequestFr.IMG_PATH_LIST[
+                                            int.parse(e.toStringAsFixed(0))],
+                                        fit: BoxFit.contain,
+                                      ),
                                     )),
                               );
                             }).toList()),
@@ -112,11 +122,11 @@ class _RequestFriendsState extends State<RequestFriends> {
                       ElevatedButton(
                           style: ElevatedButton.styleFrom(
                               fixedSize: Size(width * 0.285, 40),
-                              backgroundColor: Colors.grey[800]),
+                              backgroundColor: Colors.blue),
                           onPressed: () {},
                           child: Text(
                             RequestFr.TITLE_REQUEST[2],
-                            style: TextStyle(color: Colors.grey),
+                            style: TextStyle(color: Colors.white, fontSize: 15),
                           )),
                     ],
                   ),
@@ -137,10 +147,14 @@ class _RequestFriendsState extends State<RequestFriends> {
                             fixedSize: Size(width * 0.9, 40),
                             backgroundColor: Colors.blue),
                         onPressed: () {
-                          // Navigator.of(context).push(MaterialPageRoute(
-                          //     builder: (_) => CategoryPage()));
+                          context
+                              .read<CurrentNumberPageCubit>()
+                              .updateCurrentNumberPageCubit(
+                                  currentNumberPage + 1);
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (_) => SettingsPage()));
                         },
-                        child: Text(Common.SKIP)),
+                        child: Text(CommonPage.NEXT)),
                   ),
                   const SizedBox(
                     height: 5,
@@ -156,7 +170,7 @@ class _RequestFriendsState extends State<RequestFriends> {
                           return Container(
                             margin: EdgeInsets.fromLTRB(
                                 index == 0 ? 0 : 5, 0, index == 6 ? 0 : 5, 0),
-                            width: width * 0.13,
+                            width: width * 0.10555,
                             // height: 2,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(3),

@@ -2,7 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:self_facebook_project/general/common.dart';
+import 'package:self_facebook_project/general/common_page.dart';
 import 'dart:io' as Platform;
 import 'package:self_facebook_project/modules/page/register/parts/name_page.dart';
 
@@ -66,7 +66,7 @@ class _PrimaryPageState extends State<PrimaryPage> {
                       height: double.infinity,
                       child: Image.asset(
                           fit: BoxFit.cover,
-                          Common.PATH_IMG + "back_${index + 1}.jpg"));
+                          CommonPage.PATH_IMG + "back_${index + 1}.jpg"));
                 })),
             _buildBottomWidget()
           ],

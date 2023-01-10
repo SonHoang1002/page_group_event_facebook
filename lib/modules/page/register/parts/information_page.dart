@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:self_facebook_project/general/common.dart';
+import 'package:self_facebook_project/general/common_page.dart';
 import 'package:self_facebook_project/modules/page/blocs/current_number_page.dart';
 import 'package:self_facebook_project/modules/page/blocs/name_bloc.dart';
 import 'package:self_facebook_project/modules/page/model/name_model.dart';
@@ -31,7 +31,9 @@ class _InformationPageState extends State<InformationPage> {
           leading: IconButton(
         icon: const Icon(Icons.arrow_back),
         onPressed: () {
-          //
+          context.read<CurrentNumberPageCubit>().updateCurrentNumberPageCubit(
+              context.read<CurrentNumberPageCubit>().state - 1);
+          Navigator.of(context).pop();
         },
       )),
       body: BlocBuilder<NamePageBloc, NamePageState>(
@@ -127,10 +129,6 @@ class _InformationPageState extends State<InformationPage> {
                             Information.TITLE_INFO[5],
                             Information.SUB_TITLE_WORK_TIME
                           ]),
-                          _buildTextFormField(Information.PLACEHOLDER_INFO[4]),
-                          SizedBox(
-                            height: 10,
-                          ),
                           _buildRadioWorkTime(0),
                           _buildRadioWorkTime(1),
                           _buildRadioWorkTime(2),
@@ -155,13 +153,16 @@ class _InformationPageState extends State<InformationPage> {
                             fixedSize: Size(width * 0.9, 40),
                             backgroundColor: Colors.blue),
                         onPressed: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (_) => AvatarPage()));
-                         
+                          context
+                              .read<CurrentNumberPageCubit>()
+                              .updateCurrentNumberPageCubit(
+                                  currentNumberPage + 1);
+                          Navigator.of(context).push(
+                              MaterialPageRoute(builder: (_) => AvatarPage()));
                         },
                         child: Text(currentNumberPage == 7
-                            ? Common.DONE
-                            : Common.NEXT)),
+                            ? CommonPage.DONE
+                            : CommonPage.NEXT)),
                   ),
                   const SizedBox(
                     height: 5,
@@ -177,7 +178,7 @@ class _InformationPageState extends State<InformationPage> {
                           return Container(
                             margin: EdgeInsets.fromLTRB(
                                 index == 0 ? 0 : 5, 0, index == 6 ? 0 : 5, 0),
-                            width: width * 0.13,
+                            width: width * 0.10555,
                             // height: 2,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(3),

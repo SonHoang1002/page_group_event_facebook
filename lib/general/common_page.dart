@@ -1,4 +1,4 @@
-class Common {
+class CommonPage {
   static String PATH_IMG = "assets/images/";
   static const String NEXT = "Tiếp";
   static const String DONE = "Xong";
@@ -238,7 +238,7 @@ class Phone {
 class RequestFr {
   static const List<String> TITLE_REQUEST = [
     "Xây dựng đối tượng cho Trang",
-    "Hãy mời bạn bè kết nối với NAME_OF_PAGE",
+    "Hãy mời bạn bè kết nối với NAME_OF_PAGE để phát triển trang",
     "Mời bạn bè"
   ];
   static const List<String> PLACEHOLDER_PHONE = ["Số điện thoại", "Nhận mã"];
@@ -252,4 +252,31 @@ class RequestFr {
     6,
   ];
   static const FIRST_WORD_OF_PAGE_NAME = "B";
+
+  static List<String> IMG_PATH_LIST = [
+    "${CommonPage.PATH_IMG}cat_1.png",
+    "${CommonPage.PATH_IMG}cat_2.png",
+    "${CommonPage.PATH_IMG}cat_3.png",
+    "${CommonPage.PATH_IMG}cat_4.png",
+    "${CommonPage.PATH_IMG}cat_5.png",
+    "${CommonPage.PATH_IMG}cat_6.png",
+    "${CommonPage.PATH_IMG}cat_7.png",
+  ];
+}
+
+class Settings {
+  static const List<int> COUNTER_CONTENT = [0, 1];
+  static const List<String> TITLE_SETTINGS = [
+    "Luôn cập nhật thông tin về Trang của bạn",
+    "Hãy bật những tính năng này để khai thác tối đa NAME_OF_PAGE  Bạn có thể vào phần Cài đặt để thay đổi bất cứ lúc nào",
+  ];
+
+  static const List<String> TITLE_CONTENT = [
+    "Thông báo về Trang trên trang cá nhân",
+    "Email marketing và email quảng cáo về Trang của bạn",
+  ];
+  static const List<String> SUBTITLE_CONTENT = [
+    "Không bỏ lỡ bất kỳ thông tin mới nào về Trang NAME_OF_PAGE khi chuyển sang trang cá nhân NAME_OF_USER.",
+    "Tìm hiểu về các sản phẩm và dịch vụ của Meta để giúp NAME_OF_PAGE gặt hái thành công."
+  ];
 }

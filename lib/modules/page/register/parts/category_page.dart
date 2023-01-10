@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:self_facebook_project/general/common.dart';
+import 'package:self_facebook_project/general/common_page.dart';
 import 'package:self_facebook_project/modules/page/blocs/category_bloc.dart';
 import 'package:self_facebook_project/modules/page/blocs/current_number_page.dart';
 import 'package:self_facebook_project/modules/page/blocs/name_bloc.dart';
@@ -31,7 +31,9 @@ class _CategoryPageState extends State<CategoryPage> {
           leading: IconButton(
         icon: const Icon(Icons.arrow_back),
         onPressed: () {
-          //
+          context.read<CurrentNumberPageCubit>().updateCurrentNumberPageCubit(
+              context.read<CurrentNumberPageCubit>().state - 1);
+          Navigator.of(context).pop();
         },
       )),
       body: BlocBuilder<NamePageBloc, NamePageState>(
@@ -228,8 +230,8 @@ class _CategoryPageState extends State<CategoryPage> {
                                   builder: (_) => InformationPage()));
                             },
                             child: Text(currentNumberPage == 7
-                                ? Common.DONE
-                                : Common.NEXT)),
+                                ? CommonPage.DONE
+                                : CommonPage.NEXT)),
                       ),
                       const SizedBox(
                         height: 5,
@@ -245,7 +247,7 @@ class _CategoryPageState extends State<CategoryPage> {
                               return Container(
                                 margin: EdgeInsets.fromLTRB(index == 0 ? 0 : 5,
                                     0, index == 6 ? 0 : 5, 0),
-                                width: width * 0.13,
+                                width: width * 0.10555,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(3),
                                   color: index <= currentNumberPage - 1

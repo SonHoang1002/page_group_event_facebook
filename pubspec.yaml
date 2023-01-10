@@ -41,6 +41,7 @@ dependencies:
   simple_autocomplete_formfield: ^0.3.0
   image_picker: ^0.8.5+3
   file_picker: ^5.0.1
+  font_awesome_flutter: ^10.3.0
 
 
   

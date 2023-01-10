@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:self_facebook_project/general/common.dart';
+import 'package:self_facebook_project/general/common_page.dart';
 import 'package:self_facebook_project/general/format_input.dart';
 import 'package:self_facebook_project/modules/page/blocs/current_number_page.dart';
 import 'package:self_facebook_project/modules/page/blocs/name_bloc.dart';
@@ -28,7 +28,9 @@ class _PhonePageState extends State<PhonePage> {
           leading: IconButton(
         icon: const Icon(Icons.arrow_back),
         onPressed: () {
-          //
+          context.read<CurrentNumberPageCubit>().updateCurrentNumberPageCubit(
+              context.read<CurrentNumberPageCubit>().state - 1);
+          Navigator.of(context).pop();
         },
       )),
       body: BlocBuilder<NamePageBloc, NamePageState>(
@@ -75,8 +77,8 @@ class _PhonePageState extends State<PhonePage> {
                         // height: 150,
                         color: Colors.red,
                         child: Image.asset(
-                          Common.PATH_IMG + "phone_img_example.png",
-                          fit: BoxFit.contain,
+                          CommonPage.PATH_IMG + "phone_img_example.png",
+                          fit: BoxFit.cover,
                         ),
                       ),
                       Text(Phone.TITLE_PHONE[2],
@@ -167,7 +169,10 @@ class _PhonePageState extends State<PhonePage> {
                               fixedSize: Size(width * 0.9, 40),
                               backgroundColor: Colors.grey[800]),
                           onPressed: () {},
-                          child: Text(Phone.TITLE_PHONE[3],style: TextStyle(color: Colors.grey),)),
+                          child: Text(
+                            Phone.TITLE_PHONE[3],
+                            style: TextStyle(color: Colors.grey),
+                          )),
                     ],
                   ),
                 ),
@@ -187,10 +192,14 @@ class _PhonePageState extends State<PhonePage> {
                             fixedSize: Size(width * 0.9, 40),
                             backgroundColor: Colors.blue),
                         onPressed: () {
+                          context
+                              .read<CurrentNumberPageCubit>()
+                              .updateCurrentNumberPageCubit(
+                                  currentNumberPage + 1);
                           Navigator.of(context).push(MaterialPageRoute(
                               builder: (_) => RequestFriends()));
                         },
-                        child: Text(Common.SKIP)),
+                        child: Text(CommonPage.SKIP)),
                   ),
                   const SizedBox(
                     height: 5,
@@ -206,7 +215,7 @@ class _PhonePageState extends State<PhonePage> {
                           return Container(
                             margin: EdgeInsets.fromLTRB(
                                 index == 0 ? 0 : 5, 0, index == 6 ? 0 : 5, 0),
-                            width: width * 0.13,
+                            width: width * 0.10555,
                             // height: 2,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(3),

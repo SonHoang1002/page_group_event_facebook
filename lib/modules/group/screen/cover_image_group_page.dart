@@ -10,12 +10,12 @@ import 'package:self_facebook_project/modules/page/register/parts/category_page.
 import 'package:self_facebook_project/modules/page/register/parts/phone_page.dart';
 import 'dart:io';
 
-class AvatarPage extends StatefulWidget {
+class CoverImageGroupPage extends StatefulWidget {
   @override
-  State<AvatarPage> createState() => _AvatarPageState();
+  State<CoverImageGroupPage> createState() => _CoverImageGroupPageState();
 }
 
-class _AvatarPageState extends State<AvatarPage> {
+class _CoverImageGroupPageState extends State<CoverImageGroupPage> {
   late double width = 0;
   late double height = 0;
   late NamePageModel namePageModel;

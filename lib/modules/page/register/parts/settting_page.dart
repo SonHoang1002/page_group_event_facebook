@@ -1,25 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:self_facebook_project/general/common_page.dart';
+import 'package:self_facebook_project/general/format_input.dart';
 import 'package:self_facebook_project/modules/page/blocs/current_number_page.dart';
 import 'package:self_facebook_project/modules/page/blocs/name_bloc.dart';
 import 'package:self_facebook_project/modules/page/model/name_model.dart';
-import 'package:self_facebook_project/modules/page/register/parts/category_page.dart';
 
-const List<String> QUESTION_NAME = [
-  "Tên Trang của bạn là gì ?",
-  "Hãy dùng tên doanh nghiệp/thương hiệu/tổ chức của bạn hoặc tên góp phần giải thích về Trang"
-];
-const String next = "Tiếp";
-const String done = "Xong";
-
-class NamePage extends StatefulWidget {
+class SettingsPage extends StatefulWidget {
   @override
-  State<NamePage> createState() => _NamePageState();
+  State<SettingsPage> createState() => _SettingsPageState();
 }
 
-class _NamePageState extends State<NamePage> {
+class _SettingsPageState extends State<SettingsPage> {
   late double width = 0;
   late NamePageModel namePageModel;
+  List<bool> listSwitch = [false, false];
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -29,9 +25,9 @@ class _NamePageState extends State<NamePage> {
           leading: IconButton(
         icon: const Icon(Icons.arrow_back),
         onPressed: () {
-          context
-              .read<CurrentNumberPageCubit>()
-              .updateCurrentNumberPageCubit(1);
+          //
+          context.read<CurrentNumberPageCubit>().updateCurrentNumberPageCubit(
+              context.read<CurrentNumberPageCubit>().state - 1);
           Navigator.of(context).pop();
         },
       )),
@@ -54,7 +50,7 @@ class _NamePageState extends State<NamePage> {
                       Row(
                         children: [
                           Text(
-                            QUESTION_NAME[0],
+                            Settings.TITLE_SETTINGS[0],
                             style: const TextStyle(
                                 color: Colors.white,
                                 fontSize: 20,
@@ -65,36 +61,47 @@ class _NamePageState extends State<NamePage> {
                       const SizedBox(
                         height: 10,
                       ),
-                      Text(QUESTION_NAME[1],
+                      Text(Settings.TITLE_SETTINGS[1],
                           style: const TextStyle(
-                              color: Colors.white, fontSize: 15)),
+                              color: Colors.white, fontSize: 17)),
                       const SizedBox(
                         height: 10,
                       ),
-                      Container(
-                        height: 80,
-                        child: TextFormField(
-                          controller:
-                              namePageState.namePageModel.nameController,
-                          onChanged: ((value) {
-                            context
-                                .read<NamePageBloc>()
-                                .add(UpdateNamePageEvent(namePageModel));
-                          }),
-                          style: const TextStyle(color: Colors.white),
-                          decoration: const InputDecoration(
-                              enabledBorder: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: Colors.grey, width: 2),
+                      Column(
+                        children: Settings.COUNTER_CONTENT.map((index) {
+                          return Container(
+                            margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
+                            child: Row(children: [
+                              Flexible(
+                                flex: 8,
+                                child: Column(children: [
+                                  Text(
+                                    Settings.TITLE_CONTENT[index],
+                                    textAlign: TextAlign.start,
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 17),
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Text(Settings.SUBTITLE_CONTENT[index],
+                                      style: TextStyle(
+                                          color: Colors.white, fontSize: 15)),
+                                ]),
                               ),
-                              hintText: "Tên Trang",
-                              // fillColor: Colors.red,
-                              // filled: true,
-                              hintStyle: TextStyle(color: Colors.grey),
-                              border: OutlineInputBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(.10)))),
-                        ),
+                              Flexible(
+                                  flex: 2,
+                                  child: Switch(
+                                    value: listSwitch[index],
+                                    onChanged: ((value) {
+                                      setState(() {
+                                        listSwitch[index] = !listSwitch[index];
+                                      });
+                                    }),
+                                  )),
+                            ]),
+                          );
+                        }).toList(),
                       )
                     ],
                   ),
@@ -118,16 +125,12 @@ class _NamePageState extends State<NamePage> {
                                     ? Colors.grey[800]
                                     : Colors.blue),
                         onPressed: () {
-                          if (namePageModel.nameController.text.trim() != "") {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (_) => CategoryPage()));
-                            context
-                                .read<CurrentNumberPageCubit>()
-                                .updateCurrentNumberPageCubit(
-                                    currentNumberPage + 1);
-                          }
+                          // context
+                          //     .read<CurrentNumberPageCubit>()
+                          //     .updateCurrentNumberPageCubit(
+                          //         currentNumberPage + 1);
                         },
-                        child: Text(currentNumberPage == 7 ? done : next)),
+                        child: Text(CommonPage.DONE)),
                   ),
                   const SizedBox(
                     height: 5,

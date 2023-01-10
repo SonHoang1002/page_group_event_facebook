@@ -100,7 +100,7 @@ class TargetGroupCommon {
     "Ảnh bìa",
   ];
   static const List<String> SUBTITLE = [
-    "Hãy chọn mục tiêu mô tả chính xác nhất những gif mọi người sẽ làm trong nhóm của bạn nehs",
+    "Hãy chọn mục tiêu mô tả chính xác nhất những gì mọi người sẽ làm trong nhóm của bạn nhé",
   ];
   static const List<IconData> ICON_DATA_LIST = [
     FontAwesomeIcons.peopleGroup,
@@ -117,9 +117,52 @@ class TargetGroupCommon {
     "Lên kế hoach và điều phối",
     "Học hỏi hoặc chia sẻ sở thích",
     "Hỗ trợ lẫn nhau",
-    "Trợ giúp trong trương hợp khản cấp hoặc khủng hoảng",
+    "Trợ giúp trong trường hợp khẩn cấp hoặc khủng hoảng",
     "Mua và bán",
     "Quảng bá doanh nghiệp",
     "Mục tiêu khác",
+  ];
+}
+
+class CreatePostGroupCommon {
+  static const List<String> TITLE = [
+    "Tạo bài viết",
+    "Ảnh bìa",
+  ];
+  static const List<String> SUBTITLE = [
+    "Viết bài để nêu cao tinh thần của nhóm và chào mừng thành viên mới"
+  ];
+  static const List<IconData> ICON_DATA_LIST = [
+    FontAwesomeIcons.peopleGroup,
+    FontAwesomeIcons.peopleGroup,
+    FontAwesomeIcons.peopleGroup,
+    FontAwesomeIcons.peopleGroup,
+
+    FontAwesomeIcons.peopleGroup,
+    FontAwesomeIcons.peopleGroup,
+    FontAwesomeIcons.peopleGroup,
+    FontAwesomeIcons.peopleGroup,
+
+    FontAwesomeIcons.peopleGroup,
+    FontAwesomeIcons.peopleGroup,
+    FontAwesomeIcons.peopleGroup,
+    FontAwesomeIcons.peopleGroup,
+  ];
+  static const List<String> CONTENT_LIST = [
+    "Ảnh/Video",
+    "Camera",
+    "Gắn thẻ người khác",
+    "Video trực tiếp",
+    "Màu nền",
+    "Check in",
+    "File GIF",
+    "Thăm dò ý kiến",
+    "Họp mặt",
+    "Gắn thẻ sự kiện",
+    "Tạo sự kiện",
+    "Cảm xúc/Hoạt động",
+  ];
+    static const List<String> PLACEHOLDER_LIST = [
+    "Hãy viết gì đó",
   ];
 }

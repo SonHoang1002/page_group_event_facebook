@@ -1,10 +1,13 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:self_facebook_project/general/common_group.dart';
 import 'package:self_facebook_project/modules/group/screen/cover_image_group_page.dart';
+import 'package:self_facebook_project/modules/group/widgets/addtional_information_group_widget.dart';
 import 'package:self_facebook_project/modules/group/widgets/format_input.dart';
+import 'package:self_facebook_project/modules/group/widgets/information_user_group_widget.dart';
 import 'package:self_facebook_project/modules/page/blocs/current_number_page.dart';
 import 'package:self_facebook_project/modules/page/blocs/name_bloc.dart';
 import 'package:self_facebook_project/modules/page/model/name_model.dart';
@@ -52,48 +55,99 @@ class _RequestFriendsGroupPageState extends State<RequestFriendsGroupPage> {
                           height: 10,
                         ),
 
+////////////////////////////////// public /////////////////////////////////////
+
                         // build share widget
-                        _buildFlexibleComponent(
-                            context,
-                            Icon(
-                              FontAwesomeIcons.share,
-                              color: Colors.white,
-                              size: 17,
-                            ),
-                            ["Chia sẻ"],
-                            Container()),
-                        const SizedBox(
-                          height: 10,
-                        ),
+                        // InformationUserWidget(
+                        //   context: context,
+                        //   prefixWidget: Icon(
+                        //     FontAwesomeIcons.share,
+                        //     color: Colors.white,
+                        //     size: 17,
+                        //   ),
+                        //   title: "Chia sẻ",
+                        // ),
+                        // const SizedBox(
+                        //   height: 10,
+                        // ),
 
                         // build email widget
-                        _buildFlexibleComponent(
-                            context,
-                            Icon(
-                              FontAwesomeIcons.envelope,
-                              color: Colors.white,
-                              size: 17,
-                            ),
-                            ["Mời qua email", "Gửi email mời mọi người"],
-                            Container()),
-                        const SizedBox(
-                          height: 10,
-                        ),
+                        // InformationUserWidget(
+                        //   context: context,
+                        //   prefixWidget: Icon(
+                        //     FontAwesomeIcons.envelope,
+                        //     color: Colors.white,
+                        //     size: 17,
+                        //   ),
+                        //   title: RequestFriendsGroupCommon.EMAIL_REQUEST_TITLE,
+                        //   subTitleWidget: Container(
+                        //     margin: EdgeInsets.only(),
+                        //     child: Text(RequestFriendsGroupCommon.EMAIL_REQUEST_SUBTITLE,
+                        //         style: TextStyle(
+                        //             color: Colors.white, fontSize: 13)),
+                        //   ),
+                        // ),
+                        // const SizedBox(
+                        //   height: 10,
+                        // ),
 
                         // build example widget
-                        Row(
-                          children: [
-                            _buildExampleComponent("Gợi ý"),
-                            _buildExampleComponent('Hà Nội',
-                                icon: FontAwesomeIcons.city),
-                            _buildExampleComponent('Nhóm chung',
-                                icon: FontAwesomeIcons.peopleGroup)
-                          ],
+                        // Row(
+                        //   children: [
+                        //     _buildExampleComponent("Gợi ý"),
+                        //     _buildExampleComponent('Hà Nội',
+                        //         icon: FontAwesomeIcons.city),
+                        //     _buildExampleComponent('Nhóm chung',
+                        //         icon: FontAwesomeIcons.peopleGroup)
+                        //   ],
+                        // ),
+
+////////////////////////////////// private /////////////////////////////////////
+                        // build email widget
+                        InformationUserWidget(
+                          context: context,
+                          prefixWidget: Icon(
+                            FontAwesomeIcons.envelope,
+                            color: Colors.white,
+                            size: 17,
+                          ),
+                          title: RequestFriendsGroupCommon.EMAIL_REQUEST_TITLE,
+                          subTitleWidget: Container(
+                            margin: EdgeInsets.only(),
+                            child: Text(
+                                RequestFriendsGroupCommon
+                                    .EMAIL_REQUEST_SUBTITLE,
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 13)),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 10,
                         ),
                         Row(
                           children: [
                             Text(
-                              RequestFriendsGroupCommon.TITLE[2],
+                              RequestFriendsGroupCommon.PRIVATE_TITLE[0],
+                              style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 23,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Text(RequestFriendsGroupCommon.PRIVATE_SUB_TITLE[0],
+                            style: const TextStyle(
+                                color: Colors.white, fontSize: 23)),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Row(
+                          children: [
+                            Text(
+                              RequestFriendsGroupCommon.PRIVATE_TITLE[1],
                               style: const TextStyle(
                                   color: Colors.white,
                                   fontSize: 20,
@@ -101,9 +155,82 @@ class _RequestFriendsGroupPageState extends State<RequestFriendsGroupPage> {
                             ),
                           ],
                         ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Text(RequestFriendsGroupCommon.PRIVATE_SUB_TITLE[1],
+                            style: const TextStyle(
+                                color: Colors.white, fontSize: 17)),
+                        const SizedBox(
+                          height: 16,
+                        ),
+                        AddtionalInformationGroupWidget(
+                          contentWidget: [
+                            RichText(
+                                text: TextSpan(children: [
+                              TextSpan(
+                                  text: RequestFriendsGroupCommon
+                                      .PRIVATE_LINK_EXAMPLE,
+                                  style: TextStyle(
+                                      color: Colors.grey[400],
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.bold)),
+                            ])),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            RichText(
+                                text: TextSpan(children: [
+                              TextSpan(
+                                  text: RequestFriendsGroupCommon
+                                      .PRIVATE_DESCRIPTION_FOR_LINK_EXAMPLE,
+                                  style: TextStyle(
+                                    color: Colors.grey[400],
+                                    fontSize: 13,
+                                  )),
+                            ])),
+                          ],
+                          prefixWidget: GestureDetector(
+                            onTap: () {
+                              Clipboard.setData(ClipboardData(
+                                  text: RequestFriendsGroupCommon
+                                      .PRIVATE_LINK_EXAMPLE));
+                            },
+                            child: Container(
+                              height: 75,
+                              padding: EdgeInsets.only(right: 10,),
+                              child: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Icon(
+                                    FontAwesomeIcons.link,
+                                    color: Colors.white,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+
+                        // goi y
+
+                        // Row(
+                        //   children: [
+                        //     Text(
+                        //       RequestFriendsGroupCommon.PUBLIC_TITLE[2],
+                        //       style: const TextStyle(
+                        //           color: Colors.white,
+                        //           fontSize: 20,
+                        //           fontWeight: FontWeight.bold),
+                        //     ),
+                        //   ],
+                        // ),
                         SizedBox(
                           height: 10,
                         ),
+
+                        // search
                         Container(
                           height: 35,
                           child: TextFormField(
@@ -135,7 +262,7 @@ class _RequestFriendsGroupPageState extends State<RequestFriendsGroupPage> {
                         Row(
                           children: [
                             Text(
-                              RequestFriendsGroupCommon.TITLE[3],
+                              RequestFriendsGroupCommon.PUBLIC_TITLE[3],
                               style: const TextStyle(
                                   color: Colors.white,
                                   fontSize: 20,
@@ -148,19 +275,20 @@ class _RequestFriendsGroupPageState extends State<RequestFriendsGroupPage> {
                         ),
 
                         Container(
-                          height: 366,
+                          height: 130,
                           child: ListView.builder(
                               padding: EdgeInsets.zero,
                               itemCount: 7,
                               itemBuilder: (context, index) {
                                 return Container(
                                     // margin: EdgeInsets.symmetric(vertical: 5),
-                                    child: _buildFlexibleComponent(
-                                        context,
-                                        Image.asset(RequestFriendsGroupCommon
-                                            .IMG_PATH_LIST[index]),
-                                        ["People ${index}"],
-                                        ElevatedButton(
+                                    child: InformationUserWidget(
+                                        context: context,
+                                        prefixWidget: Image.asset(
+                                            RequestFriendsGroupCommon
+                                                .IMG_PATH_LIST[index]),
+                                        title: "People ${index}",
+                                        suffixWidget: ElevatedButton(
                                             style: ElevatedButton.styleFrom(
                                                 shape: RoundedRectangleBorder(
                                                     borderRadius:
@@ -196,7 +324,8 @@ class _RequestFriendsGroupPageState extends State<RequestFriendsGroupPage> {
                           fixedSize: Size(width * 0.9, 40),
                           backgroundColor: Colors.blue),
                       onPressed: () {
-                        Navigator.of(context).push(MaterialPageRoute(builder: (_)=> CoverImageGroupPage()));
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (_) => CoverImageGroupPage()));
                       },
                       child: Text(CommonGroup.NEXT)),
                 ),
@@ -207,65 +336,7 @@ class _RequestFriendsGroupPageState extends State<RequestFriendsGroupPage> {
   }
 }
 
-//   tạo ra thành phần gồm prefix, nội dung, suffix
-Widget _buildFlexibleComponent(BuildContext context, Widget prefixWidget,
-    List<String> listContent, Widget suffixWidget) {
-  return Container(
-    padding: EdgeInsets.symmetric(vertical: 5),
-    child: Row(
-      children: [
-        Flexible(
-          flex: 2,
-          child: Container(
-            margin: EdgeInsets.only(right: 15),
-            height: 40,
-            width: 40,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(20),
-                ),
-                color: Colors.grey[700]),
-            child: prefixWidget,
-          ),
-        ),
-        Flexible(
-          flex: 10,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    margin: EdgeInsets.only(),
-                    child: Text(listContent[0],
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold)),
-                  ),
-                  listContent.length == 2
-                      ? Container(
-                          margin: EdgeInsets.only(),
-                          child: Text(listContent[1],
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 13)),
-                        )
-                      : Container()
-                ],
-              ),
-              suffixWidget,
-            ],
-          ),
-        ),
-      ],
-    ),
-  );
-}
-
-
- // tạo ra thành phần gồm prefix, nội dung, suffix
+// tạo ra thành phần gồm prefix, nội dung, suffix
 Widget _buildExampleComponent(String title, {IconData? icon}) {
   return GestureDetector(
     onTap: (() {}),

@@ -29,33 +29,20 @@ class CreateGroupCommon {
   static const List<String> DEFEND_PUBLIC_RULE = [
     "Thành viên và khách truy cập có thể đăng bài trong nhóm. Quản trị viên có thể xét duyệt người lần đầu tham gia",
   ];
+
   static List<bool> selectedPrivateRule = [false, false];
   static List<bool> selectedHideGroup = [false, false];
 }
 
 class RequestFriendsGroupCommon {
   static const String TITLE_APPBAR = "Mời mọi người";
-  static const List<String> TITLE = [
-    "Chia sẻ",
-    "Mời qua email",
-    "Gợi ý",
-    "Bạn bè"
-  ];
-  static const List<String> EXAMPLE = [
-    "Gợi ý",
-    "Vĩnh Yên",
-    "Nhóm chung",
-    "Bạn bè"
-  ];
-  static const List<String> SUBTITLE = [
-    "Chia sẻ",
-    "Mời qua email",
-    "Gợi ý",
-    "Bạn bè"
-  ];
+
   static const List<String> PLACEHOLDER_LIST = [
     "Tìm kiếm người",
   ];
+  static const String EMAIL_REQUEST_TITLE = "Mời qua email";
+  static const String EMAIL_REQUEST_SUBTITLE = "Gửi email mời mợi người";
+  
   static List<String> IMG_PATH_LIST = [
     "${CommonGroup.PATH_IMG}cat_1.png",
     "${CommonGroup.PATH_IMG}cat_2.png",
@@ -65,6 +52,32 @@ class RequestFriendsGroupCommon {
     "${CommonGroup.PATH_IMG}cat_6.png",
     "${CommonGroup.PATH_IMG}cat_7.png",
   ];
+  // cong khai
+  static const List<String> PUBLIC_TITLE = [
+    "Chia sẻ",
+    "Mời qua email",
+    "Gợi ý",
+    "Bạn bè"
+  ];
+  static const List<String> PUBLIC_EXAMPLE = [
+    "Gợi ý",
+    "Vĩnh Yên",
+    "Nhóm chung",
+    "Bạn bè"
+  ];
+  // ca nhan
+  static const List<String> PRIVATE_TITLE = [
+    "Mời thành viên",
+    "Mời bất kì ai",
+  ];
+  static const List<String> PRIVATE_SUB_TITLE = [
+    "Bạn nên mời 5-10 người để làm đà phát triển cho nhóm",
+    "Dùng liên kết để mời mọi người tham gia nhóm này. Liên kết này sẽ hết hạn sau 48 giờ hoặc sau khi có 20 người nhấp vào đó, tùy điều kiện nào đến trước",
+  ];
+  static const String PRIVATE_LINK_EXAMPLE =
+      "https://www.freecodecamp.org/learn/front-end-development-libraries/#redux";
+  static const String PRIVATE_DESCRIPTION_FOR_LINK_EXAMPLE =
+      "Bất kỳ ai trên Facebook có liên kết này đều có thể xem thông tin Giới thiệu về nhóm cũng như yếu cầu tham gia";
 }
 
 class CoverImageGroupCommon {

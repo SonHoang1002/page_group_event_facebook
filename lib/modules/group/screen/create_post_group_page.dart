@@ -8,7 +8,7 @@ import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:self_facebook_project/general/common_group.dart';
 import 'package:self_facebook_project/general/common_page.dart';
 import 'package:self_facebook_project/modules/group/screen/target_group_page.dart';
-import 'package:self_facebook_project/modules/group/widgets/information_user_widget.dart';
+import 'package:self_facebook_project/modules/group/widgets/information_user_group_widget.dart';
 import 'package:self_facebook_project/modules/page/blocs/current_number_page.dart';
 import 'package:self_facebook_project/modules/page/blocs/name_bloc.dart';
 import 'package:self_facebook_project/modules/page/model/name_model.dart';

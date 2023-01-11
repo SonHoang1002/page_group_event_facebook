@@ -1,9 +1,11 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:self_facebook_project/general/common_group.dart';
 import 'package:self_facebook_project/modules/group/screen/request_friends_group_page.dart';
+import 'package:self_facebook_project/modules/group/widgets/addtional_information_group_widget.dart';
 import 'package:self_facebook_project/modules/group/widgets/format_input.dart';
 import 'package:self_facebook_project/modules/page/blocs/current_number_page.dart';
 import 'package:self_facebook_project/modules/page/blocs/name_bloc.dart';
@@ -103,13 +105,24 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
                       //     CreateGroupCommon.TITLE_LIST[1], "Chon quyền riêng tư"),
                       //  selectPrivateRule != "" ? Column(
                       //     children: [
-                      _buildAddtionalInformation(context, [
-                        CreateGroupCommon.DEFEND_PRIVATE_RULE[0],
-                        CreateGroupCommon.DEFEND_PRIVATE_RULE[1]
+                      AddtionalInformationGroupWidget(contentWidget: [
+                        RichText(
+                            text: TextSpan(children: [
+                          TextSpan(
+                              text: CreateGroupCommon.DEFEND_PRIVATE_RULE[0],
+                              style: TextStyle(
+                                color: Colors.grey[400],
+                                fontSize: 18,
+                              )),
+                          TextSpan(
+                              text: CreateGroupCommon.DEFEND_PRIVATE_RULE[1],
+                              style: TextStyle(
+                                  color: Colors.grey[400],
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold)),
+                        ])),
                       ]),
-                      _buildAddtionalInformation(
-                          context, [CreateGroupCommon.DEFEND_PUBLIC_RULE[0]]),
-
+                      
                       SizedBox(
                         height: 20,
                       ),
@@ -163,35 +176,4 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
           ]),
         ));
   }
-}
-
-Widget _buildAddtionalInformation(BuildContext context, List<String> message) {
-  return Container(
-      height: 77,
-      margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-      padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
-      decoration: BoxDecoration(
-          color: Colors.grey[800],
-          borderRadius: BorderRadius.all(Radius.circular(15))),
-      child: RichText(
-          text: TextSpan(children: [
-        TextSpan(
-            text: message[0],
-            style: TextStyle(
-              color: Colors.grey[400],
-              fontSize: 16,
-            )),
-        message.length == 2
-            ? TextSpan(
-                recognizer: TapGestureRecognizer()
-                  ..onTap = () {
-                    print("go to new page");
-                  },
-                text: message[1],
-                style: TextStyle(
-                    color: Colors.blue,
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold))
-            : TextSpan(),
-      ])));
 }

@@ -42,65 +42,74 @@ Widget buildEmptyInput(BuildContext context) {
   );
 }
 
-Widget buildSelectionInput(
-    BuildContext context, IconData iconData, String title, String content) {
-  return Container(
-    // height: 60,
-    padding: EdgeInsets.symmetric(vertical: 5),
-    child: Row(
-      children: [
-        Flexible(
-          flex: 2,
-          child: Container(
-            margin: EdgeInsets.only(right: 5),
-            height: 40,
-            width: 40,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(20),
-                ),
-                color: Colors.grey[700]),
-            child: Icon(iconData,color: Colors.white,),
-          ),
-        ),
-        Flexible(
-          flex: 10,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Flexible(
-                flex: 20,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      margin: EdgeInsets.only(top: 5),
-                      child: Text(title,
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold)),
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(bottom: 5),
-                      child: Text(content,
-                          style: TextStyle(color: Colors.white, fontSize: 13)),
-                    ),
-                  ],
-                ),
+Widget buildSelectionInput(BuildContext context, IconData iconData,
+    String title, String content, bool checkBox) {
+  return GestureDetector(
+    onTap: (() {
+      checkBox = !checkBox;
+    }),
+    child: Container(
+      // height: 60,
+      padding: EdgeInsets.symmetric(vertical: 5),
+      child: Row(
+        children: [
+          Flexible(
+            flex: 2,
+            child: Container(
+              margin: EdgeInsets.only(right: 5),
+              height: 40,
+              width: 40,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(20),
+                  ),
+                  color: Colors.grey[700]),
+              child: Icon(
+                iconData,
+                color: Colors.white,
               ),
-              Flexible(
-                flex: 2,
-                child: Checkbox(
-                  onChanged: ((value) {}),
-                  value: false,
-                ),
-              ),
-            ],
+            ),
           ),
-        ),
-      ],
+          Flexible(
+            flex: 10,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Flexible(
+                  flex: 20,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        margin: EdgeInsets.only(top: 5),
+                        child: Text(title,
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold)),
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(bottom: 5),
+                        child: Text(content,
+                            style:
+                                TextStyle(color: Colors.white, fontSize: 13)),
+                      ),
+                    ],
+                  ),
+                ),
+                Flexible(
+                  flex: 2,
+                  child: Checkbox(
+                    onChanged: ((value) {}),
+                    value: checkBox,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
     ),
   );
 }
@@ -251,9 +260,14 @@ bottomSheetPrivateRule(context) {
                 context,
                 FontAwesomeIcons.earthAmericas,
                 "Công khai",
-                "Bất kỳ ai cũng có thể nhìn thấy mọi người trong nhóm và những gì họ đăng."),
-            buildSelectionInput(context, FontAwesomeIcons.lock, "Riêng tư",
-                "Chỉ thành viên mới nhìn thấy mọi người trong nhóm và những gì họ đăng.")
+                "Bất kỳ ai cũng có thể nhìn thấy mọi người trong nhóm và những gì họ đăng.",
+                CreateGroupCommon.selectedPrivateRule[0]),
+            buildSelectionInput(
+                context,
+                FontAwesomeIcons.lock,
+                "Riêng tư",
+                "Chỉ thành viên mới nhìn thấy mọi người trong nhóm và những gì họ đăng.",
+                CreateGroupCommon.selectedPrivateRule[1])
           ]),
         );
       });
@@ -320,10 +334,18 @@ bottomSheetHideGroup(context) {
             SizedBox(
               height: 10,
             ),
-            buildSelectionInput(context, FontAwesomeIcons.eye, "Hiển thị",
-                "Ai cũng có thể nhìn thấy nhóm này"),
-            buildSelectionInput(context, FontAwesomeIcons.eyeSlash, "Đã ẩn",
-                "Chỉ thành viên mới nhìn tháy nhóm này")
+            buildSelectionInput(
+                context,
+                FontAwesomeIcons.eye,
+                "Hiển thị",
+                "Ai cũng có thể nhìn thấy nhóm này",
+                CreateGroupCommon.selectedHideGroup[0]),
+            buildSelectionInput(
+                context,
+                FontAwesomeIcons.eyeSlash,
+                "Đã ẩn",
+                "Chỉ thành viên mới nhìn tháy nhóm này",
+                CreateGroupCommon.selectedHideGroup[1])
           ]),
         );
       });

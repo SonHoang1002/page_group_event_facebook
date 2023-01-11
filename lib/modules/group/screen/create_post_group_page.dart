@@ -1,11 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:self_facebook_project/general/common_group.dart';
 import 'package:self_facebook_project/general/common_page.dart';
 import 'package:self_facebook_project/modules/group/screen/target_group_page.dart';
+import 'package:self_facebook_project/modules/group/widgets/information_user_widget.dart';
 import 'package:self_facebook_project/modules/page/blocs/current_number_page.dart';
 import 'package:self_facebook_project/modules/page/blocs/name_bloc.dart';
 import 'package:self_facebook_project/modules/page/model/name_model.dart';
@@ -22,7 +25,7 @@ class CreatePostGroupPage extends StatefulWidget {
 class _CreatePostGroupPageState extends State<CreatePostGroupPage> {
   late double width = 0;
   late double height = 0;
-  late NamePageModel namePageModel;
+  
 
   @override
   Widget build(BuildContext context) {
@@ -31,18 +34,6 @@ class _CreatePostGroupPageState extends State<CreatePostGroupPage> {
     height = size.height;
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: AppBar(
-          actions: [
-            Center(
-                child: Container(
-              child: Text(CommonGroup.CONTINUE_AFTER),
-              margin: EdgeInsets.only(right: 20),
-            ))
-          ],
-          leading: IconButton(
-            icon: const Icon(Icons.arrow_back),
-            onPressed: () {},
-          )),
       body: BlocBuilder<NamePageBloc, NamePageState>(
           builder: (context, namePageState) {
         return GestureDetector(
@@ -56,9 +47,20 @@ class _CreatePostGroupPageState extends State<CreatePostGroupPage> {
                 color: Colors.black87,
                 child: Column(
                   children: [
-                    const SizedBox(
-                      height: 10,
-                    ),
+                    Row(mainAxisAlignment: MainAxisAlignment.start, children: [
+                      Container(
+                        margin: EdgeInsets.only(top: 40, bottom: 10),
+                        height: 50,
+                        child: GestureDetector(
+                          onTap: () => Navigator.of(context).pop(),
+                          child: Icon(
+                            CupertinoIcons.back,
+                            color: Colors.white,
+                            // size: 14,
+                          ),
+                        ),
+                      )
+                    ]),
                     Row(
                       children: [
                         Text(
@@ -79,19 +81,53 @@ class _CreatePostGroupPageState extends State<CreatePostGroupPage> {
                     const SizedBox(
                       height: 20,
                     ),
-                    Container(
-                      // height: 490,
-                      decoration: BoxDecoration(
-                          color: Colors.red,
-                          borderRadius: BorderRadius.all(Radius.circular(10))),
-                      child: SizedBox(
-                        // height: 60,
-                        child: _buildFlexibleComponent(
-                            context,
-                            Image.asset(CommonGroup.PATH_IMG + "cat_1.png"),
-                            ["Son Hoang", "Thanh vien cua nhom  @@@@"],
-                            Container()),
-                      ),
+                    GestureDetector(
+                      onTap: () {
+                        showBottomSheet(
+                            enableDrag: true,
+                            context: context,
+                            builder: ((context) {
+                              return Container(
+                                height: height,
+                                color: Colors.black87,
+                                child: _createPostWidget(context, true),
+                              );
+                            }));
+                        showModalBottomSheet(
+                            backgroundColor: Colors.transparent,
+                            enableDrag: true,
+                            context: context,
+                            builder: ((context) {
+                              return Container(
+                                height: 400,
+                                decoration: BoxDecoration(
+                                    color: Colors.grey[800],
+                                    borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(15),
+                                        topRight: Radius.circular(15))),
+                                child: ListView.builder(
+                                    itemCount: 12,
+                                    itemBuilder: ((context, index) {
+                                      return Container(
+                                        margin:
+                                            EdgeInsets.fromLTRB(10, 5, 10, 5),
+                                        child: InformationUserWidget(
+                                            context: context,
+                                            prefixWidget: SvgPicture.asset(
+                                              CreatePostGroupCommon
+                                                  .ICON_PATH_LIST[index],
+                                              color: CreatePostGroupCommon
+                                                  .COLOR_LIST[index],
+                                              fit: BoxFit.contain,
+                                            ),
+                                            title: CreatePostGroupCommon
+                                                .CONTENT_LIST[index]),
+                                      );
+                                    })),
+                              );
+                            }));
+                      },
+                      child: _createPostWidget(context, false),
                     )
                   ],
                 ),
@@ -171,73 +207,146 @@ class _CreatePostGroupPageState extends State<CreatePostGroupPage> {
       }),
     );
   }
-}
 
-Widget _buildFlexibleComponent(BuildContext context, Widget prefixWidget,
-    List<String> listContent, Widget suffixWidget) {
-  return Container(
-    padding: EdgeInsets.symmetric(vertical: 5),
-    child: Row(
+  Widget _createPostWidget(BuildContext context, bool inSheet) {
+    return Column(
       children: [
-        Flexible(
-          flex: 2,
-          child: Container(
-            margin: EdgeInsets.only(right: 15),
-            height: 40,
-            width: 40,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(20),
+        inSheet
+            ? Container(
+                margin: EdgeInsets.only(top: 50),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      child: Row(children: [
+                        IconButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            icon: Icon(
+                              FontAwesomeIcons.close,
+                              color: Colors.white,
+                            ))
+                      ]),
+                    ),
+                    Text(
+                      CreatePostGroupCommon.TITLE[1],
+                      style: TextStyle(color: Colors.white, fontSize: 18),
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(right: 10),
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.grey[800]),
+                        onPressed: () {},
+                        child: Text(
+                          "Đăng",
+                          style: TextStyle(color: Colors.white, fontSize: 15),
+                        ),
+                      ),
+                    )
+                  ],
                 ),
-                color: Colors.grey[700]),
-            child: prefixWidget,
-          ),
-        ),
-        Flexible(
-          flex: 10,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    // width: 250,
-                    margin: EdgeInsets.only(),
-                    child: Text(listContent[0],
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold)),
+              )
+            : Container(),
+        Container(
+          height: inSheet ? height * 0.85 : 500,
+          decoration: inSheet
+              ? null
+              : BoxDecoration(
+                  color: Colors.transparent,
+                  border: Border.all(
+                    color: Colors.white,
                   ),
-                  listContent.length == 2
+                  borderRadius: BorderRadius.all(Radius.circular(10))),
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: [
+              Container(
+                padding: EdgeInsets.fromLTRB(10, 5, 0, 0),
+                child: InformationUserWidget(
+                  context: context,
+                  prefixWidget: Image.asset(CommonGroup.PATH_IMG + "cat_1.png"),
+                  title: CreatePostGroupCommon.USER_EXAMPLE[0],
+                  // !inSheet ? CreatePostGroupCommon.USER_EXAMPLE[1] : ""
+                  // ,
+                  suffixWidget: Container(),
+                  subTitleWidget: inSheet
                       ? Container(
-                          // width: 130,
-                          height: 30,
-                          padding: EdgeInsets.symmetric(horizontal: 10),
+                          // height: 20,
+                          child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Row(
+                                  children: [
+                                    Icon(
+                                      FontAwesomeIcons.userGroup,
+                                      color: Colors.white,
+                                      size: 10,
+                                    ),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    Text(
+                                      CreatePostGroupCommon.USER_EXAMPLE[1],
+                                      style: TextStyle(
+                                          color: Colors.grey, fontSize: 13),
+                                    ),
+                                  ],
+                                ),
+                                Divider(height: 3, color: Colors.white)
+                              ]),
+                        )
+                      : Container(
+                          padding:
+                              EdgeInsets.symmetric(horizontal: 5, vertical: 2),
                           decoration: BoxDecoration(
-                              // color: Colors.grey.withOpacity(0.6),
                               border: Border.all(
                                   color: Colors.white,
                                   style: BorderStyle.solid),
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(10))),
+                                  BorderRadius.all(Radius.circular(5))),
                           child: Center(
-                              child: Text(listContent[1],
+                              child: Text(CreatePostGroupCommon.USER_EXAMPLE[1],
                                   style: TextStyle(
                                     color: Colors.white,
-                                    fontSize: 15,
+                                    fontSize: 13,
                                   ))),
-                        )
-                      : Container()
-                ],
+                        ),
+                ),
               ),
-              suffixWidget,
+              Container(
+                height: 50,
+                child: TextFormField(
+                  // maxLines: 2,
+                  readOnly: !inSheet,
+                  maxLines: null,
+                  minLines: null,
+                  expands: true,
+                  style: TextStyle(
+                      color: Colors.white, overflow: TextOverflow.visible),
+                  decoration: InputDecoration(
+                      hintText: CreatePostGroupCommon.PLACEHOLDER_LIST[0],
+                      hintStyle: TextStyle(color: Colors.grey, fontSize: 20),
+                      border: InputBorder.none,
+                      fillColor: Colors.transparent,
+                      filled: true),
+                ),
+              ),
+
+              // nếu có đăng ảnh vào đây
+              // Container(
+              //     // height: 400,
+              //     width: width,
+              //     color: Colors.white,
+              //     child: Image.asset(
+              //       CommonGroup.PATH_IMG + "back_1.jpg",
+              //       fit: BoxFit.fitWidth,
+              //     )),
             ],
           ),
         ),
       ],
-    ),
-  );
+    );
+  }
 }

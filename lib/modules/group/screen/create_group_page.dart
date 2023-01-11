@@ -17,26 +17,22 @@ class CreateGroupPage extends StatefulWidget {
 
 class _CreateGroupPageState extends State<CreateGroupPage> {
   late double width = 0;
-  late NamePageModel namePageModel;
+  late String selectPrivateRule = "";
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     width = size.width;
     return Scaffold(
-      resizeToAvoidBottomInset: false,
-      appBar: AppBar(
-          title: Center(child: Text(CreateGroupCommon.TITLE_APPBAR)),
-          leading: IconButton(
-            icon: const Icon(Icons.close),
-            onPressed: () {
-              // Navigator.of(context).pop();
-            },
-          )),
-      body: BlocBuilder<NamePageBloc, NamePageState>(
-          builder: (context, namePageState) {
-        namePageModel =
-            BlocProvider.of<NamePageBloc>(context).state.namePageModel;
-        return GestureDetector(
+        resizeToAvoidBottomInset: false,
+        appBar: AppBar(
+            title: Center(child: Text(CreateGroupCommon.TITLE_APPBAR)),
+            leading: IconButton(
+              icon: const Icon(Icons.close),
+              onPressed: () {
+                // Navigator.of(context).pop();
+              },
+            )),
+        body: GestureDetector(
           onTap: (() {
             FocusManager.instance.primaryFocus!.unfocus();
           }),
@@ -105,7 +101,15 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
                       buildEmptyInput(context),
                       // buildFillInput(context, FontAwesomeIcons.earthAmericas,
                       //     CreateGroupCommon.TITLE_LIST[1], "Chon quyền riêng tư"),
-                      _buildDefendPrivateRule(context),
+                      //  selectPrivateRule != "" ? Column(
+                      //     children: [
+                      _buildAddtionalInformation(context, [
+                        CreateGroupCommon.DEFEND_PRIVATE_RULE[0],
+                        CreateGroupCommon.DEFEND_PRIVATE_RULE[1]
+                      ]),
+                      _buildAddtionalInformation(
+                          context, [CreateGroupCommon.DEFEND_PUBLIC_RULE[0]]),
+
                       SizedBox(
                         height: 20,
                       ),
@@ -131,7 +135,9 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
                         height: 10,
                       ),
                       buildFillInput(context, FontAwesomeIcons.eye,
-                          CreateGroupCommon.TITLE_LIST[2], "Hiển thị")
+                          CreateGroupCommon.TITLE_LIST[2], "Hiển thị"),
+                      //   ],
+                      // ): Container()
                     ],
                   ),
                 ),
@@ -155,15 +161,13 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
               ),
             )
           ]),
-        );
-      }),
-    );
+        ));
   }
 }
 
-Widget _buildDefendPrivateRule(BuildContext context) {
+Widget _buildAddtionalInformation(BuildContext context, List<String> message) {
   return Container(
-      height: 75,
+      height: 77,
       margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
       decoration: BoxDecoration(
@@ -172,19 +176,22 @@ Widget _buildDefendPrivateRule(BuildContext context) {
       child: RichText(
           text: TextSpan(children: [
         TextSpan(
-            text: CreateGroupCommon.DEFEND_PRIVATE_RULE[0],
+            text: message[0],
             style: TextStyle(
               color: Colors.grey[400],
               fontSize: 16,
             )),
-        TextSpan(
-            recognizer: TapGestureRecognizer()
-              ..onTap = () {
-                // go to new page
-                print("go to new page");
-              },
-            text: CreateGroupCommon.DEFEND_PRIVATE_RULE[1],
-            style: TextStyle(
-                color: Colors.blue, fontSize: 16, fontWeight: FontWeight.bold)),
+        message.length == 2
+            ? TextSpan(
+                recognizer: TapGestureRecognizer()
+                  ..onTap = () {
+                    print("go to new page");
+                  },
+                text: message[1],
+                style: TextStyle(
+                    color: Colors.blue,
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold))
+            : TextSpan(),
       ])));
 }

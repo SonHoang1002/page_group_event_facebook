@@ -35,13 +35,10 @@ class MyApp extends StatelessWidget {
         child: MaterialApp(
           title: 'Flutter Demo',
           theme: ThemeData(
-            primarySwatch: Colors.blue,
-            backgroundColor: Colors.black87
-          ),
+              primarySwatch: Colors.blue, backgroundColor: Colors.black87),
           // home: TestWidget(),
           home: CreateGroupPage(),
           // home:InformationPage()
-
         ));
   }
 }

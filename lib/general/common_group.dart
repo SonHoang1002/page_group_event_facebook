@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:self_facebook_project/general/common_page.dart';
 
@@ -25,6 +26,11 @@ class CreateGroupCommon {
     "Để bảo vệ quyền riêng tư của thành viên, nhóm riêng tư không thể thành công khai. ",
     "Tìm hiểu thêm"
   ];
+  static const List<String> DEFEND_PUBLIC_RULE = [
+    "Thành viên và khách truy cập có thể đăng bài trong nhóm. Quản trị viên có thể xét duyệt người lần đầu tham gia",
+  ];
+  static List<bool> selectedPrivateRule = [false, false];
+  static List<bool> selectedHideGroup = [false, false];
 }
 
 class RequestFriendsGroupCommon {
@@ -127,26 +133,25 @@ class TargetGroupCommon {
 class CreatePostGroupCommon {
   static const List<String> TITLE = [
     "Tạo bài viết",
-    "Ảnh bìa",
+    "NAME_OF_GROUP",
   ];
+  static const List<String> USER_EXAMPLE = ["User_Name", "Thành viên của NHÓM"];
   static const List<String> SUBTITLE = [
     "Viết bài để nêu cao tinh thần của nhóm và chào mừng thành viên mới"
   ];
-  static const List<IconData> ICON_DATA_LIST = [
-    FontAwesomeIcons.peopleGroup,
-    FontAwesomeIcons.peopleGroup,
-    FontAwesomeIcons.peopleGroup,
-    FontAwesomeIcons.peopleGroup,
-
-    FontAwesomeIcons.peopleGroup,
-    FontAwesomeIcons.peopleGroup,
-    FontAwesomeIcons.peopleGroup,
-    FontAwesomeIcons.peopleGroup,
-
-    FontAwesomeIcons.peopleGroup,
-    FontAwesomeIcons.peopleGroup,
-    FontAwesomeIcons.peopleGroup,
-    FontAwesomeIcons.peopleGroup,
+  static List<String> ICON_PATH_LIST = [
+    CommonGroup.PATH_IMG + "img_icon.svg",
+    CommonGroup.PATH_IMG + "camera_icon.svg",
+    CommonGroup.PATH_IMG + "tag_icon.svg",
+    CommonGroup.PATH_IMG + "live_icon.svg",
+    CommonGroup.PATH_IMG + "background_color_icon.svg",
+    CommonGroup.PATH_IMG + "checkin_icon.svg",
+    CommonGroup.PATH_IMG + "gif_file_icon.svg",
+    CommonGroup.PATH_IMG + "probe_icon.svg",
+    CommonGroup.PATH_IMG + "meeting_icon.svg",
+    CommonGroup.PATH_IMG + "tag_icon.svg",
+    CommonGroup.PATH_IMG + "event_icon.svg",
+    CommonGroup.PATH_IMG + "emotion_icon.svg",
   ];
   static const List<String> CONTENT_LIST = [
     "Ảnh/Video",
@@ -162,7 +167,21 @@ class CreatePostGroupCommon {
     "Tạo sự kiện",
     "Cảm xúc/Hoạt động",
   ];
-    static const List<String> PLACEHOLDER_LIST = [
+  static const List<Color> COLOR_LIST = [
+    Colors.green,
+    Colors.blue,
+    Colors.blue,
+    Colors.red,
+    Colors.lightBlue,
+    Colors.orange,
+    Colors.lightBlue,
+    Colors.yellowAccent,
+    Colors.purpleAccent,
+    Colors.red,
+    Colors.red,
+    Colors.yellow,
+  ];
+  static const List<String> PLACEHOLDER_LIST = [
     "Hãy viết gì đó",
   ];
 }

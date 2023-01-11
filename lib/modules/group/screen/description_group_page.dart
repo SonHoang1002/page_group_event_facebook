@@ -43,7 +43,7 @@ class _DescriptionGroupPageState extends State<DescriptionGroupPage> {
           ],
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
-            onPressed: () {},
+            onPressed: () => Navigator.of(context).pop(),
           )),
       body: BlocBuilder<NamePageBloc, NamePageState>(
           builder: (context, namePageState) {
@@ -85,16 +85,16 @@ class _DescriptionGroupPageState extends State<DescriptionGroupPage> {
                       height: 120,
                       child: TextFormField(
                         controller: namePageState.namePageModel.nameController,
-                        onChanged: ((value) {
-                        }),
+                        onChanged: ((value) {}),
                         maxLines: 10,
                         style: const TextStyle(color: Colors.white),
-                        decoration:  InputDecoration(
+                        decoration: InputDecoration(
                             enabledBorder: OutlineInputBorder(
                               borderSide:
                                   BorderSide(color: Colors.grey, width: 2),
                             ),
-                            hintText: DescriptionGroupCommon.PLACEHOLDER_LIST[0],
+                            hintText:
+                                DescriptionGroupCommon.PLACEHOLDER_LIST[0],
                             hintStyle: TextStyle(color: Colors.grey),
                             border: OutlineInputBorder(
                                 borderRadius:

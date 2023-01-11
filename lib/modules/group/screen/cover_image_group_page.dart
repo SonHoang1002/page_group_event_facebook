@@ -23,7 +23,6 @@ class CoverImageGroupPage extends StatefulWidget {
 class _CoverImageGroupPageState extends State<CoverImageGroupPage> {
   late double width = 0;
   late double height = 0;
-  late NamePageModel namePageModel;
   List<int> radioGroupWorkTime = [0, 1, 2];
 
   int currentValue = 0;
@@ -48,7 +47,7 @@ class _CoverImageGroupPageState extends State<CoverImageGroupPage> {
           ],
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
-            onPressed: () {},
+            onPressed: () => Navigator.of(context).pop(),
           )),
       body: BlocBuilder<NamePageBloc, NamePageState>(
           builder: (context, namePageState) {
@@ -124,6 +123,7 @@ class _CoverImageGroupPageState extends State<CoverImageGroupPage> {
                             width: width,
                             decoration: BoxDecoration(
                                 color: Colors.grey[800]!.withOpacity(0.8),
+                                border: Border.all(color: Colors.white,),
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(10))),
                             child: _pickedCoverImage != null

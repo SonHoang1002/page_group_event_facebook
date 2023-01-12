@@ -5,7 +5,7 @@ class SelectionPrivateEventBloc
   SelectionPrivateEventBloc() : super(InitSelectionPrivateEventState()) {
     on<UpdateSelectionPrivateEventEvent>((event, emit) {
       emit(UpdateSelectionPrivateEventState(event.selection));
-      print(state.selection);
+      print("state.selection: ${state.selection}");
     });
   }
 }

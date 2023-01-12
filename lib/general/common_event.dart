@@ -129,4 +129,15 @@ class LocationEventCommon{
     "Lên lịch phát trực tiếp sự kiện của bạn bằng Facebook Live để mọi người cùng xem",
   ];
   static const String ADD_PRIVATE_LINK = "Thêm liên kết riêng";
+  static const String DIFFERENT_SELECTION = "Lựa chọn khác";
+
+  static const List<List<dynamic>> DIFFERENT_SELECTION_COMPONENT = [
+    [FontAwesomeIcons.link, "Liên kết bên ngoài", "Thêm liên kết đẻ mọi người biết cần truy cập vào đâi khi sự kiện bắt đầu"],
+    [
+      FontAwesomeIcons.mendeley,
+      "Khác",
+      "Thêm hướng dẫn vào phần chi tiết sự kiện để chỉ rõ cách tham gia"
+    ],
+   
+  ];
 }

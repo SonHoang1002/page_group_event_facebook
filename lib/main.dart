@@ -7,6 +7,7 @@ import 'package:self_facebook_project/modules/page/blocs/current_number_page.dar
 import 'package:self_facebook_project/modules/page/blocs/name_bloc.dart';
 import 'package:self_facebook_project/modules/page/blocs/search_category_bloc.dart';
 import 'package:self_facebook_project/observer_blocs.dart';
+import 'package:self_facebook_project/test_widget.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();

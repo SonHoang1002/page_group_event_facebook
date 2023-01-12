@@ -11,7 +11,12 @@ import 'package:self_facebook_project/modules/event/blocs/selection_private_even
 import 'package:self_facebook_project/modules/event/widget/information_user_event_widget.dart';
 import 'package:self_facebook_project/modules/group/widgets/addtional_information_group_widget.dart';
 
-class TestWidget extends StatelessWidget {
+class TestWidget extends StatefulWidget {
+  @override
+  State<TestWidget> createState() => _TestWidgetState();
+}
+
+class _TestWidgetState extends State<TestWidget> {
   List<dynamic> listRadio =
       DetailEventCommon.SELECTION_FOR_PRIVATE_OF_EVENT.map((e) {
     return e[1];
@@ -19,9 +24,6 @@ class TestWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    listRadio.forEach((element) {
-      print(element);
-    });
     return Scaffold(
       backgroundColor: Colors.grey[800],
       body: GestureDetector(
@@ -39,7 +41,7 @@ class TestWidget extends StatelessWidget {
                   children: [
                     Container(
                       child: Icon(
-                        DetailEventCommon.ICON_PRIVIOUS,
+                        CommonEvent.ICON_PRIVIOUS,
                         color: Colors.grey,
                         size: 18,
                       ),
@@ -195,7 +197,7 @@ class TestWidget extends StatelessWidget {
                   alignment: Alignment.centerRight,
                   margin: EdgeInsets.only(right: 10),
                   child: Icon(
-                    CreateEventCommon.ICON_DATA_NEXT,
+                    CommonEvent.ICON_DATA_NEXT,
                     color: Colors.white,
                     size: 13,
                   ),
@@ -213,120 +215,137 @@ class TestWidget extends StatelessWidget {
         backgroundColor: Colors.transparent,
         context: context,
         builder: (context) {
-          return Container(
-            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-            height: 320,
-            decoration: BoxDecoration(
-                color: Colors.grey[800],
-                borderRadius: BorderRadius.only(
-                    topRight: Radius.circular(15),
-                    topLeft: Radius.circular(15))),
-            child: Column(children: [
-              Container(
-                padding: EdgeInsets.only(top: 5),
-                child: Container(
+          return StatefulBuilder(builder: (context, setStatefull) {
+            return Container(
+              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+              height: 320,
+              decoration: BoxDecoration(
+                  color: Colors.grey[800],
+                  borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(15),
+                      topLeft: Radius.circular(15))),
+              child: Column(children: [
+                Container(
+                  padding: EdgeInsets.only(top: 5),
+                  child: Container(
+                    height: 4,
+                    width: 40,
+                    decoration: BoxDecoration(
+                        color: Colors.grey,
+                        borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(15),
+                            topLeft: Radius.circular(15))),
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.fromLTRB(10, 10, 10, 5),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                          child: Center(
+                        child: Text(
+                          DetailEventCommon.PRIVATE_OF_EVENT,
+                          style: TextStyle(color: Colors.white, fontSize: 18),
+                        ),
+                      )),
+                    ],
+                  ),
+                ),
+                Divider(
                   height: 4,
-                  width: 40,
-                  decoration: BoxDecoration(
-                      color: Colors.grey,
-                      borderRadius: BorderRadius.only(
-                          topRight: Radius.circular(15),
-                          topLeft: Radius.circular(15))),
+                  color: Colors.white,
                 ),
-              ),
-              Container(
-                margin: EdgeInsets.fromLTRB(10, 10, 10, 5),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                        child: Center(
-                      child: Text(
-                        DetailEventCommon.PRIVATE_OF_EVENT,
-                        style: TextStyle(color: Colors.white, fontSize: 18),
-                      ),
-                    )),
-                  ],
+                SizedBox(
+                  height: 10,
                 ),
-              ),
-              Divider(
-                height: 4,
-                color: Colors.white,
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Container(
-                  child: Center(
-                child: Text(
-                  DetailEventCommon.DESCRIPTION_FOR_PRIVATE_OF_EVENT,
-                  style: TextStyle(color: Colors.grey, fontSize: 16),
+                Container(
+                    child: Center(
+                  child: Text(
+                    DetailEventCommon.DESCRIPTION_FOR_PRIVATE_OF_EVENT,
+                    style: TextStyle(color: Colors.grey, fontSize: 16),
+                  ),
+                )),
+                SizedBox(
+                  height: 5,
                 ),
-              )),
-              SizedBox(
-                height: 5,
-              ),
-              BlocBuilder<SelectionPrivateEventBloc,
-                  SelectionPrivateEventState>(builder: (context, state) {
-                return Container(
-                  height: 200,
-                  child: ListView.builder(
-                      itemCount: DetailEventCommon
-                          .SELECTION_FOR_PRIVATE_OF_EVENT.length,
-                      itemBuilder: ((context, index) {
-                        return InformationUserEventWidget(
-                          [
-                            Text(
-                              DetailEventCommon
-                                  .SELECTION_FOR_PRIVATE_OF_EVENT[index][1],
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                            Text(
-                              DetailEventCommon
-                                  .SELECTION_FOR_PRIVATE_OF_EVENT[index][2],
-                              style: TextStyle(
-                                color: Colors.grey,
-                                fontSize: 15,
-                              ),
-                            ),
-                          ],
-                          prefixWidget: Container(
-                            margin: EdgeInsets.only(right: 10),
-                            height: 40,
-                            width: 40,
-                            decoration: BoxDecoration(
-                                color: Colors.grey[700],
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(20))),
-                            child: Icon(
-                              DetailEventCommon
-                                  .SELECTION_FOR_PRIVATE_OF_EVENT[index][0],
-                              color: Colors.white,
-                              size: 14,
-                            ),
-                          ),
-                          suffixWidget: Radio(
-                            groupValue: listRadio,
-                            onChanged: ((value) {
-                              context.read<SelectionPrivateEventBloc>().add(
-                                  UpdateSelectionPrivateEventEvent(
-                                      DetailEventCommon
-                                              .SELECTION_FOR_PRIVATE_OF_EVENT[
-                                          index][1]));
+                BlocBuilder<SelectionPrivateEventBloc,
+                    SelectionPrivateEventState>(builder: (context, state) {
+                  return Container(
+                    height: 200,
+                    child: ListView.builder(
+                        itemCount: DetailEventCommon
+                            .SELECTION_FOR_PRIVATE_OF_EVENT.length,
+                        itemBuilder: ((context, index) {
+                          return GestureDetector(
+                            onTap: (() {
+                               context.read<SelectionPrivateEventBloc>().add(
+                                        UpdateSelectionPrivateEventEvent(
+                                            DetailEventCommon
+                                                    .SELECTION_FOR_PRIVATE_OF_EVENT[
+                                                index][1]));
                             }),
-                            value: listRadio[index],
-                          ),
-                          changeBackground: Colors.transparent,
-                          padding: EdgeInsets.zero,
-                        );
-                      })),
-                );
-              })
-            ]),
-          );
+                            child: InformationUserEventWidget(
+                              [
+                                Text(
+                                  DetailEventCommon
+                                      .SELECTION_FOR_PRIVATE_OF_EVENT[index][1],
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                Text(
+                                  DetailEventCommon
+                                      .SELECTION_FOR_PRIVATE_OF_EVENT[index][2],
+                                  style: TextStyle(
+                                    color: Colors.grey,
+                                    fontSize: 15,
+                                  ),
+                                ),
+                              ],
+                              prefixWidget: Container(
+                                margin: EdgeInsets.only(right: 10),
+                                height: 40,
+                                width: 40,
+                                decoration: BoxDecoration(
+                                    color: Colors.grey[700],
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(20))),
+                                child: Icon(
+                                  DetailEventCommon
+                                      .SELECTION_FOR_PRIVATE_OF_EVENT[index][0],
+                                  color: Colors.white,
+                                  size: 14,
+                                ),
+                              ),
+                              suffixWidget: Radio(
+                                groupValue: context
+                                    .read<SelectionPrivateEventBloc>()
+                                    .state
+                                    .selection,
+                                onChanged: ((value) {
+                                  setStatefull(() {
+                                    context.read<SelectionPrivateEventBloc>().add(
+                                        UpdateSelectionPrivateEventEvent(
+                                            DetailEventCommon
+                                                    .SELECTION_FOR_PRIVATE_OF_EVENT[
+                                                index][1]));
+                                  });
+                                  setState(() {});
+                                }),
+                                value: listRadio[index],
+                              ),
+                              changeBackground: Colors.transparent,
+                              padding: EdgeInsets.zero,
+                            ),
+                          );
+                        })),
+                  );
+                })
+              ]),
+            );
+          });
         });
   }
 }

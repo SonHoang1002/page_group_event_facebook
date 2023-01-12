@@ -91,7 +91,7 @@ class CreateEventPage extends StatelessWidget {
                 margin: EdgeInsets.only(right: 10),
                 alignment: Alignment.centerRight,
                 child: Icon(
-                  CreateEventCommon.ICON_DATA_NEXT,
+                  CommonEvent.ICON_DATA_NEXT,
                   color: Colors.white,
                 ),
               ),
@@ -147,7 +147,7 @@ class CreateEventPage extends StatelessWidget {
                 alignment: Alignment.centerRight,
                 margin: EdgeInsets.only(right: 10),
                 child: Icon(
-                  CreateEventCommon.ICON_DATA_NEXT,
+                  CommonEvent.ICON_DATA_NEXT,
                   color: Colors.white,
                 ),
               ),

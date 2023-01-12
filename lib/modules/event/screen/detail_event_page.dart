@@ -1,17 +1,10 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:self_facebook_project/general/common_event.dart';
-import 'package:self_facebook_project/general/common_group.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:self_facebook_project/modules/event/blocs/selection_private_event_bloc.dart';
 import 'package:self_facebook_project/modules/event/widget/information_user_event_widget.dart';
-import 'package:self_facebook_project/modules/group/widgets/addtional_information_group_widget.dart';
 
-class TestWidget extends StatelessWidget {
+class DetailEventPage extends StatelessWidget {
   List<dynamic> listRadio =
       DetailEventCommon.SELECTION_FOR_PRIVATE_OF_EVENT.map((e) {
     return e[1];
@@ -162,7 +155,7 @@ class TestWidget extends StatelessWidget {
             ),
             GestureDetector(
               onTap: () {
-                bottomSheetPrivateRule(context);
+                bottomSheetPrivateRuleOfEvent(context);
               },
               child: InformationUserEventWidget(
                 [
@@ -208,14 +201,14 @@ class TestWidget extends StatelessWidget {
     );
   }
 
-  bottomSheetPrivateRule(context) {
+  bottomSheetPrivateRuleOfEvent(context) {
     showModalBottomSheet(
         backgroundColor: Colors.transparent,
         context: context,
         builder: (context) {
           return Container(
             padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-            height: 320,
+            height: 400,
             decoration: BoxDecoration(
                 color: Colors.grey[800],
                 borderRadius: BorderRadius.only(

@@ -7,8 +7,7 @@ import 'package:self_facebook_project/modules/page/blocs/name_bloc.dart';
 import 'package:self_facebook_project/modules/page/blocs/search_category_bloc.dart';
 import 'package:self_facebook_project/modules/page/model/category_model.dart';
 import 'package:self_facebook_project/modules/page/model/name_model.dart';
-import 'package:self_facebook_project/modules/page/register/parts/information_page.dart';
-import 'package:self_facebook_project/test_widget.dart';
+import 'package:self_facebook_project/modules/page/export_page.dart';import 'package:self_facebook_project/test_widget.dart';
 
 class CategoryPage extends StatefulWidget {
   @override

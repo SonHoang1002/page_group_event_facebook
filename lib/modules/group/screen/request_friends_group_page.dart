@@ -1,18 +1,12 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:self_facebook_project/general/common_group.dart';
-import 'package:self_facebook_project/modules/group/screen/cover_image_group_page.dart';
+import 'package:self_facebook_project/modules/group/export_group_page.dart';
 import 'package:self_facebook_project/modules/group/widgets/addtional_information_group_widget.dart';
-import 'package:self_facebook_project/modules/group/widgets/format_input.dart';
 import 'package:self_facebook_project/modules/group/widgets/information_user_group_widget.dart';
-import 'package:self_facebook_project/modules/page/blocs/current_number_page.dart';
-import 'package:self_facebook_project/modules/page/blocs/name_bloc.dart';
 import 'package:self_facebook_project/modules/page/model/name_model.dart';
-import 'package:self_facebook_project/modules/page/register/parts/category_page.dart';
-import 'package:self_facebook_project/modules/page/register/primary_page.dart';
 
 class RequestFriendsGroupPage extends StatefulWidget {
   @override
@@ -176,7 +170,7 @@ class _RequestFriendsGroupPageState extends State<RequestFriendsGroupPage> {
                                       fontSize: 15,
                                       fontWeight: FontWeight.bold)),
                             ])),
-                            SizedBox(
+                            const SizedBox(
                               height: 10,
                             ),
                             RichText(

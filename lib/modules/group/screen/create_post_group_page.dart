@@ -3,19 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:self_facebook_project/general/common_group.dart';
 import 'package:self_facebook_project/general/common_page.dart';
-import 'package:self_facebook_project/modules/group/screen/target_group_page.dart';
+import 'package:self_facebook_project/modules/group/export_group_page.dart';
 import 'package:self_facebook_project/modules/group/widgets/information_user_group_widget.dart';
 import 'package:self_facebook_project/modules/page/blocs/current_number_page.dart';
 import 'package:self_facebook_project/modules/page/blocs/name_bloc.dart';
-import 'package:self_facebook_project/modules/page/model/name_model.dart';
-import 'package:self_facebook_project/modules/page/register/parts/category_page.dart';
-import 'package:self_facebook_project/modules/page/register/parts/phone_page.dart';
-import 'dart:io';
-import 'package:self_facebook_project/modules/page/register/primary_page.dart';
 
 class CreatePostGroupPage extends StatefulWidget {
   @override

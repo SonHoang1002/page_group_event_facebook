@@ -1,19 +1,11 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:self_facebook_project/general/common_group.dart';
 import 'package:self_facebook_project/general/common_page.dart';
-import 'package:self_facebook_project/modules/group/screen/create_post_group_page.dart';
+import 'package:self_facebook_project/modules/group/export_group_page.dart';
 import 'package:self_facebook_project/modules/page/blocs/current_number_page.dart';
 import 'package:self_facebook_project/modules/page/blocs/name_bloc.dart';
 import 'package:self_facebook_project/modules/page/model/name_model.dart';
-import 'package:self_facebook_project/modules/page/register/parts/category_page.dart';
-import 'package:self_facebook_project/modules/page/register/parts/phone_page.dart';
-import 'dart:io';
-
-import 'package:self_facebook_project/modules/page/register/primary_page.dart';
 
 class TargetGroupPage extends StatefulWidget {
   @override
@@ -33,18 +25,18 @@ class _TargetGroupPageState extends State<TargetGroupPage> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-          actions: [
-            Center(
-                child: Container(
-              child: Text(CommonGroup.CONTINUE_AFTER),
-              margin: EdgeInsets.only(right: 20),
-            ))
-          ],
-          // leading: IconButton(
-          //   icon: const Icon(Icons.arrow_back),
-          //   onPressed: () {},
-          // )
-          ),
+        actions: [
+          Center(
+              child: Container(
+            child: Text(CommonGroup.CONTINUE_AFTER),
+            margin: EdgeInsets.only(right: 20),
+          ))
+        ],
+        // leading: IconButton(
+        //   icon: const Icon(Icons.arrow_back),
+        //   onPressed: () {},
+        // )
+      ),
       body: BlocBuilder<NamePageBloc, NamePageState>(
           builder: (context, namePageState) {
         return GestureDetector(
@@ -94,7 +86,8 @@ class _TargetGroupPageState extends State<TargetGroupPage> {
                                     Icon(TargetGroupCommon
                                         .ICON_DATA_LIST[index]),
                                     [TargetGroupCommon.CONTENT_LIST[index]],
-                                    Checkbox(value: false, onChanged: (value){})));
+                                    Checkbox(
+                                        value: false, onChanged: (value) {})));
                           }),
                     )
                   ],
@@ -157,7 +150,8 @@ class _TargetGroupPageState extends State<TargetGroupPage> {
                                   onPressed: () {
                                     Navigator.of(context).push(
                                         MaterialPageRoute(
-                                            builder: (_) => CreatePostGroupPage()));
+                                            builder: (_) =>
+                                                CreatePostGroupPage()));
                                   },
                                   child: Text(CommonPage.NEXT)),
                             ),

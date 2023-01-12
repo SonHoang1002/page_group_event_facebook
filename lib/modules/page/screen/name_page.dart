@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:self_facebook_project/modules/page/blocs/current_number_page.dart';
 import 'package:self_facebook_project/modules/page/blocs/name_bloc.dart';
+import 'package:self_facebook_project/modules/page/export_page.dart';
 import 'package:self_facebook_project/modules/page/model/name_model.dart';
-import 'package:self_facebook_project/modules/page/register/parts/category_page.dart';
-
 const List<String> QUESTION_NAME = [
   "Tên Trang của bạn là gì ?",
   "Hãy dùng tên doanh nghiệp/thương hiệu/tổ chức của bạn hoặc tên góp phần giải thích về Trang"

@@ -43,7 +43,7 @@ class AddtionalInformationGroupWidget extends StatelessWidget {
                       )
                     : Container(),
                 Flexible(
-                  flex: 24,
+                  flex: 10,
                   child: Container(
                     child: Column(
                         mainAxisSize: MainAxisSize.min,

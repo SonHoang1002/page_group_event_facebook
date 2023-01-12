@@ -3,73 +3,75 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_svg/svg.dart';
 
-class InformationUserWidget extends StatelessWidget {
-  final BuildContext context;
-  final Widget prefixWidget;
-  final String title;
+class InformationUserEventWidget extends StatelessWidget {
+  final Widget? prefixWidget;
+  final List<Widget> contentWidget;
   final Widget? suffixWidget;
-  final Widget? subTitleWidget;
+  final Color? changeBackground;
+  final EdgeInsetsGeometry? padding;
 
-  const InformationUserWidget(
-      {super.key,
-      required this.context,
-      required this.prefixWidget,
-      required this.title,
+  const InformationUserEventWidget(this.contentWidget,
+      {this.prefixWidget,
       this.suffixWidget,
-      this.subTitleWidget});
+      this.changeBackground,
+      this.padding});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.only(top: 5),
-      child: Row(
-        children: [
-          Flexible(
-            flex: 2,
-            child: Container(
-              margin: EdgeInsets.only(right: 13),
-              height: prefixWidget is SvgPicture ? 25 : 40,
-              width: prefixWidget is SvgPicture ? 25 : 40,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(20),
-                  ),
-                  color: prefixWidget is SvgPicture
-                      ? Colors.transparent
-                      : Colors.grey[700]),
-              child: prefixWidget,
-            ),
-          ),
-          Flexible(
-            flex: 10,
+    return Wrap(
+      children: [
+        Container(
+            // height: 77,
+            // color: Colors.red,
+            // margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            padding: padding ?? EdgeInsets.fromLTRB(10, 10, 10, 10),
+            decoration: BoxDecoration(
+                color: changeBackground ?? Colors.grey[900],
+                borderRadius: BorderRadius.all(Radius.circular(15))),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Center(
-                      child: Container(
-                        // width: 200,
-                        // color: Colors.red,
-                        margin: EdgeInsets.only(bottom: 2),
-                        child: Text(title,
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 15,
-                                fontWeight: FontWeight.bold)),
+                // prefixWidget != null
+                //     ? Container(
+                //         width: 50,
+                //         alignment: Alignment.topCenter,
+                //         child: Column(
+                //           mainAxisAlignment: MainAxisAlignment.start,
+                //           children: [prefixWidget!],
+                //         ),
+                //       )
+                //     : Container(),
+                prefixWidget != null
+                    ? Flexible(
+                        // fit: FlexFit.tight,
+                        flex: 2,
+                        child: prefixWidget ?? Container(),
+                      )
+                    : Container(),
+                Flexible(
+                  flex: 10,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Flexible(
+                        flex: 20,
+                        child: Container(
+                          child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: contentWidget.map((e) => e).toList()),
+                        ),
                       ),
-                    ),
-                    subTitleWidget ?? Container()
-                  ],
+                      suffixWidget != null
+                          ? Flexible(
+                              flex: 2, child: suffixWidget ?? Container())
+                          : Container(),
+                    ],
+                  ),
                 ),
-                suffixWidget ?? Container(),
               ],
-            ),
-          ),
-        ],
-      ),
+            )),
+      ],
     );
   }
 }

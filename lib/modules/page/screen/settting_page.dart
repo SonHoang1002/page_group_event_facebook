@@ -6,7 +6,7 @@ import 'package:self_facebook_project/general/format_input.dart';
 import 'package:self_facebook_project/modules/page/blocs/current_number_page.dart';
 import 'package:self_facebook_project/modules/page/blocs/name_bloc.dart';
 import 'package:self_facebook_project/modules/page/model/name_model.dart';
-
+import 'package:self_facebook_project/modules/page/export_page.dart';
 class SettingsPage extends StatefulWidget {
   @override
   State<SettingsPage> createState() => _SettingsPageState();

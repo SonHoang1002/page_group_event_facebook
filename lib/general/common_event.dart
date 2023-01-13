@@ -10,8 +10,8 @@ class CommonEvent {
   static const String CREATE_EVENT = "Tạo nhóm";
   static const String SKIP = "Bỏ qua";
   static const String CONTINUE_AFTER = "Tiếp tục sau";
-    static const ICON_DATA_NEXT = FontAwesomeIcons.chevronRight;
-    static const ICON_PRIVIOUS = FontAwesomeIcons.chevronLeft;
+  static const ICON_DATA_NEXT = FontAwesomeIcons.chevronRight;
+  static const ICON_PRIVIOUS = FontAwesomeIcons.chevronLeft;
 }
 
 class CreateEventCommon {
@@ -114,9 +114,10 @@ class DetailEventCommon {
   ];
 }
 
-class LocationEventCommon{
+class LocationEventCommon {
   static const String LOCATION_EVENT_TITLE = "Vị trí";
-  static const String LOCATION_EVENT_SUBTITLE = "Chọn cách tham gia sự kiện online của bạn";
+  static const String LOCATION_EVENT_SUBTITLE =
+      "Chọn cách tham gia sự kiện online của bạn";
 
   static const List<dynamic> MEETING_ROOM_COMPONENT = [
     FontAwesomeIcons.video,
@@ -130,14 +131,86 @@ class LocationEventCommon{
   ];
   static const String ADD_PRIVATE_LINK = "Thêm liên kết riêng";
   static const String DIFFERENT_SELECTION = "Lựa chọn khác";
+  static const String CHANGE_SELECTION = "Thay đổi";
 
   static const List<List<dynamic>> DIFFERENT_SELECTION_COMPONENT = [
-    [FontAwesomeIcons.link, "Liên kết bên ngoài", "Thêm liên kết đẻ mọi người biết cần truy cập vào đâi khi sự kiện bắt đầu"],
+    [
+      FontAwesomeIcons.link,
+      "Liên kết bên ngoài",
+      "Thêm liên kết đẻ mọi người biết cần truy cập vào đâi khi sự kiện bắt đầu"
+    ],
     [
       FontAwesomeIcons.mendeley,
       "Khác",
       "Thêm hướng dẫn vào phần chi tiết sự kiện để chỉ rõ cách tham gia"
     ],
-   
   ];
+
+  static const String EVENT_WITH_FACEBOOK_LIVE_TITLE =
+      "Sự kiện với Facebook Live";
+  static const List<dynamic> EVENT_WITH_FACEBOOK_LIVE_CONTENT_LIST = [
+    [
+      FontAwesomeIcons.camera,
+      "Phát trực tiếp ngay trong sự kiện",
+      "Bắt đầu video trực tiếp của bạn và mọi người có thể xem ngay trong sự kiện",
+    ],
+    [
+      FontAwesomeIcons.bell,
+      "Chúng tôi sẽ nhắc bạn",
+      "Ít lâu trước khi sự kiện bắt đầu, chúng tôi sẽ gửi thông báo để nhắc bạn",
+    ],
+    [
+      FontAwesomeIcons.userGroup,
+      "Chỉ mình bạn có thể phát trực tiếp",
+      "Người đồng tổ chức có thể yêu cầu tham gia buổi phát trực tiếp nhưng chỉ bạn mới có thể bắt đầu phát",
+    ]
+  ];
+}
+
+class DescriptionEventCommon {
+  static const String DESCRIPTION_EVENT_TITLE = "Mô tả";
+  static const String DESCRIPTION_EVENT_SUBTITLE =
+      "Cung cấp thêm thông tin về sự kiện để khách mời biết nên mong đợi điều gì";
+  static const String PLACEHOLDER_EVENT = "Thêm mô tả";
+}
+
+class ReviewEventCommon {
+  static const String REVIEW_EVENT_APPBAR_TITLE = "Xem lại sự kiện";
+  static const String REVIEW_EVENT_SUBTITLE =
+      "Cung cấp thêm thông tin về sự kiện để khách mời biết nên mong đợi điều gì";
+  static const String PLACEHOLDER_EVENT = "Thêm mô tả";
+
+  static const String TIME_EVENT = "Hôm nay, 11 tháng 11 lúc 22:00";
+  static const String NAME_EVENT = "NAME_OF_EVENT";
+  static const String RANGE_EVENT = "Riêng tư - Người tổ chức: ";
+  static const String ORGANIZE_PERSON = "NAME _OF_PERSON";
+  static const List<dynamic> REVIEW_EVENT_CONTENT_LIST = [
+    [
+      FontAwesomeIcons.pen,
+      "Mô tả",
+      "CONTENT_DESCRIPTION_PART",
+    ],
+    [
+      FontAwesomeIcons.camera,
+      "Vị trí",
+      "Online - Phòng hợp mặt trên Messenger",
+    ],
+    [
+      FontAwesomeIcons.gear,
+      "Cài đặt sự kiện",
+      "",
+    ]
+  ];
+}
+
+class SettingEventCommon {
+  static const String SETTING_TITLE = "Cài đặt sự kiện";
+  static const List<dynamic> CO_ORGANIZER = [
+    FontAwesomeIcons.microphone,
+    "Người đồng tổ chức",
+  ];
+  static const String SHARE_LINK_CONTENT =
+      "Khách mời có thể chia sẻ liên kết của phòng họp mặt";
+  static const String DESCRIPTION_FOR_SHARE_LINK_CONTENT =
+      "Cho phép mọi người mời bạn bè tham gia sự kiện và chia sẻ liên kết của phòng họp mặt với người khác, bao gồm cả những ai không có tài khoản Facebook hoặc Messenger";
 }

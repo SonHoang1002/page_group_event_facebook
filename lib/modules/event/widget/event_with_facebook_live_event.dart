@@ -1,0 +1,115 @@
+import 'package:flutter/material.dart';
+import 'package:self_facebook_project/general/common_event.dart';
+import 'package:self_facebook_project/modules/event/widget/information_user_event_widget.dart';
+
+showBottomSheetEventWithFacebookLive(BuildContext context, double width) {
+  showModalBottomSheet(
+      backgroundColor: Colors.transparent,
+      context: context,
+      builder: (context) {
+        return Container(
+          padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+          height: 350,
+          decoration: BoxDecoration(
+              color: Colors.grey[900],
+              borderRadius: BorderRadius.only(
+                  topRight: Radius.circular(15), topLeft: Radius.circular(15))),
+          child: Column(children: [
+            // icon horizontal
+            Container(
+              padding: EdgeInsets.only(top: 5),
+              child: Container(
+                height: 4,
+                width: 40,
+                decoration: BoxDecoration(
+                    color: Colors.grey,
+                    borderRadius: BorderRadius.only(
+                        topRight: Radius.circular(15),
+                        topLeft: Radius.circular(15))),
+              ),
+            ),
+            // event with facebook live title
+            Container(
+              margin: EdgeInsets.fromLTRB(10, 10, 10, 5),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                      child: Center(
+                    child: Text(
+                      LocationEventCommon.EVENT_WITH_FACEBOOK_LIVE_TITLE,
+                      style: TextStyle(color: Colors.white, fontSize: 18),
+                    ),
+                  )),
+                ],
+              ),
+            ),
+            // divider
+            Container(
+              margin: EdgeInsets.only(top: 5, bottom: 5),
+              child: Divider(
+                height: 2,
+                color: Colors.white,
+              ),
+            ),
+            // content
+            Container(
+              height: 235,
+              child: ListView.builder(
+                  itemCount: LocationEventCommon
+                      .EVENT_WITH_FACEBOOK_LIVE_CONTENT_LIST.length,
+                  itemBuilder: ((context1, index) {
+                    return InformationUserEventWidget(
+                      [
+                        Text(
+                          LocationEventCommon
+                              .EVENT_WITH_FACEBOOK_LIVE_CONTENT_LIST[index][1],
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        Text(
+                          LocationEventCommon
+                              .EVENT_WITH_FACEBOOK_LIVE_CONTENT_LIST[index][2],
+                          style: TextStyle(
+                            color: Colors.grey,
+                            fontSize: 15,
+                          ),
+                        ),
+                      ],
+                      prefixWidget: Container(
+                        margin: EdgeInsets.only(right: 10),
+                        height: 40,
+                        width: 40,
+                        // decoration: BoxDecoration(
+                        //     color: Colors.grey[700],
+                        //     borderRadius:
+                        //         BorderRadius.all(Radius.circular(10))),
+                        child: Icon(
+                          LocationEventCommon
+                              .EVENT_WITH_FACEBOOK_LIVE_CONTENT_LIST[index][0],
+                          color: Colors.white,
+                        ),
+                      ),
+
+                      padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
+                    );
+                  })),
+            ),
+            // button
+            Container(
+              child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  style: ElevatedButton.styleFrom(fixedSize: Size(width, 30)),
+                  child: Text(
+                    "Đã hiểu",
+                    style: TextStyle(color: Colors.white),
+                  )),
+            )
+          ]),
+        );
+      });
+}

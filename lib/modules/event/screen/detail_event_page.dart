@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:self_facebook_project/general/common_event.dart';
 import 'package:self_facebook_project/modules/event/blocs/selection_private_event_bloc.dart';
-import 'package:self_facebook_project/modules/event/screen/location_event.dart';
+import 'package:self_facebook_project/modules/event/screen/location_event_page.dart';
 import 'package:self_facebook_project/modules/event/widget/information_user_event_widget.dart';
 import 'package:self_facebook_project/modules/page/blocs/current_number_page.dart';
 
@@ -32,6 +32,7 @@ class _DetailEventPageState extends State<DetailEventPage> {
     width = MediaQuery.of(context).size.width;
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.black87,
       body: GestureDetector(
         onTap: () {
@@ -276,7 +277,7 @@ class _DetailEventPageState extends State<DetailEventPage> {
                               child: ElevatedButton(
                                   style: ElevatedButton.styleFrom(
                                       fixedSize: Size(width * 0.9, 40),
-                                      backgroundColor: Colors.blue),
+                                      backgroundColor: Colors.grey[800]),
                                   onPressed: () {
                                     Navigator.of(context).push(
                                         MaterialPageRoute(
@@ -308,7 +309,7 @@ class _DetailEventPageState extends State<DetailEventPage> {
           return StatefulBuilder(builder: (context, setStateFull) {
             return Container(
               padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-              height: isPrivateSelection ? 450 : 365,
+              height: BlocProvider.of<SelectionPrivateEventBloc>(context).state.selection=="Bạn bè" ? 450 : 365,
               decoration: BoxDecoration(
                   color: Colors.grey[900],
                   borderRadius: BorderRadius.only(
@@ -374,10 +375,16 @@ class _DetailEventPageState extends State<DetailEventPage> {
                                       DetailEventCommon
                                               .SELECTION_FOR_PRIVATE_OF_EVENT[
                                           index][1]));
-                              if (DetailEventCommon.SELECTION_FOR_PRIVATE_OF_EVENT[index][1]==
-                                  "Nhóm") {
+                              if (DetailEventCommon
+                                              .SELECTION_FOR_PRIVATE_OF_EVENT[
+                                          index][1] ==
+                                      "Nhóm"
+                                  ) {
                                 showBottomSheetSelectionGroup(context);
                               }
+                              setStateFull(
+                                () {},
+                              );
                             }),
                             child: InformationUserEventWidget(
                               [
@@ -419,14 +426,12 @@ class _DetailEventPageState extends State<DetailEventPage> {
                                     .state
                                     .selection,
                                 onChanged: ((value) {
-                                  setStateFull(() {
-                                    context
-                                        .read<SelectionPrivateEventBloc>()
-                                        .add(UpdateSelectionPrivateEventEvent(
-                                            DetailEventCommon
-                                                    .SELECTION_FOR_PRIVATE_OF_EVENT[
-                                                index][1]));
-                                  });
+                                  context.read<SelectionPrivateEventBloc>().add(
+                                      UpdateSelectionPrivateEventEvent(
+                                          DetailEventCommon
+                                                  .SELECTION_FOR_PRIVATE_OF_EVENT[
+                                              index][1]));
+                                  setStateFull(() {});
                                   setState(() {});
                                 }),
                                 value: listRadio[index],
@@ -441,7 +446,10 @@ class _DetailEventPageState extends State<DetailEventPage> {
                 SizedBox(
                   height: 5,
                 ),
-                isPrivateSelection
+                BlocProvider.of<SelectionPrivateEventBloc>(context)
+                            .state
+                            .selection ==
+                        "Bạn bè"
                     ? Column(children: [
                         Divider(
                           height: 2,

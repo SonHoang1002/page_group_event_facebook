@@ -1,11 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:self_facebook_project/general/common_event.dart';
 import 'package:self_facebook_project/modules/event/blocs/selection_private_event_bloc.dart';
 import 'package:self_facebook_project/modules/event/screen/location_event_page.dart';
 import 'package:self_facebook_project/modules/event/widget/information_user_event_widget.dart';
 import 'package:self_facebook_project/modules/page/blocs/current_number_page.dart';
+import 'package:table_calendar/table_calendar.dart';
 
 class DetailEventPage extends StatefulWidget {
   @override
@@ -24,13 +27,21 @@ class _DetailEventPageState extends State<DetailEventPage> {
   }).toList();
 
   late double width = 0;
-
+  late double height = 0;
+  // late String privateRuleValue = "";
   bool isPrivateSelection = true;
+  late DateTime currentDay = DateTime.now();
+
+  DateTime _endDay = DateTime.now();
+  DateTime _selectedDay = DateTime.now();
+  final currentHour = DateTime.now().hour;
+  final currentMinute = DateTime.now().minute;
 
   @override
   Widget build(BuildContext context) {
-    width = MediaQuery.of(context).size.width;
-
+    final size = MediaQuery.of(context).size;
+    width = size.width;
+    height = size.height;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.black87,
@@ -41,20 +52,27 @@ class _DetailEventPageState extends State<DetailEventPage> {
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: 10),
           child: Column(children: [
-            //title app bar
             Expanded(
               child: Column(
                 children: [
+                  //title app bar
                   Container(
-                    margin: EdgeInsets.only(top: 50),
+                    margin: EdgeInsets.only(
+                      top: 60,
+                    ),
                     child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Container(
-                            child: Icon(
-                              CommonEvent.ICON_PRIVIOUS,
-                              color: Colors.grey,
-                              size: 18,
+                            child: GestureDetector(
+                              onTap: (() {
+                                Navigator.of(context).pop();
+                              }),
+                              child: Icon(
+                                CommonEvent.ICON_PRIVIOUS,
+                                color: Colors.grey,
+                                size: 18,
+                              ),
                             ),
                           ),
                           Container(
@@ -67,6 +85,7 @@ class _DetailEventPageState extends State<DetailEventPage> {
                           )
                         ]),
                   ),
+
                   // title detail event
                   Container(
                     margin: EdgeInsets.only(top: 30),
@@ -82,9 +101,11 @@ class _DetailEventPageState extends State<DetailEventPage> {
                       ],
                     ),
                   ),
+                  // space
                   SizedBox(
                     height: 40,
                   ),
+                  //user example
                   InformationUserEventWidget(
                     [
                       Text(DetailEventCommon.USER_EXAMPLE[1],
@@ -109,10 +130,11 @@ class _DetailEventPageState extends State<DetailEventPage> {
                     changeBackground: Colors.transparent,
                     padding: EdgeInsets.zero,
                   ),
+                  // space
                   SizedBox(
                     height: 20,
                   ),
-
+                  // name event input
                   Container(
                     height: 50,
                     child: TextFormField(
@@ -134,12 +156,18 @@ class _DetailEventPageState extends State<DetailEventPage> {
                           hintStyle: TextStyle(color: Colors.white)),
                     ),
                   ),
+                  // space
                   SizedBox(
                     height: 10,
                   ),
+                  // day and time event input
                   Container(
                     height: 50,
                     child: TextFormField(
+                      readOnly: true,
+                      onTap: (() {
+                        _showBottomSheetDayAndTimePicker(context);
+                      }),
                       style: TextStyle(color: Colors.white),
                       decoration: InputDecoration(
                           enabledBorder: OutlineInputBorder(
@@ -158,9 +186,11 @@ class _DetailEventPageState extends State<DetailEventPage> {
                           hintStyle: TextStyle(color: Colors.white)),
                     ),
                   ),
+                  // space
                   SizedBox(
                     height: 5,
                   ),
+                  // add day and time function
                   Row(
                     children: [
                       Text(
@@ -169,16 +199,20 @@ class _DetailEventPageState extends State<DetailEventPage> {
                       )
                     ],
                   ),
+                  // space
                   SizedBox(
                     height: 20,
                   ),
+                  // divder
                   Divider(
-                    height: 2,
+                    height: 10,
                     color: Colors.grey,
                   ),
+                  // space
                   SizedBox(
                     height: 15,
                   ),
+                  // set private rule
                   GestureDetector(
                     onTap: () {
                       showBottomSheetPrivateRuleOfEvent(context);
@@ -193,7 +227,16 @@ class _DetailEventPageState extends State<DetailEventPage> {
                         SizedBox(
                           height: 5,
                         ),
-                        Text(DetailEventCommon.PRIVATE_RULE_COMPONENT[2],
+                        Text(
+                            BlocProvider.of<SelectionPrivateEventBloc>(context)
+                                        .state
+                                        .selection !=
+                                    ""
+                                ? BlocProvider.of<SelectionPrivateEventBloc>(
+                                        context)
+                                    .state
+                                    .selection
+                                : DetailEventCommon.PRIVATE_RULE_COMPONENT[2],
                             style: TextStyle(fontSize: 16, color: Colors.grey)),
                       ],
                       prefixWidget: Container(
@@ -227,80 +270,76 @@ class _DetailEventPageState extends State<DetailEventPage> {
             ),
 
             // bottom navigate
-            BlocBuilder<CurrentNumberPageCubit, int>(
-                builder: (context, currentNumberPage) {
-              return Container(
-                height: 85,
-                color: Colors.black87,
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Container(
-                        child: Column(
-                          children: [
-                            Divider(
-                              height: 4,
-                              color: Colors.white,
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Center(
-                                child: Container(
-                              height: 6,
-                              width: width * 0.9,
-                              child: ListView.builder(
-                                  scrollDirection: Axis.horizontal,
-                                  itemCount: 4,
-                                  itemBuilder: ((context, index) {
-                                    return Container(
-                                      margin: EdgeInsets.fromLTRB(
-                                          index == 0 ? 0 : 5,
-                                          0,
-                                          index == 6 ? 0 : 5,
-                                          0),
-                                      width: (width * 0.9 - 4 * 7) / 4,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(3),
-                                        color: Colors.grey[800],
-                                      ),
-                                    );
-                                  })),
-                            )),
-                          ],
-                        ),
+            Container(
+              height: 85,
+              color: Colors.black87,
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      child: Column(
+                        children: [
+                          Divider(
+                            height: 4,
+                            color: Colors.white,
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Center(
+                              child: Container(
+                            height: 6,
+                            width: width * 0.9,
+                            child: ListView.builder(
+                                scrollDirection: Axis.horizontal,
+                                itemCount: 4,
+                                itemBuilder: ((context, index) {
+                                  return Container(
+                                    margin: EdgeInsets.fromLTRB(
+                                        index == 0 ? 0 : 5,
+                                        0,
+                                        index == 6 ? 0 : 5,
+                                        0),
+                                    width: (width * 0.9 - 4 * 7) / 4,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(3),
+                                      color: Colors.grey[800],
+                                    ),
+                                  );
+                                })),
+                          )),
+                        ],
                       ),
-                      Container(
-                        child: Column(
-                          children: [
-                            Center(
-                              child: ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                      fixedSize: Size(width * 0.9, 40),
-                                      backgroundColor: Colors.grey[800]),
-                                  onPressed: () {
-                                    Navigator.of(context).push(
-                                        MaterialPageRoute(
-                                            builder: (_) =>
-                                                LocationEventPage()));
-                                  },
-                                  child: Text(CommonEvent.NEXT)),
-                            ),
-                            const SizedBox(
-                              height: 5,
-                            ),
-                          ],
-                        ),
+                    ),
+                    Container(
+                      child: Column(
+                        children: [
+                          Center(
+                            child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                    fixedSize: Size(width * 0.9, 40),
+                                    backgroundColor: Colors.grey[800]),
+                                onPressed: () {
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (_) => LocationEventPage()));
+                                },
+                                child: Text(CommonEvent.NEXT)),
+                          ),
+                          const SizedBox(
+                            height: 5,
+                          ),
+                        ],
                       ),
-                    ]),
-              );
-            }),
+                    ),
+                  ]),
+            )
           ]),
         ),
       ),
     );
   }
 
+  // bottom sheet show private rule selections
   showBottomSheetPrivateRuleOfEvent(BuildContext context) {
     showModalBottomSheet(
         backgroundColor: Colors.transparent,
@@ -309,7 +348,12 @@ class _DetailEventPageState extends State<DetailEventPage> {
           return StatefulBuilder(builder: (context, setStateFull) {
             return Container(
               padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-              height: BlocProvider.of<SelectionPrivateEventBloc>(context).state.selection=="Bạn bè" ? 450 : 365,
+              height: BlocProvider.of<SelectionPrivateEventBloc>(context)
+                          .state
+                          .selection ==
+                      "Riêng tư"
+                  ? 450
+                  : 365,
               decoration: BoxDecoration(
                   color: Colors.grey[900],
                   borderRadius: BorderRadius.only(
@@ -376,15 +420,15 @@ class _DetailEventPageState extends State<DetailEventPage> {
                                               .SELECTION_FOR_PRIVATE_OF_EVENT[
                                           index][1]));
                               if (DetailEventCommon
-                                              .SELECTION_FOR_PRIVATE_OF_EVENT[
-                                          index][1] ==
-                                      "Nhóm"
-                                  ) {
+                                          .SELECTION_FOR_PRIVATE_OF_EVENT[index]
+                                      [1] ==
+                                  "Nhóm") {
                                 showBottomSheetSelectionGroup(context);
                               }
                               setStateFull(
                                 () {},
                               );
+                              setState(() {});
                             }),
                             child: InformationUserEventWidget(
                               [
@@ -504,6 +548,7 @@ class _DetailEventPageState extends State<DetailEventPage> {
         });
   }
 
+  // bottom sheet show group selection after user choose "Ban be" value
   showBottomSheetSelectionGroup(BuildContext context) {
     showModalBottomSheet(
         backgroundColor: Colors.transparent,
@@ -604,7 +649,9 @@ class _DetailEventPageState extends State<DetailEventPage> {
               ),
               Container(
                 child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
                     style: ElevatedButton.styleFrom(fixedSize: Size(width, 30)),
                     child: Text(
                       "Lưu",
@@ -613,6 +660,131 @@ class _DetailEventPageState extends State<DetailEventPage> {
               )
             ]),
           );
+        });
+  }
+
+  // bottom sheet show day and time table for user  choose for day and time input
+  _showBottomSheetDayAndTimePicker(BuildContext context) {
+    showMaterialModalBottomSheet(
+        backgroundColor: Colors.grey[900],
+        context: context,
+        builder: (context) {
+          return StatefulBuilder(builder: (context, setStateFull) {
+            print("_endDay: ${_endDay}");
+            print("_selectedDay: ${_selectedDay}");
+            return Container(
+              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+              height: height,
+              decoration: BoxDecoration(
+                  color: Colors.grey[900],
+                  borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(15),
+                      topLeft: Radius.circular(15))),
+              child: Column(children: [
+                // navigate bottom sheet
+                Container(
+                  margin: EdgeInsets.only(top: 40),
+                  height: 50,
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        GestureDetector(
+                          onTap: (() {
+                            Navigator.of(context).pop();
+                          }),
+                          child: Container(
+                            margin: EdgeInsets.only(left: 10),
+                            child: Text("Hủy",
+                                style: TextStyle(color: Colors.blue)),
+                          ),
+                        ),
+                        Container(
+                          child: Text(
+                            "Ngày và giờ",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        GestureDetector(
+                          onTap: (() {
+                            Navigator.of(context).pop();
+                          }),
+                          child: Container(
+                            margin: EdgeInsets.only(right: 10),
+                            child: Text("OK",
+                                style: TextStyle(color: Colors.blue)),
+                          ),
+                        )
+                      ]),
+                ),
+                // begin time
+                Container(
+                  margin: EdgeInsets.symmetric(horizontal: 10),
+                  height: 30,
+                  child: Row(children: [
+                    Text("Hom nay luc:${currentHour}: ${currentMinute}",
+                        style: TextStyle(
+                          color: Colors.grey,
+                          fontSize: 15,
+                        ))
+                  ]),
+                ),
+                //divider
+                Divider(height: 10, color: Colors.green),
+                // end time
+                Container(
+                  margin: EdgeInsets.symmetric(horizontal: 10),
+                  height: 30,
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          child: Text(
+                              "Ket thuc ${_endDay.day}/${_endDay.month} luc 01:00",
+                              style: TextStyle(
+                                color: Colors.blue,
+                                fontSize: 15,
+                              )),
+                        ),
+                        Container(
+                            child: Icon(
+                          FontAwesomeIcons.close,
+                          color: Colors.white,
+                          size: 18,
+                        )),
+                      ]),
+                ),
+                // table calendar
+                TableCalendar(
+                  selectedDayPredicate: (day) {
+                    return isSameDay(_endDay, day);
+                  },
+                  onPageChanged: (focusedDay) {
+                    _endDay = focusedDay;
+                  },
+                  onDaySelected: ((selectedDay, focusedDay) {
+                    _endDay = focusedDay;
+                    _selectedDay = selectedDay;
+                    setStateFull(
+                      () {},
+                    );
+                    setState(() {});
+                  }),
+                  firstDay: DateTime.utc(1950, 1, 1),
+                  lastDay: DateTime.utc(2100, 1, 1),
+                  focusedDay: _endDay,
+                  headerStyle: HeaderStyle(
+                    leftChevronVisible: false,
+                    rightChevronVisible: false,
+                    headerPadding:
+                        EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+                  ),
+                ),
+              ]),
+            );
+          });
         });
   }
 }

@@ -36,27 +36,33 @@ class _LocationEventPageState extends State<LocationEventPage> {
                 child: Column(
               children: [
                 Container(
-                  margin: EdgeInsets.only(top: 50),
-                  child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Container(
-                          child: Icon(
-                            CommonEvent.ICON_PRIVIOUS,
-                            color: Colors.grey,
-                            size: 18,
+                    margin: EdgeInsets.only(
+                        top: 60,),
+                    child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Container(
+                            child: GestureDetector(
+                              onTap: (() {
+                                Navigator.of(context).pop();
+                              }),
+                              child: Icon(
+                                CommonEvent.ICON_PRIVIOUS,
+                                color: Colors.grey,
+                                size: 18,
+                              ),
+                            ),
                           ),
-                        ),
-                        Container(
-                          margin: EdgeInsets.only(right: 10),
-                          child: Text(
-                            CommonEvent.CANCEL,
-                            style: TextStyle(
-                                color: Colors.grey[200], fontSize: 18),
-                          ),
-                        )
-                      ]),
-                ),
+                          Container(
+                            margin: EdgeInsets.only(right: 10),
+                            child: Text(
+                              CommonEvent.CANCEL,
+                              style: TextStyle(
+                                  color: Colors.grey[200], fontSize: 18),
+                            ),
+                          )
+                        ]),
+                  ),
                 // title detail event
                 Container(
                   margin: EdgeInsets.only(top: 30, bottom: 10),
@@ -162,7 +168,7 @@ class _LocationEventPageState extends State<LocationEventPage> {
                       isLiveMeetingRoomSelection = false;
                       isFacebookLiveSelection = true;
                     });
-                    showBottomSheetEventWithFacebookLive(context,width);
+                    showBottomSheetEventWithFacebookLive(context, width);
                   },
                   child: Container(
                     decoration: BoxDecoration(

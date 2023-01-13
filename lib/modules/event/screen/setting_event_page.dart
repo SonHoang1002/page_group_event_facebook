@@ -1,16 +1,22 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:self_facebook_project/general/common_event.dart';
 import 'package:self_facebook_project/modules/event/widget/information_user_event_widget.dart';
 
-class SettingEventPage extends StatelessWidget {
-  const SettingEventPage({super.key});
+class SettingEventPage extends StatefulWidget {
+  @override
+  State<SettingEventPage> createState() => _SettingEventPageState();
+}
+
+class _SettingEventPageState extends State<SettingEventPage> {
+  bool switchValue = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black87,
+      backgroundColor: Colors.grey[900],
       body: Container(
         padding: EdgeInsets.symmetric(horizontal: 10),
         child: Column(children: [
@@ -19,15 +25,21 @@ class SettingEventPage extends StatelessWidget {
             margin: EdgeInsets.only(top: 60, right: 10, left: 10, bottom: 15),
             child: Row(mainAxisAlignment: MainAxisAlignment.start, children: [
               Container(
-                child: Icon(
-                  CommonEvent.ICON_PRIVIOUS,
-                  color: Colors.grey,
-                  size: 18,
+                child: GestureDetector(
+                  onTap: (() {
+                    Navigator.of(context).pop();
+                  }),
+                  child: Icon(
+                    CommonEvent.ICON_PRIVIOUS,
+                    color: Colors.grey,
+                    size: 18,
+                  ),
                 ),
               ),
             ]),
           ),
-
+          
+          // setting title
           Container(
             margin: EdgeInsets.only(top: 15),
             child: Row(
@@ -42,7 +54,8 @@ class SettingEventPage extends StatelessWidget {
               ],
             ),
           ),
-
+          
+          // co-organizer part
           Container(
             // color: Colors.red,
             child: InformationUserEventWidget(
@@ -74,6 +87,8 @@ class SettingEventPage extends StatelessWidget {
             ),
           ),
 
+
+          // this below widget only will be shown when user choose live meeting room method from location, include share link and description
           // share link
           Container(
             child: InformationUserEventWidget(
@@ -87,14 +102,21 @@ class SettingEventPage extends StatelessWidget {
                 ),
               ],
               suffixWidget: Switch(
-                onChanged: (value) {},
-                value: true,
+                thumbColor:
+                    MaterialStateProperty.resolveWith((states) => Colors.blue),
+                onChanged: (value) {
+                  setState(() {
+                    switchValue = !switchValue;
+                  });
+                },
+                value: switchValue,
               ),
               padding: EdgeInsets.symmetric(vertical: 5, horizontal: 2.5),
               changeBackground: Colors.transparent,
             ),
           ),
-
+          
+          // description for share link function
           Container(
             // margin: EdgeInsets.only(top: 5),
             child: Wrap(

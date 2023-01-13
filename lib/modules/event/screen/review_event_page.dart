@@ -50,10 +50,15 @@ class _ReviewEventPageState extends State<ReviewEventPage> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Container(
-                            child: Icon(
-                              CommonEvent.ICON_PRIVIOUS,
-                              color: Colors.grey,
-                              size: 18,
+                            child: GestureDetector(
+                              onTap: (() {
+                                Navigator.of(context).pop();
+                              }),
+                              child: Icon(
+                                CommonEvent.ICON_PRIVIOUS,
+                                color: Colors.grey,
+                                size: 18,
+                              ),
                             ),
                           ),
                           Container(
@@ -361,10 +366,7 @@ class _ReviewEventPageState extends State<ReviewEventPage> {
                                       fixedSize: Size(width * 0.9, 40),
                                       backgroundColor: Colors.grey[800]),
                                   onPressed: () {
-                                    Navigator.of(context).push(
-                                        MaterialPageRoute(
-                                            builder: (_) =>
-                                                LocationEventPage()));
+                                   
                                   },
                                   child: Text(CommonEvent.NEXT)),
                             ),

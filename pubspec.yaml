@@ -45,6 +45,7 @@ dependencies:
   modal_bottom_sheet: ^2.1.2
   flutter_svg: ^1.1.6
   table_calendar: ^3.0.9
+  flutter_cupertino_date_picker: ^1.0.26+2
 
 
   

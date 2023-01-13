@@ -30,12 +30,14 @@ class _DetailEventPageState extends State<DetailEventPage> {
   late double height = 0;
   // late String privateRuleValue = "";
   bool isPrivateSelection = true;
-  late DateTime currentDay = DateTime.now();
 
-  DateTime _endDay = DateTime.now();
-  DateTime _selectedDay = DateTime.now();
-  final currentHour = DateTime.now().hour;
-  final currentMinute = DateTime.now().minute;
+  DateTime _startTime = DateTime.now();
+  DateTime _endTime = DateTime.now();
+
+  List<int> _startPeriod = [DateTime.now().hour, DateTime.now().minute];
+  List<int> _endPeriod = [DateTime.now().hour, DateTime.now().minute];
+  bool isHaveEndTime = false;
+  bool isOnBeginTime = true;
 
   @override
   Widget build(BuildContext context) {
@@ -493,7 +495,7 @@ class _DetailEventPageState extends State<DetailEventPage> {
                 BlocProvider.of<SelectionPrivateEventBloc>(context)
                             .state
                             .selection ==
-                        "Bạn bè"
+                        "Riêng tư"
                     ? Column(children: [
                         Divider(
                           height: 2,
@@ -670,8 +672,6 @@ class _DetailEventPageState extends State<DetailEventPage> {
         context: context,
         builder: (context) {
           return StatefulBuilder(builder: (context, setStateFull) {
-            print("_endDay: ${_endDay}");
-            print("_selectedDay: ${_selectedDay}");
             return Container(
               padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
               height: height,
@@ -723,63 +723,153 @@ class _DetailEventPageState extends State<DetailEventPage> {
                 Container(
                   margin: EdgeInsets.symmetric(horizontal: 10),
                   height: 30,
-                  child: Row(children: [
-                    Text("Hom nay luc:${currentHour}: ${currentMinute}",
-                        style: TextStyle(
-                          color: Colors.grey,
-                          fontSize: 15,
-                        ))
-                  ]),
-                ),
-                //divider
-                Divider(height: 10, color: Colors.green),
-                // end time
-                Container(
-                  margin: EdgeInsets.symmetric(horizontal: 10),
-                  height: 30,
                   child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisAlignment: isHaveEndTime
+                          ? MainAxisAlignment.start
+                          : MainAxisAlignment.spaceBetween,
                       children: [
-                        Container(
+                        GestureDetector(
+                          onTap: (() {
+                            isOnBeginTime = true;
+                            setStateFull(
+                              () {},
+                            );
+                            setState(() {});
+                          }),
                           child: Text(
-                              "Ket thuc ${_endDay.day}/${_endDay.month} luc 01:00",
+                              "Bat dau vao: ${_startTime.day}/${_startTime.month}, luc: ${_startPeriod[0]}:${_startPeriod[1]}",
                               style: TextStyle(
-                                color: Colors.blue,
+                                color:
+                                    isOnBeginTime ? Colors.blue : Colors.grey,
                                 fontSize: 15,
                               )),
                         ),
-                        Container(
-                            child: Icon(
-                          FontAwesomeIcons.close,
-                          color: Colors.white,
-                          size: 18,
-                        )),
+                        !isHaveEndTime
+                            ? GestureDetector(
+                                onTap: (() {
+                                  isHaveEndTime = true;
+                                  isOnBeginTime = false;
+
+                                  setStateFull(
+                                    () {},
+                                  );
+                                  setState(() {});
+                                }),
+                                child: Text("+ Thời gian kết thúc",
+                                    style: TextStyle(
+                                      color: Colors.grey,
+                                      fontSize: 15,
+                                    )),
+                              )
+                            : Container(),
                       ]),
                 ),
+
+                isHaveEndTime
+                    ? Column(
+                        children: [
+                          //divider
+                          Divider(height: 10, color: Colors.green),
+                          // end time
+                          Container(
+                            margin: EdgeInsets.symmetric(horizontal: 10),
+                            height: 30,
+                            child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  GestureDetector(
+                                    onTap: (() {
+                                      isOnBeginTime = false;
+                                      setStateFull(
+                                        () {},
+                                      );
+                                      setState(() {});
+                                    }),
+                                    child: Container(
+                                      child: Text(
+                                          "Ket thuc vao: ${_endTime.day}/${_endTime.month}, luc :${_endPeriod[0]}: ${_endPeriod[1]}",
+                                          style: TextStyle(
+                                            color: !isOnBeginTime ? Colors.blue : Colors.grey,
+                                            fontSize: 15,
+                                          )),
+                                    ),
+                                  ),
+                                  GestureDetector(
+                                    onTap: (() {
+                                      isHaveEndTime = false;
+                                      isOnBeginTime = true;
+                                      setStateFull(
+                                        () {},
+                                      );
+                                      setState(() {});
+                                    }),
+                                    child: Container(
+                                        child: Icon(
+                                      FontAwesomeIcons.close,
+                                      color: Colors.white,
+                                      size: 18,
+                                    )),
+                                  ),
+                                ]),
+                          ),
+                        ],
+                      )
+                    : Container(),
                 // table calendar
-                TableCalendar(
-                  selectedDayPredicate: (day) {
-                    return isSameDay(_endDay, day);
-                  },
-                  onPageChanged: (focusedDay) {
-                    _endDay = focusedDay;
-                  },
-                  onDaySelected: ((selectedDay, focusedDay) {
-                    _endDay = focusedDay;
-                    _selectedDay = selectedDay;
-                    setStateFull(
-                      () {},
-                    );
-                    setState(() {});
-                  }),
-                  firstDay: DateTime.utc(1950, 1, 1),
-                  lastDay: DateTime.utc(2100, 1, 1),
-                  focusedDay: _endDay,
-                  headerStyle: HeaderStyle(
-                    leftChevronVisible: false,
-                    rightChevronVisible: false,
-                    headerPadding:
-                        EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+                Container(
+                  color: Colors.white,
+                  child: TableCalendar(
+                    // selectedDayPredicate: (day) {
+                    //   return isSameDay(_endDay, day);
+                    // },
+                    // onPageChanged: (focusedDay) {
+                    //   _endDay = focusedDay;
+                    // },
+                    onFormatChanged: (format) {
+                      CalendarFormat.week;
+                    },
+                    onDaySelected: ((selectedDay, focusedDay) {
+                      if (isOnBeginTime) {
+                        _startTime = selectedDay;
+                      } else {
+                        _endTime = selectedDay;
+                      }
+                      setStateFull(
+                        () {},
+                      );
+                      setState(() {});
+                    }),
+                    firstDay: DateTime.utc(1950, 1, 1),
+                    lastDay: DateTime.utc(2100, 1, 1),
+                    focusedDay: DateTime.now(),
+                    headerStyle: HeaderStyle(
+                      leftChevronVisible: false,
+                      rightChevronVisible: false,
+                      headerPadding: EdgeInsets.symmetric(
+                          horizontal: 20.0, vertical: 10.0),
+                    ),
+                  ),
+                ),
+
+                // datetime picker
+                Container(
+                  height: 200,
+                  child: CupertinoDatePicker(
+                    backgroundColor: Colors.white,
+                    mode: CupertinoDatePickerMode.time,
+                    onDateTimeChanged: (value) {
+                      if (isOnBeginTime) {
+                        _startPeriod = [value.hour, value.minute];
+                      } else {
+                        _endPeriod = [value.hour, value.minute];
+                      }
+                      setStateFull(
+                        () {},
+                      );
+                      setState(() {});
+                    },
+                    initialDateTime: DateTime.now(),
                   ),
                 ),
               ]),

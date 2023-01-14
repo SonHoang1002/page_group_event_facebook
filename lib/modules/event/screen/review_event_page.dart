@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:self_facebook_project/general/common_event.dart';
@@ -253,7 +254,7 @@ class _ReviewEventPageState extends State<ReviewEventPage> {
                                     ReviewEventCommon
                                         .REVIEW_EVENT_CONTENT_LIST[index][1],
                                     style: TextStyle(
-                                        fontSize: 18,
+                                        fontSize: 17,
                                         fontWeight: FontWeight.bold,
                                         color: Colors.white)),
                                 ReviewEventCommon.REVIEW_EVENT_CONTENT_LIST[
@@ -281,18 +282,28 @@ class _ReviewEventPageState extends State<ReviewEventPage> {
                               ],
                               prefixWidget: Container(
                                   height: 40,
-                                  width: 40,
+                                  width: 40,padding: EdgeInsets.all(10),
                                   margin: EdgeInsets.only(right: 10),
                                   decoration: BoxDecoration(
                                       color: Colors.grey[700],
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(20))),
-                                  child: Icon(
-                                    ReviewEventCommon
-                                        .REVIEW_EVENT_CONTENT_LIST[index][0],
-                                    color: Colors.white,
-                                    size: 15,
-                                  )),
+                                  child: ReviewEventCommon
+                                              .REVIEW_EVENT_CONTENT_LIST[index]
+                                          [0] is String
+                                      ? SvgPicture.asset(
+                                          ReviewEventCommon
+                                                  .REVIEW_EVENT_CONTENT_LIST[
+                                              index][0],
+                                          color: Colors.white,
+                                        )
+                                      : Icon(
+                                          ReviewEventCommon
+                                                  .REVIEW_EVENT_CONTENT_LIST[
+                                              index][0],
+                                          color: Colors.white,
+                                          size: 15,
+                                        )),
                               changeBackground: Colors.transparent,
                               padding: EdgeInsets.symmetric(
                                   horizontal: 10, vertical: 5),
@@ -365,9 +376,7 @@ class _ReviewEventPageState extends State<ReviewEventPage> {
                                   style: ElevatedButton.styleFrom(
                                       fixedSize: Size(width * 0.9, 40),
                                       backgroundColor: Colors.grey[800]),
-                                  onPressed: () {
-                                   
-                                  },
+                                  onPressed: () {},
                                   child: Text(CommonEvent.NEXT)),
                             ),
                             const SizedBox(

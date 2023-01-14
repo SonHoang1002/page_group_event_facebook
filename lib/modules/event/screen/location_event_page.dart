@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:self_facebook_project/general/common_event.dart';
+import 'package:self_facebook_project/general/common_group.dart';
 import 'package:self_facebook_project/modules/event/export_event_page.dart';
 import 'package:self_facebook_project/modules/event/screen/description_event_page.dart';
 import 'package:self_facebook_project/modules/event/widget/event_with_facebook_live_event.dart';
@@ -87,17 +89,68 @@ class _LocationEventPageState extends State<LocationEventPage> {
                           ],
                         ),
                       ),
+                      // ---------------------------------ONLINE--------------------------------------
                       Container(
                         child: Row(
                           children: [
                             Text(
-                              LocationEventCommon.LOCATION_EVENT_SUBTITLE,
+                              LocationEventCommon
+                                  .ONLINE_LOCATION_EVENT_SUBTITLE,
                               style:
                                   TextStyle(fontSize: 16, color: Colors.white),
                             ),
                           ],
                         ),
                       ),
+                      // ---------------------------------OFFLINE--------------------------------------
+                      // Container(
+                      //   child: Row(
+                      //     children: [
+                      //       Text(
+                      //         LocationEventCommon.OFFLINE_LOCATION_EVENT_SUBTITLE,
+                      //         style:
+                      //             TextStyle(fontSize: 16, color: Colors.white),
+                      //       ),
+                      //     ],
+                      //   ),
+                      // ),
+
+                      //space
+                      // SizedBox(
+                      //   height: 10,
+                      // ),
+                      // // select location from map in bottom sheet
+                      // Container(
+                      //   height: 50,
+                      //   child: TextFormField(
+                      //     readOnly: true,
+                      //     onTap: () {
+                      //       _showBottomSheetSelectLocation(context);
+                      //     },
+                      //     // controller:  ???,
+                      //     style: TextStyle(color: Colors.white),
+                      //     decoration: InputDecoration(
+                      //         enabledBorder: OutlineInputBorder(
+                      //             borderSide: BorderSide(color: Colors.grey),
+                      //             borderRadius:
+                      //                 BorderRadius.all(Radius.circular(5))),
+                      //         focusedBorder: OutlineInputBorder(
+                      //             borderSide: BorderSide(color: Colors.blue),
+                      //             borderRadius:
+                      //                 BorderRadius.all(Radius.circular(5))),
+                      //         contentPadding: EdgeInsets.fromLTRB(10, 0, 0, 0),
+                      //         border: InputBorder.none,
+                      //         hintText: LocationEventCommon
+                      //             .OFFLINE_PLACEHOLDER_EVENT[0],
+                      //         labelStyle: TextStyle(color: Colors.white),
+                      //         hintStyle: TextStyle(color: Colors.white)),
+                      //   ),
+                      // ),
+
+                      // ---------------------------------OFFLINE--------------------------------------
+
+
+                      // space
                       SizedBox(
                         height: 10,
                       ),
@@ -175,6 +228,7 @@ class _LocationEventPageState extends State<LocationEventPage> {
                           ),
                         ),
                       ),
+                      // space
                       SizedBox(
                         height: 15,
                       ),
@@ -564,6 +618,165 @@ class _LocationEventPageState extends State<LocationEventPage> {
         // padding: EdgeInsets.fromLTRB(5, 5, 5, 0),
       ),
     );
+  }
+
+  _showBottomSheetSelectLocation(BuildContext context) {
+    showModalBottomSheet(
+        backgroundColor: Colors.transparent,
+        context: context,
+        builder: (context) {
+          return StatefulBuilder(builder: (context, setStateFull) {
+            return Container(
+              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+              height: 500,
+              decoration: BoxDecoration(
+                  color: Colors.grey[900],
+                  borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(15),
+                      topLeft: Radius.circular(15))),
+              child: Column(children: [
+                Container(
+                  padding: EdgeInsets.only(top: 5),
+                  child: Container(
+                    height: 4,
+                    width: 40,
+                    decoration: BoxDecoration(
+                        color: Colors.grey,
+                        borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(15),
+                            topLeft: Radius.circular(15))),
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.fromLTRB(10, 10, 10, 5),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                          child: Center(
+                        child: Text(
+                          LocationEventCommon.OFFLINE_PRIVATE_OF_EVENT,
+                          style: TextStyle(color: Colors.white, fontSize: 18),
+                        ),
+                      )),
+                    ],
+                  ),
+                ),
+                // divider
+                Divider(
+                  height: 4,
+                  color: Colors.white,
+                ),
+                // find location input
+                Container(
+                  margin: EdgeInsets.symmetric(vertical: 10),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        height: 40,
+                        width: 290,
+                        child: TextFormField(
+                          onChanged: ((value) {}),
+                          textAlign: TextAlign.left,
+                          style: const TextStyle(color: Colors.white),
+                          decoration: InputDecoration(
+                              prefixIcon: Icon(
+                                FontAwesomeIcons.search,
+                                color: Colors.grey,
+                                size: 13,
+                              ),
+                              fillColor: Colors.grey[800],
+                              filled: true,
+                              contentPadding: EdgeInsets.fromLTRB(0, 5, 0, 0),
+                              hintText: LocationEventCommon
+                                  .OFFLINE_PLACEHOLDER_EVENT[1],
+                              hintStyle:
+                                  TextStyle(color: Colors.grey, fontSize: 14),
+                              border: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(20)))),
+                        ),
+                      ),
+                      // SizedBox(width: 5,),
+                      Container(
+                          height: 40,
+                          width: 40,
+                          padding: EdgeInsets.all(5),
+                          margin: EdgeInsets.only(left: 10),
+                          child: Center(
+                            child: Container(
+                              height: 20,
+                              width: 20,
+                              child: SvgPicture.asset(
+                                CommonEvent.PATH_ICON + "camera_plus_icon.svg",
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                          decoration: BoxDecoration(
+                              color: Colors.grey[700],
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(20)))),
+                    ],
+                  ),
+                ),
+                // divider
+                Divider(
+                  height: 4,
+                  color: Colors.white,
+                ),
+                // img example for location
+                Container(
+                    height: 100,
+                    width: 200,
+                    margin: EdgeInsets.symmetric(vertical: 10),
+                    child: Image.asset(
+                      CommonEvent.PATH_IMG + "back_1.jpg",
+                      fit: BoxFit.fitWidth,
+                    )),
+                // find location near you
+                Container(
+                    margin: EdgeInsets.only(bottom: 10),
+                    child: Text(
+                      LocationEventCommon.OFFLINE_FIND_LOCATION_NEAR_FOR_YOU,
+                      style: TextStyle(color: Colors.grey, fontSize: 18,fontWeight: FontWeight.bold),
+                    )),
+                // please open location service
+                Container(
+                    margin: EdgeInsets.only(bottom: 10),
+                    child: Center(
+                      child: Text(
+                        LocationEventCommon.OFFLINE_OPEN_LOCATION_SERVICE,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(color: Colors.grey, fontSize: 18),
+                      ),
+                    )),
+                // open location service button
+
+                Container(
+                  width: 80,
+                  child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                        FocusManager.instance.primaryFocus!.unfocus();
+                      },
+                      style:
+                          ElevatedButton.styleFrom(fixedSize: Size(width, 30)),
+                      child: Text(
+                        LocationEventCommon
+                            .OFFLINE_OPEN_LOCATION_SERVICE_BUTTON,
+                        style: TextStyle(color: Colors.white),
+                      )),
+                ),
+                Divider(
+                  height: 4,
+                  color: Colors.white,
+                ),
+              ]),
+            );
+          });
+        });
   }
 
   bool validateUrlLink(String input) {

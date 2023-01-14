@@ -117,15 +117,16 @@ class DetailEventCommon {
 
 class LocationEventCommon {
   static const String LOCATION_EVENT_TITLE = "Vị trí";
-  static const String LOCATION_EVENT_SUBTITLE =
+  // online
+  static const String ONLINE_LOCATION_EVENT_SUBTITLE =
       "Chọn cách tham gia sự kiện online của bạn";
 
-  static  List<dynamic> MEETING_ROOM_COMPONENT = [
+  static List<dynamic> MEETING_ROOM_COMPONENT = [
     CommonEvent.PATH_ICON + "camera_plus_icon.svg",
     "Phòng họp mặt trên Messenger",
     "Họp mặt qua tính năng chat video. Mọi người có thể tham gia phòng họp mặt ngay tạitrang sự kiện",
   ];
-  static  List<dynamic> FACEBOOK_LIVE_COMPONENT = [
+  static List<dynamic> FACEBOOK_LIVE_COMPONENT = [
     CommonEvent.PATH_ICON + "camera_eye_icon.svg",
     "Facebook Live",
     "Lên lịch phát trực tiếp sự kiện của bạn bằng Facebook Live để mọi người cùng xem",
@@ -136,7 +137,7 @@ class LocationEventCommon {
 
   static List<List<dynamic>> DIFFERENT_SELECTION_COMPONENT = [
     [
-      FontAwesomeIcons.link,
+      CommonEvent.PATH_ICON + "link_icon.svg",
       "Liên kết bên ngoài",
       "Thêm liên kết đẻ mọi người biết cần truy cập vào đâi khi sự kiện bắt đầu"
     ],
@@ -166,6 +167,15 @@ class LocationEventCommon {
       "Người đồng tổ chức có thể yêu cầu tham gia buổi phát trực tiếp nhưng chỉ bạn mới có thể bắt đầu phát",
     ]
   ];
+
+  // offline
+  static const String OFFLINE_LOCATION_EVENT_SUBTITLE =
+      "Thêm vị trí để mọi người tham gia sự kiện";
+  static const List<String> OFFLINE_PLACEHOLDER_EVENT = ["Vị trí", "Tìm kiếm"];
+  static const String OFFLINE_PRIVATE_OF_EVENT = "Chọn vị trí";
+  static const String OFFLINE_FIND_LOCATION_NEAR_FOR_YOU = "Tìm địa điểm gần bạn";
+  static const String OFFLINE_OPEN_LOCATION_SERVICE = "Hãy bật Dịch vụ vị trí để xem những địa điểm gần bạn hoặc để check in ở một vị trí cụ thể.";
+  static const String OFFLINE_OPEN_LOCATION_SERVICE_BUTTON = "Bật";
 }
 
 class DescriptionEventCommon {
@@ -185,14 +195,14 @@ class ReviewEventCommon {
   static const String NAME_EVENT = "NAME_OF_EVENT";
   static const String RANGE_EVENT = "Riêng tư - Người tổ chức: ";
   static const String ORGANIZE_PERSON = "NAME _OF_PERSON";
-  static const List<dynamic> REVIEW_EVENT_CONTENT_LIST = [
+  static List<dynamic> REVIEW_EVENT_CONTENT_LIST = [
     [
       FontAwesomeIcons.pen,
       "Mô tả",
       "CONTENT_DESCRIPTION_PART",
     ],
     [
-      FontAwesomeIcons.camera,
+      CommonEvent.PATH_ICON + "camera_plus_icon.svg",
       "Vị trí",
       "Online - Phòng hợp mặt trên Messenger",
     ],

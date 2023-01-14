@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:self_facebook_project/general/common_group.dart';
@@ -6,7 +5,6 @@ import 'package:self_facebook_project/modules/group/export_group_page.dart';
 
 import 'package:self_facebook_project/modules/group/widgets/addtional_information_group_widget.dart';
 import 'package:self_facebook_project/modules/group/widgets/format_input_widget.dart';
-
 
 class CreateGroupPage extends StatefulWidget {
   @override
@@ -42,6 +40,7 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
                   padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
                   child: Column(
                     children: [
+                      // name title
                       Row(
                         children: [
                           Text(
@@ -53,9 +52,11 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
                           ),
                         ],
                       ),
+                      // space
                       const SizedBox(
                         height: 10,
                       ),
+                      // name input
                       Container(
                         height: 80,
                         child: TextFormField(
@@ -75,13 +76,16 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
                                       BorderRadius.all(Radius.circular(10)))),
                         ),
                       ),
+                      // divider
                       Divider(
                         height: 3,
                         color: Colors.grey[800],
                       ),
+                      //space
                       const SizedBox(
                         height: 10,
                       ),
+                      // private title
                       Row(
                         children: [
                           Text(
@@ -93,14 +97,17 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
                           ),
                         ],
                       ),
+                      // space
                       const SizedBox(
                         height: 10,
                       ),
+                      // private input
                       buildEmptyInput(context),
-                      // buildFillInput(context, FontAwesomeIcons.earthAmericas,
-                      //     CreateGroupCommon.TITLE_LIST[1], "Chon quyền riêng tư"),
-                      //  selectPrivateRule != "" ? Column(
-                      //     children: [
+                      // space
+                      const SizedBox(
+                        height: 10,
+                      ),
+
                       AddtionalInformationGroupWidget(contentWidget: [
                         RichText(
                             text: TextSpan(children: [
@@ -108,27 +115,30 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
                               text: CreateGroupCommon.DEFEND_PRIVATE_RULE[0],
                               style: TextStyle(
                                 color: Colors.grey[400],
-                                fontSize: 18,
+                                fontSize: 16,
                               )),
                           TextSpan(
                               text: CreateGroupCommon.DEFEND_PRIVATE_RULE[1],
                               style: TextStyle(
-                                  color: Colors.grey[400],
-                                  fontSize: 18,
+                                  color: Colors.blue,
+                                  fontSize: 16,
                                   fontWeight: FontWeight.bold)),
                         ])),
                       ]),
-                      
+                      //space
                       SizedBox(
                         height: 20,
                       ),
+                      //divider
                       Divider(
                         height: 3,
                         color: Colors.white,
                       ),
+                      // space
                       SizedBox(
                         height: 10,
                       ),
+                      // hide group title
                       Row(
                         children: [
                           Text(
@@ -140,9 +150,11 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
                           ),
                         ],
                       ),
+                      // space
                       SizedBox(
                         height: 10,
                       ),
+                      // hide group input
                       buildFillInput(context, FontAwesomeIcons.eye,
                           CreateGroupCommon.TITLE_LIST[2], "Hiển thị"),
                       //   ],

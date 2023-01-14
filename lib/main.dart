@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:self_facebook_project/modules/event/blocs/selection_private_event_bloc.dart';
 import 'package:self_facebook_project/modules/event/export_event_page.dart';
+import 'package:self_facebook_project/modules/event/screen/location_event_page.dart';
+import 'package:self_facebook_project/modules/group/export_group_page.dart';
 import 'package:self_facebook_project/modules/page/blocs/category_bloc.dart';
 import 'package:self_facebook_project/modules/page/blocs/current_number_page.dart';
 import 'package:self_facebook_project/modules/page/blocs/name_bloc.dart';
@@ -37,7 +39,7 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
               primarySwatch: Colors.blue, backgroundColor: Colors.black87),
           // home: TestWidget(),
-          home: CreateEventPage(),
+          home: LocationEventPage(),
           // home:InformationPage()
         ));
   }

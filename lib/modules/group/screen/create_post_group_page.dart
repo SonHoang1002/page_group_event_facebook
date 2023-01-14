@@ -104,17 +104,22 @@ class _CreatePostGroupPageState extends State<CreatePostGroupPage> {
                                       return Container(
                                         margin:
                                             EdgeInsets.fromLTRB(10, 5, 10, 5),
-                                        child: InformationUserWidget(
-                                            context: context,
+                                        child: InformationUserGroupWidget(
+                                          [Text(
+                          CreatePostGroupCommon
+                                                .CONTENT_LIST[index],
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold),
+                        )],
                                             prefixWidget: SvgPicture.asset(
                                               CreatePostGroupCommon
                                                   .ICON_PATH_LIST[index],
                                               color: CreatePostGroupCommon
                                                   .COLOR_LIST[index],
                                               fit: BoxFit.contain,
-                                            ),
-                                            title: CreatePostGroupCommon
-                                                .CONTENT_LIST[index]),
+                                            ),),
                                       );
                                     })),
                               );
@@ -257,14 +262,14 @@ class _CreatePostGroupPageState extends State<CreatePostGroupPage> {
             children: [
               Container(
                 padding: EdgeInsets.fromLTRB(10, 5, 0, 0),
-                child: InformationUserWidget(
-                  context: context,
-                  prefixWidget: Image.asset(CommonGroup.PATH_IMG + "cat_1.png"),
-                  title: CreatePostGroupCommon.USER_EXAMPLE[0],
-                  // !inSheet ? CreatePostGroupCommon.USER_EXAMPLE[1] : ""
-                  // ,
-                  suffixWidget: Container(),
-                  subTitleWidget: inSheet
+                child: InformationUserGroupWidget(
+                  [Text(
+                         CreatePostGroupCommon.USER_EXAMPLE[0],
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold),
+                        ),inSheet
                       ? Container(
                           // height: 20,
                           child: Column(
@@ -305,7 +310,9 @@ class _CreatePostGroupPageState extends State<CreatePostGroupPage> {
                                     color: Colors.white,
                                     fontSize: 13,
                                   ))),
-                        ),
+                        ),],
+                  prefixWidget: Image.asset(CommonGroup.PATH_IMG + "cat_1.png"),
+                 
                 ),
               ),
               Container(

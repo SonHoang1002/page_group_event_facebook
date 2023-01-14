@@ -5,7 +5,7 @@ import 'package:self_facebook_project/general/common_page.dart';
 
 class CommonGroup {
   static String PATH_IMG = "assets/images/";
-  static String PATH_ICON= "assets/icons/";
+  static String PATH_ICON = "assets/icons/";
   static const String NEXT = "Tiếp";
   static const String CREATE_GROUP = "Tạo nhóm";
   static const String SKIP = "Bỏ qua";
@@ -43,7 +43,7 @@ class RequestFriendsGroupCommon {
   ];
   static const String EMAIL_REQUEST_TITLE = "Mời qua email";
   static const String EMAIL_REQUEST_SUBTITLE = "Gửi email mời mợi người";
-  
+
   static List<String> IMG_PATH_LIST = [
     "${CommonGroup.PATH_IMG}cat_1.png",
     "${CommonGroup.PATH_IMG}cat_2.png",
@@ -65,6 +65,18 @@ class RequestFriendsGroupCommon {
     "Vĩnh Yên",
     "Nhóm chung",
     "Bạn bè"
+  ];
+  static const String SHARE_BOTTOM_SHEET_TITLE = "Chia sẻ";
+  static const List<dynamic> SHARE_BOTTOM_SHEET_CONTENT_LIST = [
+    [
+      FontAwesomeIcons.penToSquare,"Chia sẻ lên bảng tin"
+    ],
+    [
+      FontAwesomeIcons.facebookMessenger,"Chia sẻ lên Messenger"
+    ],
+    [
+      FontAwesomeIcons.copy,"Sao chép liên kết"
+    ],
   ];
   // ca nhan
   static const List<String> PRIVATE_TITLE = [

@@ -44,7 +44,7 @@ class MyApp extends StatelessWidget {
               primarySwatch: Colors.blue, backgroundColor: Colors.black87),
           // home: TestWidget(),
           // home: CreateGroupPage(),
-          home:CoverImageGroupPage()
+          home:RequestFriendsGroupPage()
         ));
   }
 }

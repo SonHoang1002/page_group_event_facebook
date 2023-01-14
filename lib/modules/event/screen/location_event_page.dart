@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -708,10 +709,11 @@ class _LocationEventPageState extends State<LocationEventPage> {
                             child: Container(
                               height: 20,
                               width: 20,
-                              child: SvgPicture.asset(
-                                CommonEvent.PATH_ICON + "camera_plus_icon.svg",
-                                color: Colors.white,
-                              ),
+                              // child: SvgPicture.asset(
+                              //   CommonEvent.PATH_ICON + "camera_plus_icon.svg",
+                              //   color: Colors.white,
+                              // ),
+                              child:Icon(CupertinoIcons.location,color: Colors.white, size: 14,)
                             ),
                           ),
                           decoration: BoxDecoration(

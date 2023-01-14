@@ -1,8 +1,11 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:self_facebook_project/general/common_group.dart';
+import 'package:self_facebook_project/modules/group/blocs/hide_group_bloc.dart';
+import 'package:self_facebook_project/modules/group/blocs/select_private_rule_bloc.dart';
 import 'package:self_facebook_project/modules/group/export_group_page.dart';
 import 'package:self_facebook_project/modules/group/widgets/addtional_information_group_widget.dart';
 import 'package:self_facebook_project/modules/group/widgets/information_user_group_widget.dart';
@@ -23,9 +26,6 @@ class _RequestFriendsGroupPageState extends State<RequestFriendsGroupPage> {
     width = size.width;
     return Scaffold(
         resizeToAvoidBottomInset: false,
-        // appBar: AppBar(
-        //   title: Center(child: Text(CreateGroupCommon.TITLE_APPBAR)),
-        // ),
         body: GestureDetector(
           onTap: (() {
             FocusManager.instance.primaryFocus!.unfocus();
@@ -49,181 +49,202 @@ class _RequestFriendsGroupPageState extends State<RequestFriendsGroupPage> {
                           height: 10,
                         ),
 
-////////////////////////////////// public /////////////////////////////////////
+////////////////////////////////// public and private unhide group /////////////////////////////////////
 
-                        // build share widget
-                        // InformationUserWidget(
-                        //   context: context,
-                        //   prefixWidget: Icon(
-                        //     FontAwesomeIcons.share,
-                        //     color: Colors.white,
-                        //     size: 17,
-                        //   ),
-                        //   title: "Chia sẻ",
-                        // ),
-                        // const SizedBox(
-                        //   height: 10,
-                        // ),
-
-                        // build email widget
-                        // InformationUserWidget(
-                        //   context: context,
-                        //   prefixWidget: Icon(
-                        //     FontAwesomeIcons.envelope,
-                        //     color: Colors.white,
-                        //     size: 17,
-                        //   ),
-                        //   title: RequestFriendsGroupCommon.EMAIL_REQUEST_TITLE,
-                        //   subTitleWidget: Container(
-                        //     margin: EdgeInsets.only(),
-                        //     child: Text(RequestFriendsGroupCommon.EMAIL_REQUEST_SUBTITLE,
-                        //         style: TextStyle(
-                        //             color: Colors.white, fontSize: 13)),
-                        //   ),
-                        // ),
-                        // const SizedBox(
-                        //   height: 10,
-                        // ),
-
-                        // build example widget
-                        // Row(
-                        //   children: [
-                        //     _buildExampleComponent("Gợi ý"),
-                        //     _buildExampleComponent('Hà Nội',
-                        //         icon: FontAwesomeIcons.city),
-                        //     _buildExampleComponent('Nhóm chung',
-                        //         icon: FontAwesomeIcons.peopleGroup)
-                        //   ],
-                        // ),
-
-////////////////////////////////// private /////////////////////////////////////
-                        // build email widget
-                        InformationUserWidget(
-                          context: context,
-                          prefixWidget: Icon(
-                            FontAwesomeIcons.envelope,
-                            color: Colors.white,
-                            size: 17,
-                          ),
-                          title: RequestFriendsGroupCommon.EMAIL_REQUEST_TITLE,
-                          subTitleWidget: Container(
-                            margin: EdgeInsets.only(),
-                            child: Text(
-                                RequestFriendsGroupCommon
-                                    .EMAIL_REQUEST_SUBTITLE,
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 13)),
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        Row(
-                          children: [
-                            Text(
-                              RequestFriendsGroupCommon.PRIVATE_TITLE[0],
-                              style: const TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 23,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        Text(RequestFriendsGroupCommon.PRIVATE_SUB_TITLE[0],
-                            style: const TextStyle(
-                                color: Colors.white, fontSize: 23)),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        Row(
-                          children: [
-                            Text(
-                              RequestFriendsGroupCommon.PRIVATE_TITLE[1],
-                              style: const TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        Text(RequestFriendsGroupCommon.PRIVATE_SUB_TITLE[1],
-                            style: const TextStyle(
-                                color: Colors.white, fontSize: 17)),
-                        const SizedBox(
-                          height: 16,
-                        ),
-                        AddtionalInformationGroupWidget(
-                          contentWidget: [
-                            RichText(
-                                text: TextSpan(children: [
-                              TextSpan(
-                                  text: RequestFriendsGroupCommon
-                                      .PRIVATE_LINK_EXAMPLE,
-                                  style: TextStyle(
-                                      color: Colors.grey[400],
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold)),
-                            ])),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            RichText(
-                                text: TextSpan(children: [
-                              TextSpan(
-                                  text: RequestFriendsGroupCommon
-                                      .PRIVATE_DESCRIPTION_FOR_LINK_EXAMPLE,
-                                  style: TextStyle(
-                                    color: Colors.grey[400],
-                                    fontSize: 13,
-                                  )),
-                            ])),
-                          ],
-                          prefixWidget: GestureDetector(
-                            onTap: () {
-                              Clipboard.setData(ClipboardData(
-                                  text: RequestFriendsGroupCommon
-                                      .PRIVATE_LINK_EXAMPLE));
-                            },
-                            child: Container(
-                              height: 75,
-                              padding: EdgeInsets.only(right: 10,),
-                              child: Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                        BlocProvider.of<HideGroupBloc>(context)
+                                    .state
+                                    .selection !=
+                                "Đã ẩn"
+                            ? Column(
                                 children: [
-                                  Icon(
-                                    FontAwesomeIcons.link,
-                                    color: Colors.white,
+                                  // build share widget
+                                  InformationUserWidget(
+                                    context: context,
+                                    prefixWidget: Icon(
+                                      FontAwesomeIcons.share,
+                                      color: Colors.white,
+                                      size: 17,
+                                    ),
+                                    title: "Chia sẻ",
+                                  ),
+                                  const SizedBox(
+                                    height: 5,
+                                  ),
+
+                                  // build email widget
+                                  InformationUserWidget(
+                                    context: context,
+                                    prefixWidget: Icon(
+                                      FontAwesomeIcons.envelope,
+                                      color: Colors.white,
+                                      size: 17,
+                                    ),
+                                    title: RequestFriendsGroupCommon
+                                        .EMAIL_REQUEST_TITLE,
+                                    subTitleWidget: Container(
+                                      margin: EdgeInsets.only(),
+                                      child: Text(
+                                          RequestFriendsGroupCommon
+                                              .EMAIL_REQUEST_SUBTITLE,
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 13)),
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+
+                                  //suggest example, include suggest, location, general group
+                                  Container(
+                                    margin: EdgeInsets.only(bottom: 10),
+                                    child: Row(
+                                      children: [
+                                        _buildExampleComponent("Gợi ý"),
+                                        _buildExampleComponent('Hà Nội',
+                                            icon: FontAwesomeIcons.city),
+                                        _buildExampleComponent('Nhóm chung',
+                                            icon: FontAwesomeIcons.peopleGroup)
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              )
+
+////////////////////////////////// private and hide group /////////////////////////////////////
+                            : Column(
+                                children: [
+                                  // build email widget
+                                  InformationUserWidget(
+                                    context: context,
+                                    prefixWidget: Icon(
+                                      FontAwesomeIcons.envelope,
+                                      color: Colors.white,
+                                      size: 17,
+                                    ),
+                                    title: RequestFriendsGroupCommon
+                                        .EMAIL_REQUEST_TITLE,
+                                    subTitleWidget: Container(
+                                      margin: EdgeInsets.only(),
+                                      child: Text(
+                                          RequestFriendsGroupCommon
+                                              .EMAIL_REQUEST_SUBTITLE,
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 13)),
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                  // request friend title 1
+                                  Row(
+                                    children: [
+                                      Text(
+                                        RequestFriendsGroupCommon
+                                            .PRIVATE_TITLE[0],
+                                        style: const TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 22,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ],
+                                  ),
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                  // request friend subtitle
+                                  Text(
+                                      RequestFriendsGroupCommon
+                                          .PRIVATE_SUB_TITLE[0],
+                                      style: const TextStyle(
+                                          color: Colors.white, fontSize: 21)),
+                                  const SizedBox(
+                                    height: 20,
+                                  ),
+                                  // request friend title 2
+                                  Row(
+                                    children: [
+                                      Text(
+                                        RequestFriendsGroupCommon
+                                            .PRIVATE_TITLE[1],
+                                        style: const TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ],
+                                  ),
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                  // request friend subtitle 2
+                                  Text(
+                                      RequestFriendsGroupCommon
+                                          .PRIVATE_SUB_TITLE[1],
+                                      style: const TextStyle(
+                                          color: Colors.white, fontSize: 16)),
+                                  const SizedBox(
+                                    height: 16,
+                                  ),
+                                  // share link
+                                  AddtionalInformationGroupWidget(
+                                    contentWidget: [
+                                      RichText(
+                                          text: TextSpan(children: [
+                                        TextSpan(
+                                            text: RequestFriendsGroupCommon
+                                                .PRIVATE_LINK_EXAMPLE,
+                                            style: TextStyle(
+                                                color: Colors.grey[400],
+                                                fontSize: 15,
+                                                fontWeight: FontWeight.bold)),
+                                      ])),
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                      RichText(
+                                          text: TextSpan(children: [
+                                        TextSpan(
+                                            text: RequestFriendsGroupCommon
+                                                .PRIVATE_DESCRIPTION_FOR_LINK_EXAMPLE,
+                                            style: TextStyle(
+                                              color: Colors.grey[400],
+                                              fontSize: 13,
+                                            )),
+                                      ])),
+                                    ],
+                                    prefixWidget: GestureDetector(
+                                      onTap: () {
+                                        Clipboard.setData(ClipboardData(
+                                            text: RequestFriendsGroupCommon
+                                                .PRIVATE_LINK_EXAMPLE));
+                                      },
+                                      child: Container(
+                                        height: 75,
+                                        padding: EdgeInsets.only(
+                                          right: 10,
+                                        ),
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Icon(
+                                              FontAwesomeIcons.link,
+                                              color: Colors.white,
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 10,
                                   ),
                                 ],
                               ),
-                            ),
-                          ),
-                        ),
 
-                        // goi y
-
-                        // Row(
-                        //   children: [
-                        //     Text(
-                        //       RequestFriendsGroupCommon.PUBLIC_TITLE[2],
-                        //       style: const TextStyle(
-                        //           color: Colors.white,
-                        //           fontSize: 20,
-                        //           fontWeight: FontWeight.bold),
-                        //     ),
-                        //   ],
-                        // ),
-                        SizedBox(
-                          height: 10,
-                        ),
-
+/////////////////////////////////////////////////////  GENERAL ///////////////////////////////////////////////////
                         // search
                         Container(
                           height: 35,
@@ -269,7 +290,12 @@ class _RequestFriendsGroupPageState extends State<RequestFriendsGroupPage> {
                         ),
 
                         Container(
-                          height: 130,
+                          height: BlocProvider.of<HideGroupBloc>(context)
+                                      .state
+                                      .selection !=
+                                  "Đã ẩn"
+                              ? 370
+                              : 150,
                           child: ListView.builder(
                               padding: EdgeInsets.zero,
                               itemCount: 7,

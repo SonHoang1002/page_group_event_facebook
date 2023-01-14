@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:self_facebook_project/general/common_group.dart';
@@ -10,7 +11,6 @@ import 'package:self_facebook_project/modules/page/blocs/current_number_page.dar
 import 'package:self_facebook_project/modules/page/blocs/name_bloc.dart';
 import 'package:self_facebook_project/modules/page/model/name_model.dart';
 import 'dart:io';
-
 
 class CoverImageGroupPage extends StatefulWidget {
   @override
@@ -26,6 +26,7 @@ class _CoverImageGroupPageState extends State<CoverImageGroupPage> {
 
   File? _pickedCoverImage;
   XFile? _imageCover;
+  late String imgPath = "";
 
   @override
   Widget build(BuildContext context) {
@@ -120,7 +121,9 @@ class _CoverImageGroupPageState extends State<CoverImageGroupPage> {
                             width: width,
                             decoration: BoxDecoration(
                                 color: Colors.grey[800]!.withOpacity(0.8),
-                                border: Border.all(color: Colors.white,),
+                                border: Border.all(
+                                  color: Colors.white,
+                                ),
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(10))),
                             child: _pickedCoverImage != null
@@ -128,46 +131,100 @@ class _CoverImageGroupPageState extends State<CoverImageGroupPage> {
                                     _pickedCoverImage!,
                                     fit: BoxFit.fitWidth,
                                   )
-                                : Container(),
+                                : imgPath != ""
+                                    ? Image.asset(
+                                        imgPath,
+                                        fit: BoxFit.fitWidth,
+                                      )
+                                    : Container(),
                           ),
                           Container(
                             height: 200,
-                            child: GestureDetector(
-                              onTap: (() {
-                                dialogImgSource();
-                              }),
-                              child: Center(
-                                  child: Container(
-                                      width: 130,
-                                      height: 30,
-                                      decoration: BoxDecoration(
-                                          color: Colors.grey.withOpacity(0.6),
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(10))),
-                                      child: Row(
-                                        children: [
-                                          SizedBox(
-                                            width: 10,
-                                          ),
-                                          Icon(
-                                            FontAwesomeIcons.layerGroup,
-                                            color: Colors.white,
-                                            size: 13,
-                                          ),
-                                          SizedBox(
-                                            width: 10,
-                                          ),
-                                          Text(
-                                            CoverImageGroupCommon
-                                                .PLACEHOLDER_LIST[0],
-                                            style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 13,
+                            child: imgPath == "" && _pickedCoverImage == null
+                                ? Center(
+                                    child: GestureDetector(
+                                    onTap: (() {
+                                      dialogImgSource();
+                                    }),
+                                    child: Container(
+                                        width: 130,
+                                        height: 30,
+                                        decoration: BoxDecoration(
+                                            color: Colors.grey.withOpacity(0.6),
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(10))),
+                                        child: Row(
+                                          children: [
+                                            SizedBox(
+                                              width: 10,
                                             ),
-                                          )
-                                        ],
-                                      ))),
-                            ),
+                                            Container(
+                                                height: 10,
+                                                width: 10,
+                                                // padding: EdgeInsets.all(),
+                                                child: SvgPicture.asset(
+                                                  CommonGroup.PATH_ICON +
+                                                      "add_img_file_icon.svg",
+                                                  color: Colors.white,
+                                                )),
+                                            SizedBox(
+                                              width: 10,
+                                            ),
+                                            Text(
+                                              CoverImageGroupCommon
+                                                  .PLACEHOLDER_LIST[0],
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 13,
+                                              ),
+                                            )
+                                          ],
+                                        )),
+                                  ))
+                                : Container(
+                                    // width: 130,
+                                    height: 200,
+                                    color: Colors.transparent,
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.end,
+                                      children: [
+                                        GestureDetector(
+                                          onTap: (() {
+                                            dialogImgSource();
+                                          }),
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                                color: Colors.black
+                                                    .withOpacity(0.7),
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(5))),
+                                            margin: EdgeInsets.only(
+                                                bottom: 10, right: 10),
+                                            padding: EdgeInsets.all(10),
+                                            child: Row(children: [
+                                              Container(
+                                                margin:
+                                                    EdgeInsets.only(right: 10),
+                                                child: Icon(
+                                                  FontAwesomeIcons.pen,
+                                                  color: Colors.white,
+                                                  size: 14,
+                                                ),
+                                              ),
+                                              Text(
+                                                "Chỉnh sửa",
+                                                style: TextStyle(
+                                                    color: Colors.grey,
+                                                    fontSize: 15),
+                                              )
+                                            ]),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  ),
                           ),
                         ],
                       ),
@@ -187,12 +244,23 @@ class _CoverImageGroupPageState extends State<CoverImageGroupPage> {
                         itemBuilder: ((context, index) {
                           return Container(
                             width: (width * 0.9 - 4 * 9) / 5,
-                            decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10))),
+                            decoration: BoxDecoration(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10))),
                             margin: EdgeInsets.fromLTRB(
                                 index == 0 ? 0 : 5, 0, index == 4 ? 0 : 5, 0),
-                            child: Image.asset(
-                              CoverImageGroupCommon.IMG_PATH_LIST[index],
-                              fit: BoxFit.fitHeight,
+                            child: GestureDetector(
+                              onTap: (() {
+                                setState(() {
+                                  _pickedCoverImage = null;
+                                  imgPath = CoverImageGroupCommon
+                                      .IMG_PATH_LIST[index];
+                                });
+                              }),
+                              child: Image.asset(
+                                CoverImageGroupCommon.IMG_PATH_LIST[index],
+                                fit: BoxFit.fitHeight,
+                              ),
                             ),
                           );
                         }),
@@ -257,7 +325,9 @@ class _CoverImageGroupPageState extends State<CoverImageGroupPage> {
                                       backgroundColor: Colors.blue),
                                   onPressed: () {
                                     Navigator.of(context).push(
-                                    MaterialPageRoute(builder: (_) => DescriptionGroupPage()));
+                                        MaterialPageRoute(
+                                            builder: (_) =>
+                                                DescriptionGroupPage()));
                                   },
                                   child: Text(CommonPage.NEXT)),
                             ),

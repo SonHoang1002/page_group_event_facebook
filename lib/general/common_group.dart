@@ -5,7 +5,7 @@ import 'package:self_facebook_project/general/common_page.dart';
 
 class CommonGroup {
   static String PATH_IMG = "assets/images/";
-  static String PATH_ICON= "assets/images/";
+  static String PATH_ICON= "assets/icons/";
   static const String NEXT = "Tiếp";
   static const String CREATE_GROUP = "Tạo nhóm";
   static const String SKIP = "Bỏ qua";
@@ -92,6 +92,7 @@ class CoverImageGroupCommon {
   static const List<String> PLACEHOLDER_LIST = [
     "Tải ảnh bìa lên",
   ];
+
   static List<String> IMG_PATH_LIST = [
     "${CommonGroup.PATH_IMG}example_cover_img_1.jpg",
     "${CommonGroup.PATH_IMG}example_cover_img_2.jpg",

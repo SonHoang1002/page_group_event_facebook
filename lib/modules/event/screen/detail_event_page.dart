@@ -38,6 +38,12 @@ class _DetailEventPageState extends State<DetailEventPage> {
   List<int> _endPeriod = [DateTime.now().hour, DateTime.now().minute];
   bool isHaveEndTime = false;
   bool isOnBeginTime = true;
+  late TextEditingController _startTimeController =
+      TextEditingController(text: "");
+  late TextEditingController _endTimeController =
+      TextEditingController(text: "");
+  late TextEditingController _nameEventController =
+      TextEditingController(text: "");
 
   @override
   Widget build(BuildContext context) {
@@ -140,6 +146,7 @@ class _DetailEventPageState extends State<DetailEventPage> {
                   Container(
                     height: 50,
                     child: TextFormField(
+                      controller: _nameEventController,
                       style: TextStyle(color: Colors.white),
                       decoration: InputDecoration(
                           enabledBorder: OutlineInputBorder(
@@ -162,12 +169,16 @@ class _DetailEventPageState extends State<DetailEventPage> {
                   SizedBox(
                     height: 10,
                   ),
-                  // day and time event input
+                  // startTime input
                   Container(
                     height: 50,
                     child: TextFormField(
+                      controller: _startTimeController,
                       readOnly: true,
                       onTap: (() {
+                        _startTimeController.text =
+                            "${_startTime.day} thg ${_startTime.month} lúc ${_startPeriod[0]}:${_startPeriod[1]}";
+                        setState(() {});
                         _showBottomSheetDayAndTimePicker(context);
                       }),
                       style: TextStyle(color: Colors.white),
@@ -190,17 +201,65 @@ class _DetailEventPageState extends State<DetailEventPage> {
                   ),
                   // space
                   SizedBox(
+                    height: 10,
+                  ),
+                  //endTime input ( optional input)
+                  isHaveEndTime
+                      ? Container(
+                          height: 50,
+                          child: TextFormField(
+                            controller: _endTimeController,
+                            readOnly: true,
+                            onTap: (() {
+                              _showBottomSheetDayAndTimePicker(context);
+                            }),
+                            style: TextStyle(color: Colors.white),
+                            decoration: InputDecoration(
+                                enabledBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(color: Colors.grey),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(5))),
+                                focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(color: Colors.blue),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(5))),
+                                contentPadding:
+                                    EdgeInsets.fromLTRB(10, 0, 0, 0),
+                                border: InputBorder.none,
+                                hintText:
+                                    DetailEventCommon.DAY_AND_TIME_END_TITLE,
+                                labelText:
+                                    DetailEventCommon.DAY_AND_TIME_END_TITLE,
+                                labelStyle: TextStyle(color: Colors.white),
+                                hintStyle: TextStyle(color: Colors.white)),
+                          ),
+                        )
+                      : Container(),
+
+                  // space
+                  SizedBox(
                     height: 5,
                   ),
+
                   // add day and time function
-                  Row(
-                    children: [
-                      Text(
-                        "+ ${DetailEventCommon.DAY_AND_TIME_END_TITLE}",
-                        style: TextStyle(color: Colors.blue),
-                      )
-                    ],
-                  ),
+                  isHaveEndTime
+                      ? Container()
+                      : GestureDetector(
+                          onTap: () {
+                            _showBottomSheetDayAndTimePicker(context);
+                            isHaveEndTime = true;
+                            setState(() {});
+                          },
+                          child: Row(
+                            children: [
+                              Text(
+                                "+ ${DetailEventCommon.DAY_AND_TIME_END_TITLE}",
+                                style: TextStyle(color: Colors.blue),
+                              )
+                            ],
+                          ),
+                        ),
+
                   // space
                   SizedBox(
                     height: 20,
@@ -217,7 +276,7 @@ class _DetailEventPageState extends State<DetailEventPage> {
                   // set private rule
                   GestureDetector(
                     onTap: () {
-                      showBottomSheetPrivateRuleOfEvent(context);
+                      _showBottomSheetPrivateRuleOfEvent(context);
                     },
                     child: InformationUserEventWidget(
                       [
@@ -320,10 +379,28 @@ class _DetailEventPageState extends State<DetailEventPage> {
                             child: ElevatedButton(
                                 style: ElevatedButton.styleFrom(
                                     fixedSize: Size(width * 0.9, 40),
-                                    backgroundColor: Colors.grey[800]),
+                                    backgroundColor: _nameEventController.text
+                                                    .trim() !=
+                                                "" &&
+                                            BlocProvider.of<SelectionPrivateEventBloc>(
+                                                        context)
+                                                    .state
+                                                    .selection !=
+                                                ""
+                                        ? Colors.blue
+                                        : Colors.grey[800]),
                                 onPressed: () {
-                                  Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (_) => LocationEventPage()));
+                                  if (_nameEventController.text.trim() != "" &&
+                                      BlocProvider.of<SelectionPrivateEventBloc>(
+                                                  context)
+                                              .state
+                                              .selection !=
+                                          "") {
+                                    Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                            builder: (_) =>
+                                                LocationEventPage()));
+                                  }
                                 },
                                 child: Text(CommonEvent.NEXT)),
                           ),
@@ -342,7 +419,7 @@ class _DetailEventPageState extends State<DetailEventPage> {
   }
 
   // bottom sheet show private rule selections
-  showBottomSheetPrivateRuleOfEvent(BuildContext context) {
+  _showBottomSheetPrivateRuleOfEvent(BuildContext context) {
     showModalBottomSheet(
         backgroundColor: Colors.transparent,
         context: context,
@@ -425,11 +502,9 @@ class _DetailEventPageState extends State<DetailEventPage> {
                                           .SELECTION_FOR_PRIVATE_OF_EVENT[index]
                                       [1] ==
                                   "Nhóm") {
-                                showBottomSheetSelectionGroup(context);
+                                _showBottomSheetSelectionGroup(context);
                               }
-                              setStateFull(
-                                () {},
-                              );
+                              setStateFull(() {});
                               setState(() {});
                             }),
                             child: InformationUserEventWidget(
@@ -536,7 +611,10 @@ class _DetailEventPageState extends State<DetailEventPage> {
                     : Container(),
                 Container(
                   child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                        FocusManager.instance.primaryFocus!.unfocus();
+                      },
                       style:
                           ElevatedButton.styleFrom(fixedSize: Size(width, 30)),
                       child: Text(
@@ -551,7 +629,7 @@ class _DetailEventPageState extends State<DetailEventPage> {
   }
 
   // bottom sheet show group selection after user choose "Ban be" value
-  showBottomSheetSelectionGroup(BuildContext context) {
+  _showBottomSheetSelectionGroup(BuildContext context) {
     showModalBottomSheet(
         backgroundColor: Colors.transparent,
         context: context,
@@ -750,9 +828,7 @@ class _DetailEventPageState extends State<DetailEventPage> {
                                   isHaveEndTime = true;
                                   isOnBeginTime = false;
 
-                                  setStateFull(
-                                    () {},
-                                  );
+                                  setStateFull(() {});
                                   setState(() {});
                                 }),
                                 child: Text("+ Thời gian kết thúc",
@@ -781,16 +857,16 @@ class _DetailEventPageState extends State<DetailEventPage> {
                                   GestureDetector(
                                     onTap: (() {
                                       isOnBeginTime = false;
-                                      setStateFull(
-                                        () {},
-                                      );
+                                      setStateFull(() {});
                                       setState(() {});
                                     }),
                                     child: Container(
                                       child: Text(
                                           "Ket thuc vao: ${_endTime.day}/${_endTime.month}, luc :${_endPeriod[0]}: ${_endPeriod[1]}",
                                           style: TextStyle(
-                                            color: !isOnBeginTime ? Colors.blue : Colors.grey,
+                                            color: !isOnBeginTime
+                                                ? Colors.blue
+                                                : Colors.grey,
                                             fontSize: 15,
                                           )),
                                     ),
@@ -799,9 +875,7 @@ class _DetailEventPageState extends State<DetailEventPage> {
                                     onTap: (() {
                                       isHaveEndTime = false;
                                       isOnBeginTime = true;
-                                      setStateFull(
-                                        () {},
-                                      );
+                                      setStateFull(() {});
                                       setState(() {});
                                     }),
                                     child: Container(
@@ -818,26 +892,35 @@ class _DetailEventPageState extends State<DetailEventPage> {
                     : Container(),
                 // table calendar
                 Container(
-                  color: Colors.white,
+                  color: Colors.grey[300],
                   child: TableCalendar(
-                    // selectedDayPredicate: (day) {
-                    //   return isSameDay(_endDay, day);
-                    // },
-                    // onPageChanged: (focusedDay) {
-                    //   _endDay = focusedDay;
-                    // },
+                    selectedDayPredicate: (day) {
+                      if (isOnBeginTime) {
+                        return isSameDay(_startTime, day);
+                      }
+                      return isSameDay(_endTime, day);
+                    },
+                    onPageChanged: (focusedDay) {
+                      if (isOnBeginTime) {
+                        _startTime = focusedDay;
+                      }
+                      _endTime = focusedDay;
+                    },
                     onFormatChanged: (format) {
                       CalendarFormat.week;
                     },
                     onDaySelected: ((selectedDay, focusedDay) {
                       if (isOnBeginTime) {
                         _startTime = selectedDay;
+                        _startTimeController.text =
+                            "${_startTime.day} thg ${_startTime.month} lúc ${_startPeriod[0]}:${_startPeriod[1]}";
                       } else {
                         _endTime = selectedDay;
+                        _endTimeController.text =
+                            "${_endTime.day} thg ${_endTime.month} lúc ${_endPeriod[0]}:${_endPeriod[1]}";
                       }
-                      setStateFull(
-                        () {},
-                      );
+
+                      setStateFull(() {});
                       setState(() {});
                     }),
                     firstDay: DateTime.utc(1950, 1, 1),
@@ -856,13 +939,17 @@ class _DetailEventPageState extends State<DetailEventPage> {
                 Container(
                   height: 200,
                   child: CupertinoDatePicker(
-                    backgroundColor: Colors.white,
+                    backgroundColor: Colors.grey[400],
                     mode: CupertinoDatePickerMode.time,
                     onDateTimeChanged: (value) {
                       if (isOnBeginTime) {
                         _startPeriod = [value.hour, value.minute];
+                        _startTimeController.text =
+                            "${_startTime.day} thg ${_startTime.month} lúc ${_startPeriod[0]}:${_startPeriod[1]}";
                       } else {
                         _endPeriod = [value.hour, value.minute];
+                        _endTimeController.text =
+                            "${_endTime.day} thg ${_endTime.month} lúc ${_endPeriod[0]}:${_endPeriod[1]}";
                       }
                       setStateFull(
                         () {},

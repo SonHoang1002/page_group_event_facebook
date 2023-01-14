@@ -5,6 +5,7 @@ import 'package:self_facebook_project/general/common_page.dart';
 
 class CommonEvent {
   static String PATH_IMG = "assets/images/";
+  static String PATH_ICON = "assets/icons/";
   static const String NEXT = "Tiếp";
   static const String CANCEL = "Hủy";
   static const String CREATE_EVENT = "Tạo nhóm";
@@ -119,13 +120,13 @@ class LocationEventCommon {
   static const String LOCATION_EVENT_SUBTITLE =
       "Chọn cách tham gia sự kiện online của bạn";
 
-  static const List<dynamic> MEETING_ROOM_COMPONENT = [
-    FontAwesomeIcons.video,
+  static  List<dynamic> MEETING_ROOM_COMPONENT = [
+    CommonEvent.PATH_ICON + "camera_plus_icon.svg",
     "Phòng họp mặt trên Messenger",
     "Họp mặt qua tính năng chat video. Mọi người có thể tham gia phòng họp mặt ngay tạitrang sự kiện",
   ];
-  static const List<dynamic> FACEBOOK_LIVE_COMPONENT = [
-    FontAwesomeIcons.video,
+  static  List<dynamic> FACEBOOK_LIVE_COMPONENT = [
+    CommonEvent.PATH_ICON + "camera_eye_icon.svg",
     "Facebook Live",
     "Lên lịch phát trực tiếp sự kiện của bạn bằng Facebook Live để mọi người cùng xem",
   ];
@@ -133,14 +134,14 @@ class LocationEventCommon {
   static const String DIFFERENT_SELECTION = "Lựa chọn khác";
   static const String CHANGE_SELECTION = "Thay đổi";
 
-  static const List<List<dynamic>> DIFFERENT_SELECTION_COMPONENT = [
+  static List<List<dynamic>> DIFFERENT_SELECTION_COMPONENT = [
     [
       FontAwesomeIcons.link,
       "Liên kết bên ngoài",
       "Thêm liên kết đẻ mọi người biết cần truy cập vào đâi khi sự kiện bắt đầu"
     ],
     [
-      FontAwesomeIcons.mendeley,
+      CommonEvent.PATH_ICON + "more_icon.svg",
       "Khác",
       "Thêm hướng dẫn vào phần chi tiết sự kiện để chỉ rõ cách tham gia"
     ],
@@ -148,19 +149,19 @@ class LocationEventCommon {
 
   static const String EVENT_WITH_FACEBOOK_LIVE_TITLE =
       "Sự kiện với Facebook Live";
-  static const List<dynamic> EVENT_WITH_FACEBOOK_LIVE_CONTENT_LIST = [
+  static List<dynamic> EVENT_WITH_FACEBOOK_LIVE_CONTENT_LIST = [
     [
-      FontAwesomeIcons.camera,
+      CommonEvent.PATH_ICON + "camera_eye_icon.svg",
       "Phát trực tiếp ngay trong sự kiện",
       "Bắt đầu video trực tiếp của bạn và mọi người có thể xem ngay trong sự kiện",
     ],
     [
-      FontAwesomeIcons.bell,
+      CommonEvent.PATH_ICON + "bell_icon.svg",
       "Chúng tôi sẽ nhắc bạn",
       "Ít lâu trước khi sự kiện bắt đầu, chúng tôi sẽ gửi thông báo để nhắc bạn",
     ],
     [
-      FontAwesomeIcons.userGroup,
+      CommonEvent.PATH_ICON + "group_icon.svg",
       "Chỉ mình bạn có thể phát trực tiếp",
       "Người đồng tổ chức có thể yêu cầu tham gia buổi phát trực tiếp nhưng chỉ bạn mới có thể bắt đầu phát",
     ]

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:self_facebook_project/general/common_event.dart';
 import 'package:self_facebook_project/modules/event/export_event_page.dart';
 import 'package:self_facebook_project/modules/event/screen/description_event_page.dart';
@@ -18,6 +19,7 @@ class _LocationEventPageState extends State<LocationEventPage> {
   bool isLiveMeetingRoomSelection = false;
   bool isFacebookLiveSelection = false;
   late double width = 0;
+  late TextEditingController _urlController = TextEditingController(text: "");
   @override
   Widget build(BuildContext context) {
     width = MediaQuery.of(context).size.width;
@@ -29,263 +31,309 @@ class _LocationEventPageState extends State<LocationEventPage> {
           FocusManager.instance.primaryFocus!.unfocus();
         }),
         child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 10),
+          padding: const EdgeInsets.symmetric(horizontal: 10),
           child: Column(children: [
-            //app bar
             Expanded(
                 child: Column(
               children: [
+                //app bar title
                 Container(
-                    margin: EdgeInsets.only(
-                        top: 60,),
-                    child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Container(
-                            child: GestureDetector(
-                              onTap: (() {
-                                Navigator.of(context).pop();
-                              }),
-                              child: Icon(
-                                CommonEvent.ICON_PRIVIOUS,
-                                color: Colors.grey,
-                                size: 18,
-                              ),
+                  margin: EdgeInsets.only(
+                    top: 60,
+                  ),
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          child: GestureDetector(
+                            onTap: (() {
+                              Navigator.of(context).pop();
+                            }),
+                            child: Icon(
+                              CommonEvent.ICON_PRIVIOUS,
+                              color: Colors.grey,
+                              size: 18,
                             ),
                           ),
-                          Container(
-                            margin: EdgeInsets.only(right: 10),
-                            child: Text(
-                              CommonEvent.CANCEL,
-                              style: TextStyle(
-                                  color: Colors.grey[200], fontSize: 18),
-                            ),
-                          )
-                        ]),
-                  ),
+                        ),
+                        Container(
+                          margin: EdgeInsets.only(right: 10),
+                          child: Text(
+                            CommonEvent.CANCEL,
+                            style: TextStyle(
+                                color: Colors.grey[200], fontSize: 18),
+                          ),
+                        )
+                      ]),
+                ),
                 // title detail event
                 Container(
-                  margin: EdgeInsets.only(top: 30, bottom: 10),
-                  child: Row(
+                  // height: FocusManager.instance.primaryFocus!.hasFocus ? 430:635,
+                  height: 635,
+                  child: ListView(
+                    padding: EdgeInsets.zero,
                     children: [
-                      Text(
-                        LocationEventCommon.LOCATION_EVENT_TITLE,
-                        style: TextStyle(
-                            fontSize: 27,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white),
-                      ),
-                    ],
-                  ),
-                ),
-                Container(
-                  child: Row(
-                    children: [
-                      Text(
-                        LocationEventCommon.LOCATION_EVENT_SUBTITLE,
-                        style: TextStyle(fontSize: 16, color: Colors.white),
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                // meeting room
-                GestureDetector(
-                  onTap: () {
-                    // Navigator.of(context)
-                    //     .push(MaterialPageRoute(builder: (_) => DetailEventPage()));
-                    setState(() {
-                      isDifferent = isOutsideLink = false;
-                      isLiveMeetingRoomSelection = true;
-                      isFacebookLiveSelection = false;
-                    });
-                  },
-                  child: Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(10)),
-                        border: Border.all(
-                            color: isLiveMeetingRoomSelection
-                                ? Colors.blue
-                                : Colors.transparent)),
-                    child: InformationUserEventWidget(
-                      [
-                        Container(
-                          margin: EdgeInsets.only(top: 5, left: 10),
-                          child: Row(
-                            children: [
-                              Text(
-                                  LocationEventCommon.MEETING_ROOM_COMPONENT[1],
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.white))
-                            ],
-                          ),
-                        ),
-                        Container(
-                          margin: EdgeInsets.only(top: 5, left: 10),
-                          child: Wrap(
-                            children: [
-                              Text(
-                                  LocationEventCommon.MEETING_ROOM_COMPONENT[2],
-                                  style: TextStyle(
-                                      fontSize: 15, color: Colors.grey))
-                            ],
-                          ),
-                        ),
-                      ],
-                      prefixWidget: Container(
-                        height: 40,
-                        width: 40,
-                        margin: EdgeInsets.only(left: 10),
-                        child: Center(
-                            child: Icon(
-                          LocationEventCommon.MEETING_ROOM_COMPONENT[0],
-                          size: 15,
-                          color: Colors.white,
-                        )),
-                        decoration: BoxDecoration(
-                            color: Colors.grey[700],
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(20))),
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 15,
-                ),
-
-                // facebook live
-                GestureDetector(
-                  onTap: () {
-                    // Navigator.of(context)
-                    //     .push(MaterialPageRoute(builder: (_) => DetailEventPage()));
-                    setState(() {
-                      isDifferent = isOutsideLink = false;
-                      isLiveMeetingRoomSelection = false;
-                      isFacebookLiveSelection = true;
-                    });
-                    showBottomSheetEventWithFacebookLive(context, width);
-                  },
-                  child: Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(10)),
-                        border: Border.all(
-                            color: isFacebookLiveSelection
-                                ? Colors.blue
-                                : Colors.transparent)),
-                    child: InformationUserEventWidget(
-                      [
-                        Container(
-                          margin: EdgeInsets.only(top: 5, left: 10),
-                          child: Row(
-                            children: [
-                              Text(
-                                  LocationEventCommon
-                                      .FACEBOOK_LIVE_COMPONENT[1],
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.white))
-                            ],
-                          ),
-                        ),
-                        Container(
-                          margin: EdgeInsets.only(top: 5, left: 10),
-                          child: Wrap(
-                            children: [
-                              Text(
-                                  LocationEventCommon
-                                      .FACEBOOK_LIVE_COMPONENT[2],
-                                  style: TextStyle(
-                                      fontSize: 15, color: Colors.grey))
-                            ],
-                          ),
-                        ),
-                      ],
-                      prefixWidget: Container(
-                        height: 40,
-                        width: 40,
-                        margin: EdgeInsets.only(left: 10),
-                        child: Center(
-                            child: Icon(
-                          LocationEventCommon.FACEBOOK_LIVE_COMPONENT[0],
-                          size: 15,
-                          color: Colors.white,
-                        )),
-                        decoration: BoxDecoration(
-                            color: Colors.grey[700],
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(20))),
-                      ),
-                    ),
-                  ),
-                ),
-
-                SizedBox(
-                  height: 30,
-                ),
-                isDifferent == false && isOutsideLink == false
-                    ? GestureDetector(
-                        onTap: () {
-                          showBottomSheetDifferentSelection(context);
-                        },
-                        child: Center(
-                            child: Text(
-                          LocationEventCommon.ADD_PRIVATE_LINK,
-                          style: TextStyle(color: Colors.blue),
-                        )),
-                      )
-                    : Container(
+                      Container(
+                        margin: EdgeInsets.only(top: 30, bottom: 10),
                         child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                LocationEventCommon.DIFFERENT_SELECTION,
-                                style: TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white),
-                              ),
-                              GestureDetector(
-                                onTap: () {
-                                  showBottomSheetDifferentSelection(context);
-                                },
-                                child: Text(
-                                  LocationEventCommon.CHANGE_SELECTION,
-                                  style: TextStyle(
-                                      fontSize: 18, color: Colors.blue),
-                                ),
-                              ),
-                            ]),
+                          children: [
+                            Text(
+                              LocationEventCommon.LOCATION_EVENT_TITLE,
+                              style: TextStyle(
+                                  fontSize: 27,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white),
+                            ),
+                          ],
+                        ),
                       ),
-                isDifferent
-                    ? _buildSingleDifferentSelectionComponent(
-                        LocationEventCommon.DIFFERENT_SELECTION_COMPONENT[1])
-                    : Container(),
-                isOutsideLink
-                    ? _buildSingleDifferentSelectionComponent(
-                        LocationEventCommon.DIFFERENT_SELECTION_COMPONENT[0],
-                        addtionalWidget: Container(
-                          height: 70,
-                          margin: EdgeInsets.fromLTRB(5, 10, 0, 0),
-                          child: TextFormField(
-                            style: TextStyle(color: Colors.white),
-                            decoration: InputDecoration(
-                                fillColor: Colors.black,
-                                filled: true,
-                                enabledBorder: OutlineInputBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(10)),
+                      Container(
+                        child: Row(
+                          children: [
+                            Text(
+                              LocationEventCommon.LOCATION_EVENT_SUBTITLE,
+                              style:
+                                  TextStyle(fontSize: 16, color: Colors.white),
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      // meeting room
+                      GestureDetector(
+                        onTap: () {
+                          // Navigator.of(context)
+                          //     .push(MaterialPageRoute(builder: (_) => DetailEventPage()));
+                          setState(() {
+                            isDifferent = isOutsideLink = false;
+                            isLiveMeetingRoomSelection = true;
+                            isFacebookLiveSelection = false;
+                          });
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10)),
+                              border: Border.all(
+                                  color: isLiveMeetingRoomSelection
+                                      ? Colors.blue
+                                      : Colors.transparent)),
+                          child: InformationUserEventWidget(
+                            [
+                              Container(
+                                margin: EdgeInsets.only(top: 5, left: 10),
+                                child: Row(
+                                  children: [
+                                    Text(
+                                        LocationEventCommon
+                                            .MEETING_ROOM_COMPONENT[1],
+                                        style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.white))
+                                  ],
                                 ),
-                                hintText: "URL liên kết",
-                                hintStyle: TextStyle(color: Colors.grey)),
+                              ),
+                              Container(
+                                margin: EdgeInsets.only(top: 5, left: 10),
+                                child: Wrap(
+                                  children: [
+                                    Text(
+                                        LocationEventCommon
+                                            .MEETING_ROOM_COMPONENT[2],
+                                        style: TextStyle(
+                                            fontSize: 15, color: Colors.grey))
+                                  ],
+                                ),
+                              ),
+                            ],
+                            prefixWidget: Container(
+                              height: 40,
+                              width: 40,
+                              padding: EdgeInsets.all(10),
+                              margin: EdgeInsets.only(left: 10),
+                              child: LocationEventCommon
+                                      .MEETING_ROOM_COMPONENT[0] is String
+                                  ? SvgPicture.asset(
+                                      LocationEventCommon
+                                          .MEETING_ROOM_COMPONENT[0],
+                                      color: Colors.white,
+                                    )
+                                  : Icon(
+                                      LocationEventCommon
+                                          .MEETING_ROOM_COMPONENT[0],
+                                      size: 15,
+                                      color: Colors.white,
+                                    ),
+                              decoration: BoxDecoration(
+                                  color: Colors.grey[700],
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(20))),
+                            ),
                           ),
-                        ))
-                    : Container(),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 15,
+                      ),
+
+                      // facebook live
+                      GestureDetector(
+                        onTap: () {
+                          // Navigator.of(context)
+                          //     .push(MaterialPageRoute(builder: (_) => DetailEventPage()));
+                          setState(() {
+                            isDifferent = isOutsideLink = false;
+                            isLiveMeetingRoomSelection = false;
+                            isFacebookLiveSelection = true;
+                          });
+                          showBottomSheetEventWithFacebookLive(context, width);
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10)),
+                              border: Border.all(
+                                  color: isFacebookLiveSelection
+                                      ? Colors.blue
+                                      : Colors.transparent)),
+                          child: InformationUserEventWidget(
+                            [
+                              Container(
+                                margin: EdgeInsets.only(top: 5, left: 10),
+                                child: Row(
+                                  children: [
+                                    Text(
+                                        LocationEventCommon
+                                            .FACEBOOK_LIVE_COMPONENT[1],
+                                        style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.white))
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                margin: EdgeInsets.only(top: 5, left: 10),
+                                child: Wrap(
+                                  children: [
+                                    Text(
+                                        LocationEventCommon
+                                            .FACEBOOK_LIVE_COMPONENT[2],
+                                        style: TextStyle(
+                                            fontSize: 15, color: Colors.grey))
+                                  ],
+                                ),
+                              ),
+                            ],
+                            prefixWidget: Container(
+                              height: 40,
+                              width: 40,
+                              padding: EdgeInsets.all(10),
+                              margin: EdgeInsets.only(left: 10),
+                              child: LocationEventCommon
+                                      .FACEBOOK_LIVE_COMPONENT[0] is String
+                                  ? SvgPicture.asset(
+                                      LocationEventCommon
+                                          .FACEBOOK_LIVE_COMPONENT[0],
+                                      color: Colors.white,
+                                      height: 5,
+                                      width: 5,
+                                      fit: BoxFit.scaleDown)
+                                  : Icon(
+                                      LocationEventCommon
+                                          .FACEBOOK_LIVE_COMPONENT[0],
+                                      size: 15,
+                                      color: Colors.white,
+                                    ),
+                              decoration: BoxDecoration(
+                                  color: Colors.grey[700],
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(20))),
+                            ),
+                          ),
+                        ),
+                      ),
+
+                      SizedBox(
+                        height: 30,
+                      ),
+                      isDifferent == false && isOutsideLink == false
+                          ? GestureDetector(
+                              onTap: () {
+                                showBottomSheetDifferentSelection(context);
+                              },
+                              child: Center(
+                                  child: Text(
+                                LocationEventCommon.ADD_PRIVATE_LINK,
+                                style: TextStyle(color: Colors.blue),
+                              )),
+                            )
+                          : Container(
+                              child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      LocationEventCommon.DIFFERENT_SELECTION,
+                                      style: TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white),
+                                    ),
+                                    GestureDetector(
+                                      onTap: () {
+                                        showBottomSheetDifferentSelection(
+                                            context);
+                                      },
+                                      child: Text(
+                                        LocationEventCommon.CHANGE_SELECTION,
+                                        style: TextStyle(
+                                            fontSize: 18, color: Colors.blue),
+                                      ),
+                                    ),
+                                  ]),
+                            ),
+                      isDifferent
+                          ? _buildSingleDifferentSelectionComponent(
+                              LocationEventCommon
+                                  .DIFFERENT_SELECTION_COMPONENT[1])
+                          : Container(),
+                      isOutsideLink
+                          ? _buildSingleDifferentSelectionComponent(
+                              LocationEventCommon
+                                  .DIFFERENT_SELECTION_COMPONENT[0],
+                              addtionalWidget: Container(
+                                height: 70,
+                                margin: EdgeInsets.fromLTRB(5, 10, 0, 0),
+                                child: TextFormField(
+                                  onTap: (() {
+                                    // if (validateUrlLink(_urlController.text)) {}
+                                  }),
+                                  controller: _urlController,
+                                  style: TextStyle(color: Colors.white),
+                                  decoration: InputDecoration(
+                                      fillColor: Colors.black,
+                                      filled: true,
+                                      enabledBorder: OutlineInputBorder(
+                                        // borderSide: BorderSide(
+                                        //     color: validateUrlLink(
+                                        //             _urlController.text.trim())
+                                        //         ? Colors.blue
+                                        //         : Colors.red),
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(10)),
+                                      ),
+                                      hintText: "URL liên kết",
+                                      hintStyle: TextStyle(color: Colors.grey)),
+                                ),
+                              ))
+                          : Container(),
+                    ],
+                  ),
+                ),
               ],
             )),
             // bottom button
@@ -337,10 +385,25 @@ class _LocationEventPageState extends State<LocationEventPage> {
                             child: ElevatedButton(
                                 style: ElevatedButton.styleFrom(
                                     fixedSize: Size(width * 0.9, 40),
-                                    backgroundColor: Colors.grey[800]),
+                                    backgroundColor: isDifferent ||
+                                            isFacebookLiveSelection ||
+                                            isLiveMeetingRoomSelection ||
+                                            (isOutsideLink &&
+                                                _urlController.text.trim() !=
+                                                    "")
+                                        ? Colors.blue
+                                        : Colors.grey[800]),
                                 onPressed: () {
-                                  Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (_) => DescriptionEventPage()));
+                                  if (isDifferent ||
+                                      isFacebookLiveSelection ||
+                                      isLiveMeetingRoomSelection ||
+                                      (isOutsideLink &&
+                                          _urlController.text.trim() != "")) {
+                                    Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                            builder: (_) =>
+                                                DescriptionEventPage()));
+                                  }
                                 },
                                 child: Text(CommonEvent.NEXT)),
                           ),
@@ -479,11 +542,20 @@ class _LocationEventPageState extends State<LocationEventPage> {
           width: 40,
           margin: EdgeInsets.only(left: 10),
           child: Center(
-              child: Icon(
-            value[0],
-            size: 15,
-            color: Colors.white,
-          )),
+              child: value[0] is String
+                  ? Container(
+                      height: 20,
+                      width: 20,
+                      child: SvgPicture.asset(
+                        value[0],
+                        color: Colors.white,
+                      ),
+                    )
+                  : Icon(
+                      value[0],
+                      size: 15,
+                      color: Colors.white,
+                    )),
           decoration: BoxDecoration(
               color: Colors.grey[700],
               borderRadius: BorderRadius.all(Radius.circular(20))),
@@ -492,5 +564,11 @@ class _LocationEventPageState extends State<LocationEventPage> {
         // padding: EdgeInsets.fromLTRB(5, 5, 5, 0),
       ),
     );
+  }
+
+  bool validateUrlLink(String input) {
+    RegExp exp =
+        new RegExp(r'(?:(?:https?|ftp):\/\/)?[\w/\-?=%.]+\.[\w/\-?=%.]+');
+    return (exp.hasMatch(input));
   }
 }

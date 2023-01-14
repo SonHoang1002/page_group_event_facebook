@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:self_facebook_project/general/common_event.dart';
 import 'package:self_facebook_project/modules/event/widget/information_user_event_widget.dart';
 
@@ -61,35 +62,39 @@ showBottomSheetEventWithFacebookLive(BuildContext context, double width) {
                   itemBuilder: ((context1, index) {
                     return InformationUserEventWidget(
                       [
-                        Text(
-                          LocationEventCommon
-                              .EVENT_WITH_FACEBOOK_LIVE_CONTENT_LIST[index][1],
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold),
+                        Container(
+                          margin: EdgeInsets.only(left: 10),
+                          child: Text(
+                            LocationEventCommon
+                                .EVENT_WITH_FACEBOOK_LIVE_CONTENT_LIST[index][1],
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold),
+                          ),
                         ),
-                        Text(
-                          LocationEventCommon
-                              .EVENT_WITH_FACEBOOK_LIVE_CONTENT_LIST[index][2],
-                          style: TextStyle(
-                            color: Colors.grey,
-                            fontSize: 15,
+                        Container(
+                            margin: EdgeInsets.only(left: 10),
+                          child: Text(
+                            LocationEventCommon
+                                .EVENT_WITH_FACEBOOK_LIVE_CONTENT_LIST[index][2],
+                            style: TextStyle(
+                              color: Colors.grey,
+                              fontSize: 15,
+                            ),
                           ),
                         ),
                       ],
                       prefixWidget: Container(
-                        margin: EdgeInsets.only(right: 10),
-                        height: 40,
-                        width: 40,
-                        // decoration: BoxDecoration(
-                        //     color: Colors.grey[700],
-                        //     borderRadius:
-                        //         BorderRadius.all(Radius.circular(10))),
-                        child: Icon(
+                        margin: EdgeInsets.only(right: 5),
+                        height: 20,
+                        width: 20,
+                        child: SvgPicture.asset(
                           LocationEventCommon
                               .EVENT_WITH_FACEBOOK_LIVE_CONTENT_LIST[index][0],
                           color: Colors.white,
+                          
+                          fit: BoxFit.scaleDown
                         ),
                       ),
 

@@ -5,6 +5,7 @@ import 'package:self_facebook_project/general/common_page.dart';
 
 class CommonGroup {
   static String PATH_IMG = "assets/images/";
+  static String PATH_ICON= "assets/images/";
   static const String NEXT = "Tiếp";
   static const String CREATE_GROUP = "Tạo nhóm";
   static const String SKIP = "Bỏ qua";
@@ -153,18 +154,18 @@ class CreatePostGroupCommon {
     "Viết bài để nêu cao tinh thần của nhóm và chào mừng thành viên mới"
   ];
   static List<String> ICON_PATH_LIST = [
-    CommonGroup.PATH_IMG + "img_icon.svg",
-    CommonGroup.PATH_IMG + "camera_icon.svg",
-    CommonGroup.PATH_IMG + "tag_icon.svg",
-    CommonGroup.PATH_IMG + "live_icon.svg",
-    CommonGroup.PATH_IMG + "background_color_icon.svg",
-    CommonGroup.PATH_IMG + "checkin_icon.svg",
-    CommonGroup.PATH_IMG + "gif_file_icon.svg",
-    CommonGroup.PATH_IMG + "probe_icon.svg",
-    CommonGroup.PATH_IMG + "meeting_icon.svg",
-    CommonGroup.PATH_IMG + "tag_icon.svg",
-    CommonGroup.PATH_IMG + "event_icon.svg",
-    CommonGroup.PATH_IMG + "emotion_icon.svg",
+    CommonGroup.PATH_ICON + "img_icon.svg",
+    CommonGroup.PATH_ICON + "camera_icon.svg",
+    CommonGroup.PATH_ICON + "tag_icon.svg",
+    CommonGroup.PATH_ICON + "live_icon.svg",
+    CommonGroup.PATH_ICON + "background_color_icon.svg",
+    CommonGroup.PATH_ICON + "checkin_icon.svg",
+    CommonGroup.PATH_ICON + "gif_file_icon.svg",
+    CommonGroup.PATH_ICON + "probe_icon.svg",
+    CommonGroup.PATH_ICON + "meeting_icon.svg",
+    CommonGroup.PATH_ICON + "tag_icon.svg",
+    CommonGroup.PATH_ICON + "event_icon.svg",
+    CommonGroup.PATH_ICON + "emotion_icon.svg",
   ];
   static const List<String> CONTENT_LIST = [
     "Ảnh/Video",

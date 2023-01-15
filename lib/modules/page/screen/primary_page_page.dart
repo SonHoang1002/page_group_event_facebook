@@ -126,7 +126,7 @@ class _PrimaryPageState extends State<PrimaryPage> {
                 // style: ButtonStyle(),
                 onPressed: () {
                   Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (_) => NamePage()));
+                      .push(MaterialPageRoute(builder: (_) => NamePagePage()));
                 },
                 child: Center(
                   child: Text(

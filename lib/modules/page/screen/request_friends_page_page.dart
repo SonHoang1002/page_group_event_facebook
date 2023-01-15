@@ -57,7 +57,7 @@ class _RequestFriendsState extends State<RequestFriends> {
                                     BorderRadius.all(Radius.circular(25))),
                             child: Center(
                               child: Text(
-                                RequestFr.FIRST_WORD_OF_PAGE_NAME,
+                                RequestFriendPageCommon.FIRST_WORD_OF_PAGE_NAME,
                                 style: TextStyle(
                                     fontSize: 20, color: Colors.black),
                               ),
@@ -67,7 +67,7 @@ class _RequestFriendsState extends State<RequestFriends> {
                       ),
                       Center(
                         child: Text(
-                          RequestFr.TITLE_REQUEST[0],
+                          RequestFriendPageCommon.TITLE_REQUEST[0],
                           style: const TextStyle(
                               color: Colors.white,
                               fontSize: 20,
@@ -78,7 +78,7 @@ class _RequestFriendsState extends State<RequestFriends> {
                         height: 10,
                       ),
                       Center(
-                        child: Text(RequestFr.TITLE_REQUEST[1],
+                        child: Text(RequestFriendPageCommon.TITLE_REQUEST[1],
                             textAlign: TextAlign.center,
                             style: const TextStyle(
                                 color: Colors.white, fontSize: 16)),
@@ -93,7 +93,7 @@ class _RequestFriendsState extends State<RequestFriends> {
                           // color: Colors.red,
                           child: Center(
                             child: Stack(
-                                children: RequestFr.LIST_DEMO.map((e) {
+                                children: RequestFriendPageCommon.LIST_DEMO.map((e) {
                               return Container(
                                 margin: EdgeInsets.only(right: width * 0.25),
                                 child: Align(
@@ -109,7 +109,7 @@ class _RequestFriendsState extends State<RequestFriends> {
                                         color: Colors.white,
                                       ),
                                       child: Image.asset(
-                                        RequestFr.IMG_PATH_LIST[
+                                        RequestFriendPageCommon.IMG_PATH_LIST[
                                             int.parse(e.toStringAsFixed(0))],
                                         fit: BoxFit.contain,
                                       ),
@@ -125,7 +125,7 @@ class _RequestFriendsState extends State<RequestFriends> {
                               backgroundColor: Colors.blue),
                           onPressed: () {},
                           child: Text(
-                            RequestFr.TITLE_REQUEST[2],
+                            RequestFriendPageCommon.TITLE_REQUEST[2],
                             style: TextStyle(color: Colors.white, fontSize: 15),
                           )),
                     ],

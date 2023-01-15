@@ -326,8 +326,7 @@ class _CoverImageGroupPageState extends State<CoverImageGroupPage> {
                                   onPressed: () {
                                     Navigator.of(context).push(
                                         MaterialPageRoute(
-                                            builder: (_) =>
-                                                DescriptionGroupPage()));
+                                            builder: (_) => DetailGroupPage()));
                                   },
                                   child: Text(CommonPage.NEXT)),
                             ),

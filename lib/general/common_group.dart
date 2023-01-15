@@ -68,14 +68,50 @@ class RequestFriendsGroupCommon {
   ];
   static const String SHARE_BOTTOM_SHEET_TITLE = "Chia sẻ";
   static const List<dynamic> SHARE_BOTTOM_SHEET_CONTENT_LIST = [
+    [FontAwesomeIcons.penToSquare, "Chia sẻ lên bảng tin"],
+    [FontAwesomeIcons.facebookMessenger, "Chia sẻ lên Messenger"],
+    [FontAwesomeIcons.copy, "Sao chép liên kết"],
+  ];
+  static List<List<dynamic>> SELECTION_FOR_CHOOSE_GROUP_GROUP = [
     [
-      FontAwesomeIcons.penToSquare,"Chia sẻ lên bảng tin"
+      CommonGroup.PATH_IMG + "cat_1.png",
+      "Hoạt Hình Trung Quốc - Chinese Animation",
+      "Nhóm riêng tư - 4,9K thành viên",
     ],
     [
-      FontAwesomeIcons.facebookMessenger,"Chia sẻ lên Messenger"
+      CommonGroup.PATH_IMG + "cat_2.png",
+      "Nhóm thông tin sinh viên NEU",
+      "Nhóm công khai - 9K thành viên",
     ],
     [
-      FontAwesomeIcons.copy,"Sao chép liên kết"
+      CommonGroup.PATH_IMG + "cat_3.png",
+      "Mobile Development Jobs VN",
+      "Nhóm riêng tư - 5K thành viên",
+    ],
+    [
+      CommonGroup.PATH_IMG + "cat_4.png",
+      "Tuyển dụng Flutter tại Việt Nam",
+      "Nhóm công khai - 4K thành viên",
+    ],
+    [
+      CommonGroup.PATH_IMG + "cat_1.png",
+      "Hoạt Hình Trung Quốc - Chinese Animation",
+      "Nhóm riêng tư - 4,9K thành viên",
+    ],
+    [
+      CommonGroup.PATH_IMG + "cat_2.png",
+      "Nhóm thông tin sinh viên NEU",
+      "Nhóm riêng tư - 100K thành viên",
+    ],
+    [
+      CommonGroup.PATH_IMG + "cat_3.png",
+      "Mobile Development Jobs VN",
+      "Nhóm công khai - 4K thành viên",
+    ],
+    [
+      CommonGroup.PATH_IMG + "cat_4.png",
+      "Tuyển dụng Flutter tại Việt Nam",
+      "Nhóm riêng tư - 854 thành viên",
     ],
   ];
   // ca nhan
@@ -135,6 +171,8 @@ class TargetGroupCommon {
   static const List<String> SUBTITLE = [
     "Hãy chọn mục tiêu mô tả chính xác nhất những gì mọi người sẽ làm trong nhóm của bạn nhé",
   ];
+  /////////////////////////////////////////////////////////////////////////////////////// waiting ////////////////////////////////////
+
   static const List<IconData> ICON_DATA_LIST = [
     FontAwesomeIcons.peopleGroup,
     FontAwesomeIcons.peopleGroup,
@@ -145,6 +183,8 @@ class TargetGroupCommon {
     FontAwesomeIcons.peopleGroup,
     FontAwesomeIcons.peopleGroup,
   ];
+
+  /////////////////////////////////////////////////////////////////////////////////////// waiting ////////////////////////////////////
   static const List<String> CONTENT_LIST = [
     "Gặp gỡ mọi người",
     "Lên kế hoach và điều phối",

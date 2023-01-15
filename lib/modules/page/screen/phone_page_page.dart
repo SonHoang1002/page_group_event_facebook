@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:self_facebook_project/general/common_page.dart';
 import 'package:self_facebook_project/general/format_input.dart';
 import 'package:self_facebook_project/modules/page/blocs/current_number_page.dart';
@@ -15,8 +16,10 @@ class PhonePage extends StatefulWidget {
 
 class _PhonePageState extends State<PhonePage> {
   late double width = 0;
-  String dropdownValue = Phone.LIST_PHONE[0];
+  String dropdownValue = PhonePageCommon.LIST_PHONE[0];
   late NamePageModel namePageModel;
+  final TextEditingController _codeNumberController =
+      TextEditingController(text: "");
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -49,10 +52,11 @@ class _PhonePageState extends State<PhonePage> {
                   padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
                   child: Column(
                     children: [
+                      // netwok with whatsapp....
                       Row(
                         children: [
                           Text(
-                            Phone.TITLE_PHONE[0],
+                            PhonePageCommon.TITLE_PHONE[0],
                             style: const TextStyle(
                                 color: Colors.white,
                                 fontSize: 20,
@@ -63,7 +67,8 @@ class _PhonePageState extends State<PhonePage> {
                       const SizedBox(
                         height: 10,
                       ),
-                      Text(Phone.TITLE_PHONE[1],
+                      // after network account ....
+                      Text(PhonePageCommon.TITLE_PHONE[1],
                           style: const TextStyle(
                               color: Colors.white, fontSize: 15)),
                       const SizedBox(
@@ -76,16 +81,18 @@ class _PhonePageState extends State<PhonePage> {
                         // height: 150,
                         color: Colors.red,
                         child: Image.asset(
-                          CommonPage.PATH_IMG + "phone_img_example.png",
+                          CommonPage.PATH_IMG + "phone_page_example_img.jpg",
                           fit: BoxFit.cover,
                         ),
                       ),
-                      Text(Phone.TITLE_PHONE[2],
+                      // to begin, we will send ....
+                      Text(PhonePageCommon.TITLE_PHONE[2],
                           style: const TextStyle(
                               color: Colors.white, fontSize: 15)),
                       const SizedBox(
                         height: 10,
                       ),
+                      //input
                       Row(
                         children: [
                           Flexible(
@@ -97,8 +104,12 @@ class _PhonePageState extends State<PhonePage> {
                                   height: 80,
                                   // width: width * 0.35,
                                   child: TextFormField(
+                                    controller: _codeNumberController,
                                     readOnly: true,
-                                    onChanged: ((value) {}),
+                                    onTap: () {
+                                      _showBottomSheetForCountryCodeNumberPhone(
+                                          context);
+                                    },
                                     style: const TextStyle(color: Colors.white),
                                     decoration: const InputDecoration(
                                         enabledBorder: OutlineInputBorder(
@@ -142,9 +153,6 @@ class _PhonePageState extends State<PhonePage> {
                                 ],
                                 keyboardType: TextInputType.number,
                                 onChanged: ((value) {
-                                  // context
-                                  //     .read<NamePageBloc>()
-                                  //     .add(UpdateNamePageEvent(namePageModel));
                                 }),
                                 style: const TextStyle(color: Colors.white),
                                 decoration: InputDecoration(
@@ -153,7 +161,8 @@ class _PhonePageState extends State<PhonePage> {
                                       borderSide: BorderSide(
                                           color: Colors.grey, width: 2),
                                     ),
-                                    hintText: Phone.PLACEHOLDER_PHONE[0],
+                                    hintText:
+                                        PhonePageCommon.PLACEHOLDER_PHONE[0],
                                     hintStyle: TextStyle(color: Colors.grey),
                                     border: OutlineInputBorder(
                                         borderRadius: BorderRadius.all(
@@ -166,11 +175,11 @@ class _PhonePageState extends State<PhonePage> {
                       ElevatedButton(
                           style: ElevatedButton.styleFrom(
                               fixedSize: Size(width * 0.9, 40),
-                              backgroundColor: Colors.grey[800]),
+                              backgroundColor:_codeNumberController.text!=null?Colors.blue: Colors.grey[800]),
                           onPressed: () {},
                           child: Text(
-                            Phone.TITLE_PHONE[3],
-                            style: TextStyle(color: Colors.grey),
+                            PhonePageCommon.TITLE_PHONE[3],
+                            style: TextStyle(color: Colors.white),
                           )),
                     ],
                   ),
@@ -232,5 +241,82 @@ class _PhonePageState extends State<PhonePage> {
         );
       }),
     );
+  }
+
+  _showBottomSheetForCountryCodeNumberPhone(BuildContext context) {
+    showMaterialModalBottomSheet(
+        backgroundColor: Colors.transparent,
+        context: context,
+        builder: ((context) {
+          return Container(
+            height: 600,
+            decoration: BoxDecoration(
+                color: Colors.grey[800],
+                borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(15),
+                    topLeft: Radius.circular(15))),
+            child: Column(
+              children: [
+                // drag and drop navbar
+                Container(
+                  padding: EdgeInsets.only(top: 5),
+                  margin: EdgeInsets.only(bottom: 10),
+                  child: Container(
+                    height: 4,
+                    width: 40,
+                    decoration: BoxDecoration(
+                        color: Colors.grey,
+                        borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(15),
+                            topLeft: Radius.circular(15))),
+                  ),
+                ),
+                Expanded(
+                  child: ListView.builder(
+                      padding: EdgeInsets.zero,
+                      itemCount: PhonePageCommon.LIST_PHONE.length,
+                      itemBuilder: ((context, index) {
+                        return GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              _codeNumberController.text =
+                                  PhonePageCommon.LIST_PHONE[index];
+                            });
+                            Navigator.of(context).pop();
+                          },
+                          child: Container(
+                            padding: EdgeInsets.only(left: 10),
+                            height: 40,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Expanded(
+                                    child: Flex(
+                                  direction: Axis.horizontal,
+                                  children: [
+                                    Text(
+                                      PhonePageCommon.LIST_PHONE[index],
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 20,
+                                      ),
+                                    )
+                                  ],
+                                )),
+                                Divider(
+                                  height: 2,
+                                  color: Colors.white,
+                                )
+                              ],
+                            ),
+                          ),
+                        );
+                      })),
+                ),
+              ],
+            ),
+          );
+        }));
   }
 }

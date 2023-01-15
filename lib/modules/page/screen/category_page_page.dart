@@ -54,10 +54,11 @@ class _CategoryPageState extends State<CategoryPage> {
                           child: Container(
                               padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
                               child: Column(children: [
+                                //question 
                                 Wrap(
                                   children: [
                                     Text(
-                                      Category.QUESTION_NAME[0],
+                                      CategoryPageCommon.QUESTION_NAME[0],
                                       style: const TextStyle(
                                           color: Colors.white,
                                           fontSize: 22,
@@ -68,7 +69,8 @@ class _CategoryPageState extends State<CategoryPage> {
                                 const SizedBox(
                                   height: 10,
                                 ),
-                                Text(Category.QUESTION_NAME[1],
+                                // description for question
+                                Text(CategoryPageCommon.QUESTION_NAME[1],
                                     style: const TextStyle(
                                         color: Colors.white, fontSize: 20)),
                                 const SizedBox(
@@ -127,7 +129,7 @@ class _CategoryPageState extends State<CategoryPage> {
                                                       decoration: InputDecoration(
                                                           border:
                                                               InputBorder.none,
-                                                          hintText: Category
+                                                          hintText: CategoryPageCommon
                                                               .PLACEHOLDER_CATEGORY,
                                                           hintStyle: TextStyle(
                                                               color:
@@ -174,7 +176,7 @@ class _CategoryPageState extends State<CategoryPage> {
                                   child: Row(
                                     children: [
                                       Text(
-                                        Category.TITLE,
+                                        CategoryPageCommon.TITLE,
                                         style: TextStyle(
                                             color: Colors.white, fontSize: 15),
                                       ),
@@ -182,13 +184,13 @@ class _CategoryPageState extends State<CategoryPage> {
                                   ),
                                 ),
                                 selectedArea(context, false,
-                                    Category.POPULAR_CATEGORY[0]),
+                                    CategoryPageCommon.POPULAR_CATEGORY[0]),
                                 selectedArea(context, false,
-                                    Category.POPULAR_CATEGORY[1]),
+                                    CategoryPageCommon.POPULAR_CATEGORY[1]),
                                 selectedArea(context, false,
-                                    Category.POPULAR_CATEGORY[2]),
+                                    CategoryPageCommon.POPULAR_CATEGORY[2]),
                                 selectedArea(context, false,
-                                    Category.POPULAR_CATEGORY[3]),
+                                    CategoryPageCommon.POPULAR_CATEGORY[3]),
                               ]))),
                     ],
                   ),
@@ -226,7 +228,7 @@ class _CategoryPageState extends State<CategoryPage> {
                                     .updateCurrentNumberPageCubit(1);
                               }
                               Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (_) => InformationPage()));
+                                  builder: (_) => InformationPagePage()));
                             },
                             child: Text(currentNumberPage == 7
                                 ? CommonPage.DONE
@@ -282,7 +284,7 @@ class _CategoryPageState extends State<CategoryPage> {
                 context: context,
                 builder: ((context) {
                   return AlertDialog(
-                    title: Text(Category.WARNING_MESSAGE[0]),
+                    title: Text(CategoryPageCommon.WARNING_MESSAGE[0]),
                     actions: [
                       GestureDetector(
                           onTap: () {
@@ -304,7 +306,7 @@ class _CategoryPageState extends State<CategoryPage> {
                   context: context,
                   builder: ((context) {
                     return AlertDialog(
-                      title: Text(Category.WARNING_MESSAGE[1]),
+                      title: Text(CategoryPageCommon.WARNING_MESSAGE[1]),
                       actions: [
                         GestureDetector(
                             onTap: () {
@@ -401,7 +403,7 @@ class _CategoryPageState extends State<CategoryPage> {
                 context: context,
                 builder: ((context) {
                   return AlertDialog(
-                    title: Text(Category.WARNING_MESSAGE[0]),
+                    title: Text(CategoryPageCommon.WARNING_MESSAGE[0]),
                   );
                 }));
           } else {

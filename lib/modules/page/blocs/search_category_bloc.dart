@@ -10,7 +10,7 @@ class SearchCategoryBloc
       //     element.contains(event.searchString.toLowerCase()) ||
       //     element.contains(event.searchString.toUpperCase()));
       List<String> searchValueList = [];
-      List<String> primaryList = Category.listSelection;
+      List<String> primaryList = CategoryPageCommon.listSelection;
       for (int i = 0; i < primaryList.length; i++) {
         if (primaryList[i].contains(event.searchString.toLowerCase()) ||
             primaryList[i].contains(event.searchString.toLowerCase())) {
@@ -36,7 +36,7 @@ abstract class SearchCategoryState {
 }
 
 class InitSearchCategoryState extends SearchCategoryState {
-  InitSearchCategoryState() : super(Category.listSelection);
+  InitSearchCategoryState() : super(CategoryPageCommon.listSelection);
 }
 
 class UpdateSearchCategoryState extends SearchCategoryState {

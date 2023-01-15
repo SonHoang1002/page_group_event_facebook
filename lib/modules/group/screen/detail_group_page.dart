@@ -8,12 +8,12 @@ import 'package:self_facebook_project/modules/page/blocs/current_number_page.dar
 import 'package:self_facebook_project/modules/page/blocs/name_bloc.dart';
 import 'package:self_facebook_project/modules/page/model/name_model.dart';
 
-class DescriptionGroupPage extends StatefulWidget {
+class DetailGroupPage extends StatefulWidget {
   @override
-  State<DescriptionGroupPage> createState() => _DescriptionGroupPageState();
+  State<DetailGroupPage> createState() => _DetailGroupPageState();
 }
 
-class _DescriptionGroupPageState extends State<DescriptionGroupPage> {
+class _DetailGroupPageState extends State<DetailGroupPage> {
   late double width = 0;
   late double height = 0;
   late NamePageModel namePageModel;

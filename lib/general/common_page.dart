@@ -5,7 +5,7 @@ class CommonPage {
   static const String SKIP = "Bỏ qua";
 }
 
-class Category {
+class CategoryPageCommon {
   static const List<String> QUESTION_NAME = [
     "Hạng mục nào mô tả chính xác nhất về NAME_OF_PAGE ?",
     "Nhờ hạng mục, mọi người sẽ tìm thấy Trang này trong kết quả tìm kiếm. Bạn có thể thêm đến 3 hạng mục",
@@ -168,7 +168,7 @@ class Category {
   ];
 }
 
-class Information {
+class InformationPageCommon {
   static const List<String> TITLE_INFO = [
     "Hoàn tất thiết lập Trang của bạn",
     "Thành công rồi! Bạn đã tạo được NAME_OF_PAGE. Hãy bổ sung thông tin chi tiết để mọi người dễ dàng kết nối với bạn nhé",
@@ -193,9 +193,21 @@ class Information {
     "Tỉnh/ Thành phố/ Thị xã/ Thị trấn",
     "Mã ZIP"
   ];
+  static const List<String> PROVINCE_LIST = [
+    "Hà Nội",
+    "Hà Giang",
+    "Hà Nam",
+    "Quảng Bình",
+    "TP Hồ Chí Minh",
+    "Cà Mau",
+    "Bắc Ninh",
+    "Lạng Sơn",
+    "Cao Bằng",
+    "Vĩnh Phúc"
+  ];
 }
 
-class Avatar {
+class AvatarPageCommon {
   static const List<String> TITLE_AVATAR = [
     "Tùy chỉnh trang",
     "Ảnh đại diện của bạn là một trong những thứ đầu tiên mọi người nhìn thấy. Hãy thử dùng logo hoặc hình ảnh đơn giản khiến họ dễ liên tưởng dến bạn",
@@ -203,7 +215,7 @@ class Avatar {
   ];
 }
 
-class Phone {
+class PhonePageCommon {
   static const List<String> TITLE_PHONE = [
     "Kết nối WhatsApp với Trang của bạn",
     "Sau khi kết nối tài khoản WhatsApp, bạn có thể thêm nút để đối tượng của Trang nhắn tin cho bạn trên WhatsApp",
@@ -235,7 +247,7 @@ class Phone {
   ];
 }
 
-class RequestFr {
+class RequestFriendPageCommon {
   static const List<String> TITLE_REQUEST = [
     "Xây dựng đối tượng cho Trang",
     "Hãy mời bạn bè kết nối với NAME_OF_PAGE để phát triển trang",
@@ -264,7 +276,7 @@ class RequestFr {
   ];
 }
 
-class Settings {
+class SettingsPageCommon {
   static const List<int> COUNTER_CONTENT = [0, 1];
   static const List<String> TITLE_SETTINGS = [
     "Luôn cập nhật thông tin về Trang của bạn",

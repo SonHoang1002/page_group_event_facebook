@@ -18,7 +18,7 @@ class CreatePostGroupPage extends StatefulWidget {
 class _CreatePostGroupPageState extends State<CreatePostGroupPage> {
   late double width = 0;
   late double height = 0;
-  
+  late TextEditingController _postController = TextEditingController(text: "");
 
   @override
   Widget build(BuildContext context) {
@@ -92,7 +92,7 @@ class _CreatePostGroupPageState extends State<CreatePostGroupPage> {
                             context: context,
                             builder: ((context) {
                               return Container(
-                                height: 400,
+                                height: 500,
                                 decoration: BoxDecoration(
                                     color: Colors.grey[800],
                                     borderRadius: BorderRadius.only(
@@ -105,21 +105,30 @@ class _CreatePostGroupPageState extends State<CreatePostGroupPage> {
                                         margin:
                                             EdgeInsets.fromLTRB(10, 5, 10, 5),
                                         child: InformationUserGroupWidget(
-                                          [Text(
-                          CreatePostGroupCommon
-                                                .CONTENT_LIST[index],
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold),
-                        )],
-                                            prefixWidget: SvgPicture.asset(
+                                          [
+                                            Text(
+                                              CreatePostGroupCommon
+                                                  .CONTENT_LIST[index],
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 15,
+                                                  fontWeight: FontWeight.bold),
+                                            )
+                                          ],
+                                          prefixWidget: Container(
+                                            height: 20,
+                                            width: 20,
+                                            margin: EdgeInsets.only(right: 10),
+                                            child: SvgPicture.asset(
                                               CreatePostGroupCommon
                                                   .ICON_PATH_LIST[index],
                                               color: CreatePostGroupCommon
                                                   .COLOR_LIST[index],
-                                              fit: BoxFit.contain,
-                                            ),),
+                                              fit: BoxFit.fitWidth,
+                                            ),
+                                          ),
+                                          changeBackground: Colors.transparent,
+                                        ),
                                       );
                                     })),
                               );
@@ -263,62 +272,95 @@ class _CreatePostGroupPageState extends State<CreatePostGroupPage> {
               Container(
                 padding: EdgeInsets.fromLTRB(10, 5, 0, 0),
                 child: InformationUserGroupWidget(
-                  [Text(
-                         CreatePostGroupCommon.USER_EXAMPLE[0],
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold),
-                        ),inSheet
-                      ? Container(
-                          // height: 20,
-                          child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Row(
-                                  children: [
-                                    Icon(
-                                      FontAwesomeIcons.userGroup,
-                                      color: Colors.white,
-                                      size: 10,
-                                    ),
-                                    SizedBox(
-                                      width: 10,
-                                    ),
-                                    Text(
-                                      CreatePostGroupCommon.USER_EXAMPLE[1],
-                                      style: TextStyle(
-                                          color: Colors.grey, fontSize: 13),
-                                    ),
-                                  ],
-                                ),
-                                Divider(height: 3, color: Colors.white)
-                              ]),
-                        )
-                      : Container(
-                          padding:
-                              EdgeInsets.symmetric(horizontal: 5, vertical: 2),
-                          decoration: BoxDecoration(
-                              border: Border.all(
-                                  color: Colors.white,
-                                  style: BorderStyle.solid),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(5))),
-                          child: Center(
-                              child: Text(CreatePostGroupCommon.USER_EXAMPLE[1],
-                                  style: TextStyle(
+                  [
+                    Text(
+                      CreatePostGroupCommon.USER_EXAMPLE[0],
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    inSheet
+                        ? Container(
+                            // height: 20,
+                            // color: Colors.red,
+                            // width: 200,
+                            margin: EdgeInsets.only(top: 5),
+                            // padding: EdgeInsets.only(right: 5),
+                            child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Icon(
+                                        FontAwesomeIcons.userGroup,
+                                        color: Colors.white,
+                                        size: 10,
+                                      ),
+                                      SizedBox(
+                                        width: 10,
+                                      ),
+                                      Text(
+                                        CreatePostGroupCommon.USER_EXAMPLE[1],
+                                        style: TextStyle(
+                                            color: Colors.grey, fontSize: 13),
+                                      ),
+                                    ],
+                                  ),
+                                  Container(
+                                      width: 150,
+                                      child: Divider(
+                                          height: 3, color: Colors.white))
+                                ]),
+                          )
+                        : Container(
+                            margin: EdgeInsets.only(top: 5),
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 5, vertical: 2),
+                            decoration: BoxDecoration(
+                                border: Border.all(
                                     color: Colors.white,
-                                    fontSize: 13,
-                                  ))),
-                        ),],
-                  prefixWidget: Image.asset(CommonGroup.PATH_IMG + "cat_1.png"),
-                 
+                                    style: BorderStyle.solid),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(5))),
+                            child: Text(CreatePostGroupCommon.USER_EXAMPLE[1],
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 13,
+                                )),
+                          ),
+                  ],
+                  prefixWidget: Container(
+                    height: 40,
+                    width: 40,
+                    margin: EdgeInsets.only(right: 10),
+
+                    // padding: EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(20),
+                        ),
+                        color: Colors.grey[800]),
+                    child: Image.asset(
+                      CommonGroup.PATH_IMG + "cat_1.png",
+                      color: Colors.white,
+                    ),
+                  ),
                 ),
               ),
               Container(
                 height: 50,
                 child: TextFormField(
                   // maxLines: 2,
+                  controller: _postController,
+                  onTap: (() {
+                    if (!inSheet) {
+                      /////////////////////////////////////////////////
+                    }
+                  }),
                   readOnly: !inSheet,
                   maxLines: null,
                   minLines: null,

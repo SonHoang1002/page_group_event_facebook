@@ -1,21 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:self_facebook_project/general/common_page.dart';
-import 'package:self_facebook_project/general/format_input.dart';
 import 'package:self_facebook_project/modules/page/blocs/current_number_page.dart';
 import 'package:self_facebook_project/modules/page/blocs/name_bloc.dart';
-import 'package:self_facebook_project/modules/page/model/name_model.dart';
 import 'package:self_facebook_project/modules/page/export_page.dart';
-class SettingsPage extends StatefulWidget {
+import 'package:self_facebook_project/modules/page/model/name_model.dart';
+
+const List<String> QUESTION_NAME = [
+  "Tên Trang của bạn là gì ?",
+  "Hãy dùng tên doanh nghiệp/thương hiệu/tổ chức của bạn hoặc tên góp phần giải thích về Trang"
+];
+const String next = "Tiếp";
+const String done = "Xong";
+
+class NamePagePage extends StatefulWidget {
   @override
-  State<SettingsPage> createState() => _SettingsPageState();
+  State<NamePagePage> createState() => _NamePagePageState();
 }
 
-class _SettingsPageState extends State<SettingsPage> {
+class _NamePagePageState extends State<NamePagePage> {
   late double width = 0;
   late NamePageModel namePageModel;
-  List<bool> listSwitch = [false, false];
+  final _nameFormKey = GlobalKey<FormState>();
+  // late bool checkValitdator;
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -25,9 +31,9 @@ class _SettingsPageState extends State<SettingsPage> {
           leading: IconButton(
         icon: const Icon(Icons.arrow_back),
         onPressed: () {
-          //
-          context.read<CurrentNumberPageCubit>().updateCurrentNumberPageCubit(
-              context.read<CurrentNumberPageCubit>().state - 1);
+          context
+              .read<CurrentNumberPageCubit>()
+              .updateCurrentNumberPageCubit(1);
           Navigator.of(context).pop();
         },
       )),
@@ -44,13 +50,13 @@ class _SettingsPageState extends State<SettingsPage> {
               child: Container(
                 color: Colors.black87,
                 child: Container(
-                  padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
+                  padding: const EdgeInsets.fromLTRB(15, 10, 15, 0),
                   child: Column(
                     children: [
                       Row(
                         children: [
                           Text(
-                            Settings.TITLE_SETTINGS[0],
+                            QUESTION_NAME[0],
                             style: const TextStyle(
                                 color: Colors.white,
                                 fontSize: 20,
@@ -61,48 +67,45 @@ class _SettingsPageState extends State<SettingsPage> {
                       const SizedBox(
                         height: 10,
                       ),
-                      Text(Settings.TITLE_SETTINGS[1],
+                      Text(QUESTION_NAME[1],
                           style: const TextStyle(
-                              color: Colors.white, fontSize: 17)),
+                              color: Colors.white, fontSize: 15)),
                       const SizedBox(
                         height: 10,
                       ),
-                      Column(
-                        children: Settings.COUNTER_CONTENT.map((index) {
-                          return Container(
-                            margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
-                            child: Row(children: [
-                              Flexible(
-                                flex: 8,
-                                child: Column(children: [
-                                  Text(
-                                    Settings.TITLE_CONTENT[index],
-                                    textAlign: TextAlign.start,
-                                    style: TextStyle(
-                                        color: Colors.white, fontSize: 17),
-                                  ),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Text(Settings.SUBTITLE_CONTENT[index],
-                                      style: TextStyle(
-                                          color: Colors.white, fontSize: 15)),
-                                ]),
-                              ),
-                              Flexible(
-                                  flex: 2,
-                                  child: Switch(
-                                    value: listSwitch[index],
-                                    onChanged: ((value) {
-                                      setState(() {
-                                        listSwitch[index] = !listSwitch[index];
-                                      });
-                                    }),
-                                  )),
-                            ]),
-                          );
-                        }).toList(),
-                      )
+                      Form(
+                        key: _nameFormKey,
+                        child: Container(
+                          height: 80,
+                          child: TextFormField(
+                            validator: ((value) {
+                              if (value!.length < 6) {
+                                return "Tên ${value} không hợp lệ. Nếu bạn muốn tạo Trang mới, hãy chọn một tên khác như '${value} không chính thức'";
+                              }
+                            }),
+                            controller:
+                                namePageState.namePageModel.nameController,
+                            onChanged: ((value) {
+                              context
+                                  .read<NamePageBloc>()
+                                  .add(UpdateNamePageEvent(namePageModel));
+                            }),
+                            style: const TextStyle(color: Colors.white),
+                            decoration: const InputDecoration(
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide:
+                                      BorderSide(color: Colors.grey, width: 2),
+                                ),
+                                hintText: "Tên Trang",
+                                hintStyle: TextStyle(color: Colors.grey),
+                                labelText: "Tên Trang",
+                                labelStyle: TextStyle(color: Colors.grey),
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.all(
+                                        Radius.circular(.10)))),
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -125,12 +128,18 @@ class _SettingsPageState extends State<SettingsPage> {
                                     ? Colors.grey[800]
                                     : Colors.blue),
                         onPressed: () {
-                          // context
-                          //     .read<CurrentNumberPageCubit>()
-                          //     .updateCurrentNumberPageCubit(
-                          //         currentNumberPage + 1);
+                          if (namePageModel.nameController.text.trim() != "") {
+                            if (_nameFormKey.currentState!.validate()) {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (_) => CategoryPage()));
+                              context
+                                  .read<CurrentNumberPageCubit>()
+                                  .updateCurrentNumberPageCubit(
+                                      currentNumberPage + 1);
+                            }
+                          }
                         },
-                        child: Text(CommonPage.DONE)),
+                        child: Text(currentNumberPage == 7 ? done : next)),
                   ),
                   const SizedBox(
                     height: 5,

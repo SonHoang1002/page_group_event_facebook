@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:self_facebook_project/general/common_group.dart';
 import 'package:self_facebook_project/general/common_page.dart';
+import 'package:self_facebook_project/modules/group/blocs/select_target_group.dart';
 import 'package:self_facebook_project/modules/group/export_group_page.dart';
 import 'package:self_facebook_project/modules/page/blocs/current_number_page.dart';
 import 'package:self_facebook_project/modules/page/blocs/name_bloc.dart';
@@ -79,15 +80,39 @@ class _TargetGroupPageState extends State<TargetGroupPage> {
                           padding: EdgeInsets.zero,
                           itemCount: 8,
                           itemBuilder: (context, index) {
-                            return Container(
-                                // margin: EdgeInsets.symmetric(vertical: 5),
-                                child: _buildFlexibleComponent(
-                                    context,
-                                    Icon(TargetGroupCommon
-                                        .ICON_DATA_LIST[index]),
-                                    [TargetGroupCommon.CONTENT_LIST[index]],
-                                    Checkbox(
-                                        value: false, onChanged: (value) {})));
+                            return BlocBuilder<SelectTargetGroupBloc,
+                                    SelectTargetGroupState>(
+                                builder: (context, state) {
+                              return Container(
+                                  // margin: EdgeInsets.symmetric(vertical: 5),
+                                  child: _buildFlexibleComponent(
+                                      context,
+                                      Icon(TargetGroupCommon
+                                          .ICON_DATA_LIST[index]),
+                                      [TargetGroupCommon.CONTENT_LIST[index]],
+                                      Checkbox(
+                                          value: BlocProvider.of<
+                                                      SelectTargetGroupBloc>(
+                                                  context)
+                                              .state
+                                              .list[index],
+                                          onChanged: (value) {
+                                            List<
+                                                bool> listSelected = BlocProvider
+                                                    .of<SelectTargetGroupBloc>(
+                                                        context)
+                                                .state
+                                                .list;
+                                            listSelected[index] =
+                                                !listSelected[index];
+                                            context
+                                                .read<SelectTargetGroupBloc>()
+                                                .add(
+                                                    UpdateSelectTargetGroupEvent(
+                                                        listSelected));
+                                            setState(() {});
+                                          })));
+                            });
                           }),
                     )
                   ],

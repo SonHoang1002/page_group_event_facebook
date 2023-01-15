@@ -66,7 +66,7 @@ class _AvatarPageState extends State<AvatarPage> {
                           Row(
                             children: [
                               Text(
-                                Avatar.TITLE_AVATAR[0],
+                                AvatarPageCommon.TITLE_AVATAR[0],
                                 style: const TextStyle(
                                     color: Colors.white,
                                     fontSize: 20,
@@ -77,7 +77,7 @@ class _AvatarPageState extends State<AvatarPage> {
                           const SizedBox(
                             height: 10,
                           ),
-                          Text(Avatar.TITLE_AVATAR[1],
+                          Text(AvatarPageCommon.TITLE_AVATAR[1],
                               style: const TextStyle(
                                   color: Colors.white, fontSize: 18)),
                           const SizedBox(
@@ -216,7 +216,7 @@ class _AvatarPageState extends State<AvatarPage> {
                   Center(
                       child: ElevatedButton(
                     onPressed: () {},
-                    child: Text(Avatar.TITLE_AVATAR[2]),
+                    child: Text(AvatarPageCommon.TITLE_AVATAR[2]),
                   ))
                 ],
               ),

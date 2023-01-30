@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
-import 'package:self_facebook_project/general/common_page.dart';
+// import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:self_facebook_project/general/format_input.dart';
+import 'package:self_facebook_project/general/page_constants.dart';
 import 'package:self_facebook_project/modules/page/blocs/current_number_page.dart';
 import 'package:self_facebook_project/modules/page/blocs/name_bloc.dart';
 import 'package:self_facebook_project/modules/page/model/name_model.dart';
@@ -16,7 +16,7 @@ class PhonePage extends StatefulWidget {
 
 class _PhonePageState extends State<PhonePage> {
   late double width = 0;
-  String dropdownValue = PhonePageCommon.LIST_PHONE[0];
+  String dropdownValue = PhonePageConstants.LIST_PHONE[0];
   late NamePageModel namePageModel;
   final TextEditingController _codeNumberController =
       TextEditingController(text: "");
@@ -56,7 +56,7 @@ class _PhonePageState extends State<PhonePage> {
                       Row(
                         children: [
                           Text(
-                            PhonePageCommon.TITLE_PHONE[0],
+                            PhonePageConstants.TITLE_PHONE[0],
                             style: const TextStyle(
                                 color: Colors.white,
                                 fontSize: 20,
@@ -68,7 +68,7 @@ class _PhonePageState extends State<PhonePage> {
                         height: 10,
                       ),
                       // after network account ....
-                      Text(PhonePageCommon.TITLE_PHONE[1],
+                      Text(PhonePageConstants.TITLE_PHONE[1],
                           style: const TextStyle(
                               color: Colors.white, fontSize: 15)),
                       const SizedBox(
@@ -81,12 +81,12 @@ class _PhonePageState extends State<PhonePage> {
                         // height: 150,
                         color: Colors.red,
                         child: Image.asset(
-                          CommonPage.PATH_IMG + "phone_page_example_img.jpg",
+                          PageConstants.PATH_IMG + "phone_page_example_img.jpg",
                           fit: BoxFit.cover,
                         ),
                       ),
                       // to begin, we will send ....
-                      Text(PhonePageCommon.TITLE_PHONE[2],
+                      Text(PhonePageConstants.TITLE_PHONE[2],
                           style: const TextStyle(
                               color: Colors.white, fontSize: 15)),
                       const SizedBox(
@@ -162,7 +162,7 @@ class _PhonePageState extends State<PhonePage> {
                                           color: Colors.grey, width: 2),
                                     ),
                                     hintText:
-                                        PhonePageCommon.PLACEHOLDER_PHONE[0],
+                                        PhonePageConstants.PLACEHOLDER_PHONE[0],
                                     hintStyle: TextStyle(color: Colors.grey),
                                     border: OutlineInputBorder(
                                         borderRadius: BorderRadius.all(
@@ -178,7 +178,7 @@ class _PhonePageState extends State<PhonePage> {
                               backgroundColor:_codeNumberController.text!=null?Colors.blue: Colors.grey[800]),
                           onPressed: () {},
                           child: Text(
-                            PhonePageCommon.TITLE_PHONE[3],
+                            PhonePageConstants.TITLE_PHONE[3],
                             style: TextStyle(color: Colors.white),
                           )),
                     ],
@@ -207,7 +207,7 @@ class _PhonePageState extends State<PhonePage> {
                           Navigator.of(context).push(MaterialPageRoute(
                               builder: (_) => RequestFriends()));
                         },
-                        child: Text(CommonPage.SKIP)),
+                        child: Text(PageConstants.SKIP)),
                   ),
                   const SizedBox(
                     height: 5,
@@ -244,7 +244,7 @@ class _PhonePageState extends State<PhonePage> {
   }
 
   _showBottomSheetForCountryCodeNumberPhone(BuildContext context) {
-    showMaterialModalBottomSheet(
+    showModalBottomSheet(
         backgroundColor: Colors.transparent,
         context: context,
         builder: ((context) {
@@ -274,13 +274,13 @@ class _PhonePageState extends State<PhonePage> {
                 Expanded(
                   child: ListView.builder(
                       padding: EdgeInsets.zero,
-                      itemCount: PhonePageCommon.LIST_PHONE.length,
+                      itemCount: PhonePageConstants.LIST_PHONE.length,
                       itemBuilder: ((context, index) {
                         return GestureDetector(
                           onTap: () {
                             setState(() {
                               _codeNumberController.text =
-                                  PhonePageCommon.LIST_PHONE[index];
+                                  PhonePageConstants.LIST_PHONE[index];
                             });
                             Navigator.of(context).pop();
                           },
@@ -296,7 +296,7 @@ class _PhonePageState extends State<PhonePage> {
                                   direction: Axis.horizontal,
                                   children: [
                                     Text(
-                                      PhonePageCommon.LIST_PHONE[index],
+                                      PhonePageConstants.LIST_PHONE[index],
                                       style: TextStyle(
                                         color: Colors.white,
                                         fontSize: 20,

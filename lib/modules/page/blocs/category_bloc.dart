@@ -1,6 +1,4 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:self_facebook_project/general/common_page.dart';
-import 'package:self_facebook_project/modules/page/blocs/search_category_bloc.dart';
 import 'package:self_facebook_project/modules/page/model/category_model.dart';
 
 class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {

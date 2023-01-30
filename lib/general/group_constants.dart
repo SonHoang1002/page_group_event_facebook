@@ -1,9 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:self_facebook_project/general/common_page.dart';
-
-class CommonGroup {
+class GroupConstants {
   static String PATH_IMG = "assets/images/";
   static String PATH_ICON = "assets/icons/";
   static const String NEXT = "Tiếp";
@@ -12,8 +10,8 @@ class CommonGroup {
   static const String CONTINUE_AFTER = "Tiếp tục sau";
 }
 
-class CreateGroupCommon {
-  static const String TITLE_APPBAR = "Tạo nhóm";
+class CreateGroupConstants {
+ static const String TITLE_APPBAR = "Tạo nhóm";
   static const List<String> TITLE_LIST = [
     "Tên",
     "Quyền riêng tư",
@@ -35,7 +33,7 @@ class CreateGroupCommon {
   static List<bool> selectedHideGroup = [false, false];
 }
 
-class RequestFriendsGroupCommon {
+class RequestFriendsGroupConstants {
   static const String TITLE_APPBAR = "Mời mọi người";
 
   static const List<String> PLACEHOLDER_LIST = [
@@ -45,13 +43,13 @@ class RequestFriendsGroupCommon {
   static const String EMAIL_REQUEST_SUBTITLE = "Gửi email mời mợi người";
 
   static List<String> IMG_PATH_LIST = [
-    "${CommonGroup.PATH_IMG}cat_1.png",
-    "${CommonGroup.PATH_IMG}cat_2.png",
-    "${CommonGroup.PATH_IMG}cat_3.png",
-    "${CommonGroup.PATH_IMG}cat_4.png",
-    "${CommonGroup.PATH_IMG}cat_5.png",
-    "${CommonGroup.PATH_IMG}cat_6.png",
-    "${CommonGroup.PATH_IMG}cat_7.png",
+    "${GroupConstants.PATH_IMG}cat_1.png",
+    "${GroupConstants.PATH_IMG}cat_2.png",
+    "${GroupConstants.PATH_IMG}cat_3.png",
+    "${GroupConstants.PATH_IMG}cat_4.png",
+    "${GroupConstants.PATH_IMG}cat_5.png",
+    "${GroupConstants.PATH_IMG}cat_6.png",
+    "${GroupConstants.PATH_IMG}cat_7.png",
   ];
   // cong khai
   static const List<String> PUBLIC_TITLE = [
@@ -74,42 +72,42 @@ class RequestFriendsGroupCommon {
   ];
   static List<List<dynamic>> SELECTION_FOR_CHOOSE_GROUP_GROUP = [
     [
-      CommonGroup.PATH_IMG + "cat_1.png",
+      GroupConstants.PATH_IMG + "cat_1.png",
       "Hoạt Hình Trung Quốc - Chinese Animation",
       "Nhóm riêng tư - 4,9K thành viên",
     ],
     [
-      CommonGroup.PATH_IMG + "cat_2.png",
+      GroupConstants.PATH_IMG + "cat_2.png",
       "Nhóm thông tin sinh viên NEU",
       "Nhóm công khai - 9K thành viên",
     ],
     [
-      CommonGroup.PATH_IMG + "cat_3.png",
+      GroupConstants.PATH_IMG + "cat_3.png",
       "Mobile Development Jobs VN",
       "Nhóm riêng tư - 5K thành viên",
     ],
     [
-      CommonGroup.PATH_IMG + "cat_4.png",
+      GroupConstants.PATH_IMG + "cat_4.png",
       "Tuyển dụng Flutter tại Việt Nam",
       "Nhóm công khai - 4K thành viên",
     ],
     [
-      CommonGroup.PATH_IMG + "cat_1.png",
+      GroupConstants.PATH_IMG + "cat_1.png",
       "Hoạt Hình Trung Quốc - Chinese Animation",
       "Nhóm riêng tư - 4,9K thành viên",
     ],
     [
-      CommonGroup.PATH_IMG + "cat_2.png",
+      GroupConstants.PATH_IMG + "cat_2.png",
       "Nhóm thông tin sinh viên NEU",
       "Nhóm riêng tư - 100K thành viên",
     ],
     [
-      CommonGroup.PATH_IMG + "cat_3.png",
+      GroupConstants.PATH_IMG + "cat_3.png",
       "Mobile Development Jobs VN",
       "Nhóm công khai - 4K thành viên",
     ],
     [
-      CommonGroup.PATH_IMG + "cat_4.png",
+      GroupConstants.PATH_IMG + "cat_4.png",
       "Tuyển dụng Flutter tại Việt Nam",
       "Nhóm riêng tư - 854 thành viên",
     ],
@@ -129,7 +127,7 @@ class RequestFriendsGroupCommon {
       "Bất kỳ ai trên Facebook có liên kết này đều có thể xem thông tin Giới thiệu về nhóm cũng như yếu cầu tham gia";
 }
 
-class CoverImageGroupCommon {
+class CoverImageGroupConstants {
   static const List<String> TITLE = [
     "Thêm ảnh bìa",
     "Ảnh bìa",
@@ -142,15 +140,15 @@ class CoverImageGroupCommon {
   ];
 
   static List<String> IMG_PATH_LIST = [
-    "${CommonGroup.PATH_IMG}example_cover_img_1.jpg",
-    "${CommonGroup.PATH_IMG}example_cover_img_2.jpg",
-    "${CommonGroup.PATH_IMG}example_cover_img_3.jpg",
-    "${CommonGroup.PATH_IMG}example_cover_img_4.jpg",
-    "${CommonGroup.PATH_IMG}example_cover_img_5.jpg",
+    "${GroupConstants.PATH_IMG}example_cover_img_1.jpg",
+    "${GroupConstants.PATH_IMG}example_cover_img_2.jpg",
+    "${GroupConstants.PATH_IMG}example_cover_img_3.jpg",
+    "${GroupConstants.PATH_IMG}example_cover_img_4.jpg",
+    "${GroupConstants.PATH_IMG}example_cover_img_5.jpg",
   ];
 }
 
-class DescriptionGroupCommon {
+class DescriptionGroupConstants {
   static const List<String> TITLE = [
     "Thêm phần mô tả",
     "Ảnh bìa",
@@ -163,7 +161,7 @@ class DescriptionGroupCommon {
   ];
 }
 
-class TargetGroupCommon {
+class TargetGroupConstants {
   static const List<String> TITLE = [
     "Chọn mục tiêu",
     "Ảnh bìa",
@@ -197,7 +195,7 @@ class TargetGroupCommon {
   ];
 }
 
-class CreatePostGroupCommon {
+class CreatePostGroupConstants {
   static const List<String> TITLE = [
     "Tạo bài viết",
     "NAME_OF_GROUP",
@@ -207,18 +205,18 @@ class CreatePostGroupCommon {
     "Viết bài để nêu cao tinh thần của nhóm và chào mừng thành viên mới"
   ];
   static List<String> ICON_PATH_LIST = [
-    CommonGroup.PATH_ICON + "img_icon.svg",
-    CommonGroup.PATH_ICON + "camera_icon.svg",
-    CommonGroup.PATH_ICON + "tag_icon.svg",
-    CommonGroup.PATH_ICON + "live_icon.svg",
-    CommonGroup.PATH_ICON + "background_color_icon.svg",
-    CommonGroup.PATH_ICON + "checkin_icon.svg",
-    CommonGroup.PATH_ICON + "gif_file_icon.svg",
-    CommonGroup.PATH_ICON + "probe_icon.svg",
-    CommonGroup.PATH_ICON + "meeting_icon.svg",
-    CommonGroup.PATH_ICON + "tag_icon.svg",
-    CommonGroup.PATH_ICON + "event_icon.svg",
-    CommonGroup.PATH_ICON + "emotion_icon.svg",
+    GroupConstants.PATH_ICON + "img_icon.svg",
+    GroupConstants.PATH_ICON + "camera_icon.svg",
+    GroupConstants.PATH_ICON + "tag_icon.svg",
+    GroupConstants.PATH_ICON + "live_icon.svg",
+    GroupConstants.PATH_ICON + "background_color_icon.svg",
+    GroupConstants.PATH_ICON + "checkin_icon.svg",
+    GroupConstants.PATH_ICON + "gif_file_icon.svg",
+    GroupConstants.PATH_ICON + "probe_icon.svg",
+    GroupConstants.PATH_ICON + "meeting_icon.svg",
+    GroupConstants.PATH_ICON + "tag_icon.svg",
+    GroupConstants.PATH_ICON + "event_icon.svg",
+    GroupConstants.PATH_ICON + "emotion_icon.svg",
   ];
   static const List<String> CONTENT_LIST = [
     "Ảnh/Video",

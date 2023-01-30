@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:self_facebook_project/general/common_page.dart';
+import 'package:self_facebook_project/general/page_constants.dart';
 import 'package:self_facebook_project/modules/page/blocs/current_number_page.dart';
 import 'package:self_facebook_project/modules/page/blocs/name_bloc.dart';
 import 'package:self_facebook_project/modules/page/model/name_model.dart';
@@ -66,7 +66,7 @@ class _AvatarPageState extends State<AvatarPage> {
                           Row(
                             children: [
                               Text(
-                                AvatarPageCommon.TITLE_AVATAR[0],
+                                AvatarPageConstants.TITLE_AVATAR[0],
                                 style: const TextStyle(
                                     color: Colors.white,
                                     fontSize: 20,
@@ -77,7 +77,7 @@ class _AvatarPageState extends State<AvatarPage> {
                           const SizedBox(
                             height: 10,
                           ),
-                          Text(AvatarPageCommon.TITLE_AVATAR[1],
+                          Text(AvatarPageConstants.TITLE_AVATAR[1],
                               style: const TextStyle(
                                   color: Colors.white, fontSize: 18)),
                           const SizedBox(
@@ -165,7 +165,7 @@ class _AvatarPageState extends State<AvatarPage> {
                                           ? CircleAvatar(
                                               maxRadius: 60,
                                               backgroundImage: AssetImage(
-                                                  CommonPage.PATH_IMG +
+                                                  PageConstants.PATH_IMG +
                                                       "avatar_img.png"))
                                           : CircleAvatar(
                                               maxRadius: 60,
@@ -216,7 +216,7 @@ class _AvatarPageState extends State<AvatarPage> {
                   Center(
                       child: ElevatedButton(
                     onPressed: () {},
-                    child: Text(AvatarPageCommon.TITLE_AVATAR[2]),
+                    child: Text(AvatarPageConstants.TITLE_AVATAR[2]),
                   ))
                 ],
               ),
@@ -243,8 +243,8 @@ class _AvatarPageState extends State<AvatarPage> {
                               MaterialPageRoute(builder: (_) => PhonePage()));
                         },
                         child: Text(currentNumberPage == 7
-                            ? CommonPage.DONE
-                            : CommonPage.NEXT)),
+                            ? PageConstants.DONE
+                            : PageConstants.NEXT)),
                   ),
                   const SizedBox(
                     height: 5,

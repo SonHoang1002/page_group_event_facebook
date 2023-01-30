@@ -1,12 +1,12 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:self_facebook_project/general/common_page.dart';
+import 'package:self_facebook_project/general/page_constants.dart';
 
 class SelectProvinceBloc
     extends Bloc<SelectProvinceEvent, SelectProvinceState> {
   SelectProvinceBloc() : super(InitSelectProvinceState()) {
     on<UpdateSelectProvinceEvent>((event, emit) {
       List<String> selectValueList = [];
-      List<String> primaryList = InformationPageCommon.PROVINCE_LIST;
+      List<String> primaryList = InformationPageConstants.PROVINCE_LIST;
       for (int i = 0; i < primaryList.length; i++) {
         if (primaryList[i].contains(event.selectString.toLowerCase()) ||
             primaryList[i].contains(event.selectString.toUpperCase())) {
@@ -31,7 +31,7 @@ abstract class SelectProvinceState {
 }
 
 class InitSelectProvinceState extends SelectProvinceState {
-  InitSelectProvinceState() : super(InformationPageCommon.PROVINCE_LIST);
+  InitSelectProvinceState() : super(InformationPageConstants.PROVINCE_LIST);
 }
 
 class UpdateSelectProvinceState extends SelectProvinceState {

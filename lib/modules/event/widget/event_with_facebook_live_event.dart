@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:self_facebook_project/general/common_event.dart';
+// import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+import 'package:self_facebook_project/general/event_constants.dart';
 import 'package:self_facebook_project/modules/event/widget/information_user_event_widget.dart';
 
 showBottomSheetEventWithFacebookLive(BuildContext context, double width) {
@@ -38,7 +39,7 @@ showBottomSheetEventWithFacebookLive(BuildContext context, double width) {
                   Container(
                       child: Center(
                     child: Text(
-                      LocationEventCommon.EVENT_WITH_FACEBOOK_LIVE_TITLE,
+                      LocationEventConstants.EVENT_WITH_FACEBOOK_LIVE_TITLE,
                       style: TextStyle(color: Colors.white, fontSize: 18),
                     ),
                   )),
@@ -57,7 +58,7 @@ showBottomSheetEventWithFacebookLive(BuildContext context, double width) {
             Container(
               height: 235,
               child: ListView.builder(
-                  itemCount: LocationEventCommon
+                  itemCount: LocationEventConstants
                       .EVENT_WITH_FACEBOOK_LIVE_CONTENT_LIST.length,
                   itemBuilder: ((context1, index) {
                     return InformationUserEventWidget(
@@ -65,7 +66,7 @@ showBottomSheetEventWithFacebookLive(BuildContext context, double width) {
                         Container(
                           margin: EdgeInsets.only(left: 10),
                           child: Text(
-                            LocationEventCommon
+                            LocationEventConstants
                                 .EVENT_WITH_FACEBOOK_LIVE_CONTENT_LIST[index][1],
                             style: TextStyle(
                                 color: Colors.white,
@@ -76,7 +77,7 @@ showBottomSheetEventWithFacebookLive(BuildContext context, double width) {
                         Container(
                             margin: EdgeInsets.only(left: 10),
                           child: Text(
-                            LocationEventCommon
+                            LocationEventConstants
                                 .EVENT_WITH_FACEBOOK_LIVE_CONTENT_LIST[index][2],
                             style: TextStyle(
                               color: Colors.grey,
@@ -90,7 +91,7 @@ showBottomSheetEventWithFacebookLive(BuildContext context, double width) {
                         height: 20,
                         width: 20,
                         child: SvgPicture.asset(
-                          LocationEventCommon
+                          LocationEventConstants
                               .EVENT_WITH_FACEBOOK_LIVE_CONTENT_LIST[index][0],
                           color: Colors.white,
                           

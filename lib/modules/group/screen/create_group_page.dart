@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:self_facebook_project/general/common_group.dart';
+import 'package:self_facebook_project/general/group_constants.dart';
 import 'package:self_facebook_project/modules/group/blocs/hide_group_bloc.dart';
 import 'package:self_facebook_project/modules/group/blocs/select_private_rule_bloc.dart';
 import 'package:self_facebook_project/modules/group/export_group_page.dart';
@@ -25,7 +25,7 @@ class CreateGroupPageState extends State<CreateGroupPage> {
     return Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
-            title: Center(child: Text(CreateGroupCommon.TITLE_APPBAR)),
+            title: Center(child: Text(CreateGroupConstants.TITLE_APPBAR)),
             leading: IconButton(
               icon: const Icon(Icons.close),
               onPressed: () {
@@ -48,7 +48,7 @@ class CreateGroupPageState extends State<CreateGroupPage> {
                       Row(
                         children: [
                           Text(
-                            CreateGroupCommon.TITLE_LIST[0],
+                            CreateGroupConstants.TITLE_LIST[0],
                             style: const TextStyle(
                                 color: Colors.white,
                                 fontSize: 20,
@@ -72,7 +72,7 @@ class CreateGroupPageState extends State<CreateGroupPage> {
                                 borderSide:
                                     BorderSide(color: Colors.grey, width: 2),
                               ),
-                              hintText: CreateGroupCommon.PLACEHOLDER_LIST[0],
+                              hintText: CreateGroupConstants.PLACEHOLDER_LIST[0],
                               hintStyle: TextStyle(color: Colors.grey),
                               border: OutlineInputBorder(
                                   borderRadius:
@@ -92,7 +92,7 @@ class CreateGroupPageState extends State<CreateGroupPage> {
                       Row(
                         children: [
                           Text(
-                            CreateGroupCommon.TITLE_LIST[1],
+                            CreateGroupConstants.TITLE_LIST[1],
                             style: const TextStyle(
                                 color: Colors.white,
                                 fontSize: 20,
@@ -118,7 +118,7 @@ class CreateGroupPageState extends State<CreateGroupPage> {
                                       "Công khai"
                                   ? FontAwesomeIcons.earthAmericas
                                   : FontAwesomeIcons.lock,
-                              CreateGroupCommon.TITLE_LIST[1],
+                              CreateGroupConstants.TITLE_LIST[1],
                               BlocProvider.of<SelectionPrivateGroupBloc>(
                                       context)
                                   .state
@@ -138,7 +138,7 @@ class CreateGroupPageState extends State<CreateGroupPage> {
                               child: AddtionalInformationGroupWidget(
                                   contentWidget: [
                                   Text(
-                                    CreateGroupCommon.DEFEND_PUBLIC_RULE[0],
+                                    CreateGroupConstants.DEFEND_PUBLIC_RULE[0],
                                     style: TextStyle(
                                         color: Colors.grey[400], fontSize: 16),
                                   ),
@@ -156,14 +156,14 @@ class CreateGroupPageState extends State<CreateGroupPage> {
                                   RichText(
                                       text: TextSpan(children: [
                                     TextSpan(
-                                        text: CreateGroupCommon
+                                        text: CreateGroupConstants
                                             .DEFEND_PRIVATE_RULE[0],
                                         style: TextStyle(
                                           color: Colors.grey[400],
                                           fontSize: 16,
                                         )),
                                     TextSpan(
-                                        text: CreateGroupCommon
+                                        text: CreateGroupConstants
                                             .DEFEND_PRIVATE_RULE[1],
                                         style: TextStyle(
                                             color: Colors.blue,
@@ -189,7 +189,7 @@ class CreateGroupPageState extends State<CreateGroupPage> {
                                 Row(
                                   children: [
                                     Text(
-                                      CreateGroupCommon.TITLE_LIST[2],
+                                      CreateGroupConstants.TITLE_LIST[2],
                                       style: const TextStyle(
                                           color: Colors.white,
                                           fontSize: 20,
@@ -210,7 +210,7 @@ class CreateGroupPageState extends State<CreateGroupPage> {
                                             "Hiển thị"
                                         ? FontAwesomeIcons.eye
                                         : FontAwesomeIcons.eyeSlash,
-                                    CreateGroupCommon.TITLE_LIST[2],
+                                    CreateGroupConstants.TITLE_LIST[2],
                                     BlocProvider.of<HideGroupBloc>(context)
                                         .state
                                         .selection),
@@ -257,7 +257,7 @@ class CreateGroupPageState extends State<CreateGroupPage> {
                             builder: (_) => RequestFriendsGroupPage()));
                       }
                     },
-                    child: Text(CommonGroup.CREATE_GROUP)),
+                    child: Text(GroupConstants.CREATE_GROUP)),
               ),
             )
           ]),
@@ -284,7 +284,7 @@ class CreateGroupPageState extends State<CreateGroupPage> {
                   SizedBox(
                     width: 10,
                   ),
-                  Text(CreateGroupCommon.PLACEHOLDER_LIST[1],
+                  Text(CreateGroupConstants.PLACEHOLDER_LIST[1],
                       style: TextStyle(color: Colors.grey, fontSize: 16)),
                 ],
               ),
@@ -410,9 +410,9 @@ class CreateGroupPageState extends State<CreateGroupPage> {
       BuildContext context, IconData iconData, String title, String content) {
     return GestureDetector(
       onTap: (() {
-        if (title == CreateGroupCommon.TITLE_LIST[1]) {
+        if (title == CreateGroupConstants.TITLE_LIST[1]) {
           bottomSheetPrivateRule(context);
-        } else if (title == CreateGroupCommon.TITLE_LIST[2]) {
+        } else if (title == CreateGroupConstants.TITLE_LIST[2]) {
           bottomSheetHideGroup(context);
         }
       }),

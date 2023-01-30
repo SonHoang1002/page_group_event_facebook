@@ -1,8 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:self_facebook_project/general/common_group.dart';
-import 'package:self_facebook_project/general/common_page.dart';
+import 'package:self_facebook_project/general/group_constants.dart';
 import 'package:self_facebook_project/modules/group/export_group_page.dart';
 import 'package:self_facebook_project/modules/page/blocs/current_number_page.dart';
 import 'package:self_facebook_project/modules/page/blocs/name_bloc.dart';
@@ -30,7 +29,7 @@ class _DetailGroupPageState extends State<DetailGroupPage> {
           actions: [
             Center(
                 child: Container(
-              child: Text(CommonGroup.CONTINUE_AFTER),
+              child: Text(GroupConstants.CONTINUE_AFTER),
               margin: EdgeInsets.only(right: 20),
             ))
           ],
@@ -57,7 +56,7 @@ class _DetailGroupPageState extends State<DetailGroupPage> {
                     Row(
                       children: [
                         Text(
-                          DescriptionGroupCommon.TITLE[0],
+                          DescriptionGroupConstants.TITLE[0],
                           style: const TextStyle(
                               color: Colors.white,
                               fontSize: 20,
@@ -68,7 +67,7 @@ class _DetailGroupPageState extends State<DetailGroupPage> {
                     const SizedBox(
                       height: 10,
                     ),
-                    Text(DescriptionGroupCommon.SUBTITLE[0],
+                    Text(DescriptionGroupConstants.SUBTITLE[0],
                         style:
                             const TextStyle(color: Colors.white, fontSize: 15)),
                     const SizedBox(
@@ -87,7 +86,7 @@ class _DetailGroupPageState extends State<DetailGroupPage> {
                                   BorderSide(color: Colors.grey, width: 2),
                             ),
                             hintText:
-                                DescriptionGroupCommon.PLACEHOLDER_LIST[0],
+                                DescriptionGroupConstants.PLACEHOLDER_LIST[0],
                             hintStyle: TextStyle(color: Colors.grey),
                             border: OutlineInputBorder(
                                 borderRadius:
@@ -156,7 +155,7 @@ class _DetailGroupPageState extends State<DetailGroupPage> {
                                         MaterialPageRoute(
                                             builder: (_) => TargetGroupPage()));
                                   },
-                                  child: Text(CommonPage.NEXT)),
+                                  child: Text(GroupConstants.NEXT)),
                             ),
                             const SizedBox(
                               height: 5,

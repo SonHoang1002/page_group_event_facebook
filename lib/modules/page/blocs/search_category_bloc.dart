@@ -1,16 +1,16 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:self_facebook_project/general/common_page.dart';
+import 'package:self_facebook_project/general/page_constants.dart';
 
 class SearchCategoryBloc
     extends Bloc<SearchCategoryEvent, SearchCategoryState> {
   SearchCategoryBloc() : super(InitSearchCategoryState()) {
     on<UpdateSearchCategoryEvent>((event, emit) {
-      // List<String> searchValueList = Common.listSelection;
+      // List<String> searchValueList = Constants.listSelection;
       // searchValueList.retainWhere((element) =>
       //     element.contains(event.searchString.toLowerCase()) ||
       //     element.contains(event.searchString.toUpperCase()));
       List<String> searchValueList = [];
-      List<String> primaryList = CategoryPageCommon.listSelection;
+      List<String> primaryList = CategoryPageConstants.listSelection;
       for (int i = 0; i < primaryList.length; i++) {
         if (primaryList[i].contains(event.searchString.toLowerCase()) ||
             primaryList[i].contains(event.searchString.toLowerCase())) {
@@ -36,7 +36,7 @@ abstract class SearchCategoryState {
 }
 
 class InitSearchCategoryState extends SearchCategoryState {
-  InitSearchCategoryState() : super(CategoryPageCommon.listSelection);
+  InitSearchCategoryState() : super(CategoryPageConstants.listSelection);
 }
 
 class UpdateSearchCategoryState extends SearchCategoryState {

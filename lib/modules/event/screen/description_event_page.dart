@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:self_facebook_project/general/common_event.dart';
+import 'package:self_facebook_project/general/event_constants.dart';
 import 'package:self_facebook_project/modules/event/screen/review_event_page.dart';
 import 'package:self_facebook_project/modules/page/export_page.dart';
 
@@ -35,7 +35,7 @@ class DescriptionEventPage extends StatelessWidget {
                               Navigator.of(context).pop();
                             }),
                             child: Icon(
-                              CommonEvent.ICON_PRIVIOUS,
+                              EventConstants.ICON_PRIVIOUS,
                               color: Colors.grey,
                               size: 18,
                             ),
@@ -44,7 +44,7 @@ class DescriptionEventPage extends StatelessWidget {
                         Container(
                           margin: EdgeInsets.only(right: 10),
                           child: Text(
-                            CommonEvent.CANCEL,
+                            EventConstants.CANCEL,
                             style: TextStyle(
                                 color: Colors.grey[200], fontSize: 18),
                           ),
@@ -57,7 +57,7 @@ class DescriptionEventPage extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      DescriptionEventCommon.DESCRIPTION_EVENT_TITLE,
+                      DescriptionEventConstants.DESCRIPTION_EVENT_TITLE,
                       style: const TextStyle(
                           color: Colors.white,
                           fontSize: 20,
@@ -68,7 +68,7 @@ class DescriptionEventPage extends StatelessWidget {
                 const SizedBox(
                   height: 10,
                 ),
-                Text(DescriptionEventCommon.DESCRIPTION_EVENT_SUBTITLE,
+                Text(DescriptionEventConstants.DESCRIPTION_EVENT_SUBTITLE,
                     style: const TextStyle(color: Colors.grey, fontSize: 15)),
                 const SizedBox(
                   height: 20,
@@ -85,9 +85,9 @@ class DescriptionEventPage extends StatelessWidget {
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.grey, width: 2),
                         ),
-                        labelText: DescriptionEventCommon.PLACEHOLDER_EVENT,
+                        labelText: DescriptionEventConstants.PLACEHOLDER_EVENT,
                         labelStyle: TextStyle(color: Colors.white),
-                        hintText: DescriptionEventCommon.PLACEHOLDER_EVENT,
+                        hintText: DescriptionEventConstants.PLACEHOLDER_EVENT,
                         hintStyle: TextStyle(color: Colors.grey),
                         border: OutlineInputBorder(
                             borderRadius:
@@ -150,7 +150,7 @@ class DescriptionEventPage extends StatelessWidget {
                               Navigator.of(context).push(MaterialPageRoute(
                                   builder: (_) => ReviewEventPage()));
                             },
-                            child: Text(CommonEvent.NEXT)),
+                            child: Text(EventConstants.NEXT)),
                       ),
                       const SizedBox(
                         height: 5,

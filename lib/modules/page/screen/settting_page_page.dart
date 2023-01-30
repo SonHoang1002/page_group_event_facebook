@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:self_facebook_project/general/common_page.dart';
-import 'package:self_facebook_project/general/format_input.dart';
+import 'package:self_facebook_project/general/page_constants.dart';
 import 'package:self_facebook_project/modules/page/blocs/current_number_page.dart';
 import 'package:self_facebook_project/modules/page/blocs/name_bloc.dart';
 import 'package:self_facebook_project/modules/page/model/name_model.dart';
-import 'package:self_facebook_project/modules/page/export_page.dart';
 
 class SettingsPage extends StatefulWidget {
   @override
@@ -51,7 +49,7 @@ class _SettingsPageState extends State<SettingsPage> {
                       Row(
                         children: [
                           Text(
-                            SettingsPageCommon.TITLE_SETTINGS[0],
+                            SettingsPageConstants.TITLE_SETTINGS[0],
                             style: const TextStyle(
                                 color: Colors.white,
                                 fontSize: 20,
@@ -63,7 +61,7 @@ class _SettingsPageState extends State<SettingsPage> {
                         height: 10,
                       ),
                       //description
-                      Text(SettingsPageCommon.TITLE_SETTINGS[1],
+                      Text(SettingsPageConstants.TITLE_SETTINGS[1],
                           style: const TextStyle(
                               color: Colors.white, fontSize: 17)),
                       const SizedBox(
@@ -71,7 +69,7 @@ class _SettingsPageState extends State<SettingsPage> {
                       ),
                       Column(
                         children:
-                            SettingsPageCommon.COUNTER_CONTENT.map((index) {
+                            SettingsPageConstants.COUNTER_CONTENT.map((index) {
                           return Container(
                             margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
                             child: Row(children: [
@@ -82,7 +80,7 @@ class _SettingsPageState extends State<SettingsPage> {
                                   Wrap(
                                     children: [
                                       Text(
-                                        SettingsPageCommon.TITLE_CONTENT[index],
+                                        SettingsPageConstants.TITLE_CONTENT[index],
                                         textAlign: TextAlign.start,
                                         style: TextStyle(
                                             color: Colors.white, fontSize: 17),
@@ -94,7 +92,7 @@ class _SettingsPageState extends State<SettingsPage> {
                                   ),
                                   // content subtitle
                                   Text(
-                                      SettingsPageCommon
+                                      SettingsPageConstants
                                           .SUBTITLE_CONTENT[index],
                                       style: TextStyle(
                                           color: Colors.grey, fontSize: 15)),
@@ -141,7 +139,7 @@ class _SettingsPageState extends State<SettingsPage> {
                           //     .updateCurrentNumberPageCubit(
                           //         currentNumberPage + 1);
                         },
-                        child: Text(CommonPage.DONE)),
+                        child: Text(PageConstants.DONE)),
                   ),
                   const SizedBox(
                     height: 5,

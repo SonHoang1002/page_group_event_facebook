@@ -4,8 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:self_facebook_project/general/common_group.dart';
-import 'package:self_facebook_project/general/common_page.dart';
+import 'package:self_facebook_project/general/group_constants.dart';
+import 'package:self_facebook_project/general/page_constants.dart';
 import 'package:self_facebook_project/modules/group/export_group_page.dart';
 import 'package:self_facebook_project/modules/page/blocs/current_number_page.dart';
 import 'package:self_facebook_project/modules/page/blocs/name_bloc.dart';
@@ -39,7 +39,7 @@ class _CoverImageGroupPageState extends State<CoverImageGroupPage> {
           actions: [
             Center(
                 child: Container(
-              child: Text(CommonGroup.CONTINUE_AFTER),
+              child: Text(GroupConstants.CONTINUE_AFTER),
               margin: EdgeInsets.only(right: 20),
             ))
           ],
@@ -72,7 +72,7 @@ class _CoverImageGroupPageState extends State<CoverImageGroupPage> {
                             Row(
                               children: [
                                 Text(
-                                  CoverImageGroupCommon.TITLE[0],
+                                  CoverImageGroupConstants.TITLE[0],
                                   style: const TextStyle(
                                       color: Colors.white,
                                       fontSize: 20,
@@ -85,7 +85,7 @@ class _CoverImageGroupPageState extends State<CoverImageGroupPage> {
                             ),
                             Row(
                               children: [
-                                Text(CoverImageGroupCommon.SUBTITLE[0],
+                                Text(CoverImageGroupConstants.SUBTITLE[0],
                                     style: const TextStyle(
                                         color: Colors.white, fontSize: 18)),
                               ],
@@ -96,7 +96,7 @@ class _CoverImageGroupPageState extends State<CoverImageGroupPage> {
                             Row(
                               children: [
                                 Text(
-                                  CoverImageGroupCommon.TITLE[1],
+                                  CoverImageGroupConstants.TITLE[1],
                                   style: const TextStyle(
                                       color: Colors.white,
                                       fontSize: 20,
@@ -163,7 +163,7 @@ class _CoverImageGroupPageState extends State<CoverImageGroupPage> {
                                                 width: 10,
                                                 // padding: EdgeInsets.all(),
                                                 child: SvgPicture.asset(
-                                                  CommonGroup.PATH_ICON +
+                                                  GroupConstants.PATH_ICON +
                                                       "add_img_file_icon.svg",
                                                   color: Colors.white,
                                                 )),
@@ -171,7 +171,7 @@ class _CoverImageGroupPageState extends State<CoverImageGroupPage> {
                                               width: 10,
                                             ),
                                             Text(
-                                              CoverImageGroupCommon
+                                              CoverImageGroupConstants
                                                   .PLACEHOLDER_LIST[0],
                                               style: TextStyle(
                                                 color: Colors.white,
@@ -253,12 +253,12 @@ class _CoverImageGroupPageState extends State<CoverImageGroupPage> {
                               onTap: (() {
                                 setState(() {
                                   _pickedCoverImage = null;
-                                  imgPath = CoverImageGroupCommon
+                                  imgPath = CoverImageGroupConstants
                                       .IMG_PATH_LIST[index];
                                 });
                               }),
                               child: Image.asset(
-                                CoverImageGroupCommon.IMG_PATH_LIST[index],
+                                CoverImageGroupConstants.IMG_PATH_LIST[index],
                                 fit: BoxFit.fitHeight,
                               ),
                             ),
@@ -328,7 +328,7 @@ class _CoverImageGroupPageState extends State<CoverImageGroupPage> {
                                         MaterialPageRoute(
                                             builder: (_) => DetailGroupPage()));
                                   },
-                                  child: Text(CommonPage.NEXT)),
+                                  child: Text(PageConstants.NEXT)),
                             ),
                             const SizedBox(
                               height: 5,

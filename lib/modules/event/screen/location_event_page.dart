@@ -2,9 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:self_facebook_project/general/common_event.dart';
-import 'package:self_facebook_project/general/common_group.dart';
-import 'package:self_facebook_project/modules/event/export_event_page.dart';
+import 'package:self_facebook_project/general/event_constants.dart';
 import 'package:self_facebook_project/modules/event/screen/description_event_page.dart';
 import 'package:self_facebook_project/modules/event/widget/event_with_facebook_live_event.dart';
 import 'package:self_facebook_project/modules/event/widget/information_user_event_widget.dart';
@@ -53,7 +51,7 @@ class _LocationEventPageState extends State<LocationEventPage> {
                               Navigator.of(context).pop();
                             }),
                             child: Icon(
-                              CommonEvent.ICON_PRIVIOUS,
+                              EventConstants.ICON_PRIVIOUS,
                               color: Colors.grey,
                               size: 18,
                             ),
@@ -62,7 +60,7 @@ class _LocationEventPageState extends State<LocationEventPage> {
                         Container(
                           margin: EdgeInsets.only(right: 10),
                           child: Text(
-                            CommonEvent.CANCEL,
+                            EventConstants.CANCEL,
                             style: TextStyle(
                                 color: Colors.grey[200], fontSize: 18),
                           ),
@@ -81,7 +79,7 @@ class _LocationEventPageState extends State<LocationEventPage> {
                         child: Row(
                           children: [
                             Text(
-                              LocationEventCommon.LOCATION_EVENT_TITLE,
+                              LocationEventConstants.LOCATION_EVENT_TITLE,
                               style: TextStyle(
                                   fontSize: 27,
                                   fontWeight: FontWeight.bold,
@@ -95,7 +93,7 @@ class _LocationEventPageState extends State<LocationEventPage> {
                         child: Row(
                           children: [
                             Text(
-                              LocationEventCommon
+                              LocationEventConstants
                                   .ONLINE_LOCATION_EVENT_SUBTITLE,
                               style:
                                   TextStyle(fontSize: 16, color: Colors.white),
@@ -108,7 +106,7 @@ class _LocationEventPageState extends State<LocationEventPage> {
                       //   child: Row(
                       //     children: [
                       //       Text(
-                      //         LocationEventCommon.OFFLINE_LOCATION_EVENT_SUBTITLE,
+                      //         LocationEventConstants.OFFLINE_LOCATION_EVENT_SUBTITLE,
                       //         style:
                       //             TextStyle(fontSize: 16, color: Colors.white),
                       //       ),
@@ -141,7 +139,7 @@ class _LocationEventPageState extends State<LocationEventPage> {
                       //                 BorderRadius.all(Radius.circular(5))),
                       //         contentPadding: EdgeInsets.fromLTRB(10, 0, 0, 0),
                       //         border: InputBorder.none,
-                      //         hintText: LocationEventCommon
+                      //         hintText: LocationEventConstants
                       //             .OFFLINE_PLACEHOLDER_EVENT[0],
                       //         labelStyle: TextStyle(color: Colors.white),
                       //         hintStyle: TextStyle(color: Colors.white)),
@@ -181,7 +179,7 @@ class _LocationEventPageState extends State<LocationEventPage> {
                                 child: Row(
                                   children: [
                                     Text(
-                                        LocationEventCommon
+                                        LocationEventConstants
                                             .MEETING_ROOM_COMPONENT[1],
                                         style: TextStyle(
                                             fontSize: 16,
@@ -195,7 +193,7 @@ class _LocationEventPageState extends State<LocationEventPage> {
                                 child: Wrap(
                                   children: [
                                     Text(
-                                        LocationEventCommon
+                                        LocationEventConstants
                                             .MEETING_ROOM_COMPONENT[2],
                                         style: TextStyle(
                                             fontSize: 15, color: Colors.grey))
@@ -208,15 +206,15 @@ class _LocationEventPageState extends State<LocationEventPage> {
                               width: 40,
                               padding: EdgeInsets.all(10),
                               margin: EdgeInsets.only(left: 10),
-                              child: LocationEventCommon
+                              child: LocationEventConstants
                                       .MEETING_ROOM_COMPONENT[0] is String
                                   ? SvgPicture.asset(
-                                      LocationEventCommon
+                                      LocationEventConstants
                                           .MEETING_ROOM_COMPONENT[0],
                                       color: Colors.white,
                                     )
                                   : Icon(
-                                      LocationEventCommon
+                                      LocationEventConstants
                                           .MEETING_ROOM_COMPONENT[0],
                                       size: 15,
                                       color: Colors.white,
@@ -261,7 +259,7 @@ class _LocationEventPageState extends State<LocationEventPage> {
                                 child: Row(
                                   children: [
                                     Text(
-                                        LocationEventCommon
+                                        LocationEventConstants
                                             .FACEBOOK_LIVE_COMPONENT[1],
                                         style: TextStyle(
                                             fontSize: 16,
@@ -275,7 +273,7 @@ class _LocationEventPageState extends State<LocationEventPage> {
                                 child: Wrap(
                                   children: [
                                     Text(
-                                        LocationEventCommon
+                                        LocationEventConstants
                                             .FACEBOOK_LIVE_COMPONENT[2],
                                         style: TextStyle(
                                             fontSize: 15, color: Colors.grey))
@@ -288,17 +286,17 @@ class _LocationEventPageState extends State<LocationEventPage> {
                               width: 40,
                               padding: EdgeInsets.all(10),
                               margin: EdgeInsets.only(left: 10),
-                              child: LocationEventCommon
+                              child: LocationEventConstants
                                       .FACEBOOK_LIVE_COMPONENT[0] is String
                                   ? SvgPicture.asset(
-                                      LocationEventCommon
+                                      LocationEventConstants
                                           .FACEBOOK_LIVE_COMPONENT[0],
                                       color: Colors.white,
                                       height: 5,
                                       width: 5,
                                       fit: BoxFit.scaleDown)
                                   : Icon(
-                                      LocationEventCommon
+                                      LocationEventConstants
                                           .FACEBOOK_LIVE_COMPONENT[0],
                                       size: 15,
                                       color: Colors.white,
@@ -322,7 +320,7 @@ class _LocationEventPageState extends State<LocationEventPage> {
                               },
                               child: Center(
                                   child: Text(
-                                LocationEventCommon.ADD_PRIVATE_LINK,
+                                LocationEventConstants.ADD_PRIVATE_LINK,
                                 style: TextStyle(color: Colors.blue),
                               )),
                             )
@@ -332,7 +330,7 @@ class _LocationEventPageState extends State<LocationEventPage> {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
-                                      LocationEventCommon.DIFFERENT_SELECTION,
+                                      LocationEventConstants.DIFFERENT_SELECTION,
                                       style: TextStyle(
                                           fontSize: 18,
                                           fontWeight: FontWeight.bold,
@@ -344,7 +342,7 @@ class _LocationEventPageState extends State<LocationEventPage> {
                                             context);
                                       },
                                       child: Text(
-                                        LocationEventCommon.CHANGE_SELECTION,
+                                        LocationEventConstants.CHANGE_SELECTION,
                                         style: TextStyle(
                                             fontSize: 18, color: Colors.blue),
                                       ),
@@ -353,12 +351,12 @@ class _LocationEventPageState extends State<LocationEventPage> {
                             ),
                       isDifferent
                           ? _buildSingleDifferentSelectionComponent(
-                              LocationEventCommon
+                              LocationEventConstants
                                   .DIFFERENT_SELECTION_COMPONENT[1])
                           : Container(),
                       isOutsideLink
                           ? _buildSingleDifferentSelectionComponent(
-                              LocationEventCommon
+                              LocationEventConstants
                                   .DIFFERENT_SELECTION_COMPONENT[0],
                               addtionalWidget: Container(
                                 height: 70,
@@ -460,7 +458,7 @@ class _LocationEventPageState extends State<LocationEventPage> {
                                                 DescriptionEventPage()));
                                   }
                                 },
-                                child: Text(CommonEvent.NEXT)),
+                                child: Text(EventConstants.NEXT)),
                           ),
                           const SizedBox(
                             height: 5,
@@ -512,7 +510,7 @@ class _LocationEventPageState extends State<LocationEventPage> {
                     Container(
                         child: Center(
                       child: Text(
-                        LocationEventCommon.DIFFERENT_SELECTION,
+                        LocationEventConstants.DIFFERENT_SELECTION,
                         style: TextStyle(color: Colors.white, fontSize: 18),
                       ),
                     )),
@@ -533,7 +531,7 @@ class _LocationEventPageState extends State<LocationEventPage> {
                       return GestureDetector(
                           onTap: (() {
                             Navigator.of(context).pop();
-                            if (LocationEventCommon
+                            if (LocationEventConstants
                                     .DIFFERENT_SELECTION_COMPONENT[index][1] ==
                                 "Khác") {
                               setState(() {
@@ -554,7 +552,7 @@ class _LocationEventPageState extends State<LocationEventPage> {
                             return;
                           }),
                           child: _buildSingleDifferentSelectionComponent(
-                              LocationEventCommon
+                              LocationEventConstants
                                   .DIFFERENT_SELECTION_COMPONENT[index]));
                     }),
                   ))
@@ -656,7 +654,7 @@ class _LocationEventPageState extends State<LocationEventPage> {
                       Container(
                           child: Center(
                         child: Text(
-                          LocationEventCommon.OFFLINE_PRIVATE_OF_EVENT,
+                          LocationEventConstants.OFFLINE_PRIVATE_OF_EVENT,
                           style: TextStyle(color: Colors.white, fontSize: 18),
                         ),
                       )),
@@ -690,7 +688,7 @@ class _LocationEventPageState extends State<LocationEventPage> {
                               fillColor: Colors.grey[800],
                               filled: true,
                               contentPadding: EdgeInsets.fromLTRB(0, 5, 0, 0),
-                              hintText: LocationEventCommon
+                              hintText: LocationEventConstants
                                   .OFFLINE_PLACEHOLDER_EVENT[1],
                               hintStyle:
                                   TextStyle(color: Colors.grey, fontSize: 14),
@@ -710,7 +708,7 @@ class _LocationEventPageState extends State<LocationEventPage> {
                               height: 20,
                               width: 20,
                               // child: SvgPicture.asset(
-                              //   CommonEvent.PATH_ICON + "camera_plus_icon.svg",
+                              //   EventConstants.PATH_ICON + "camera_plus_icon.svg",
                               //   color: Colors.white,
                               // ),
                               child:Icon(CupertinoIcons.location,color: Colors.white, size: 14,)
@@ -734,14 +732,14 @@ class _LocationEventPageState extends State<LocationEventPage> {
                     width: 200,
                     margin: EdgeInsets.symmetric(vertical: 10),
                     child: Image.asset(
-                      CommonEvent.PATH_IMG + "back_1.jpg",
+                      EventConstants.PATH_IMG + "back_1.jpg",
                       fit: BoxFit.fitWidth,
                     )),
                 // find location near you
                 Container(
                     margin: EdgeInsets.only(bottom: 10),
                     child: Text(
-                      LocationEventCommon.OFFLINE_FIND_LOCATION_NEAR_FOR_YOU,
+                      LocationEventConstants.OFFLINE_FIND_LOCATION_NEAR_FOR_YOU,
                       style: TextStyle(color: Colors.grey, fontSize: 18,fontWeight: FontWeight.bold),
                     )),
                 // please open location service
@@ -749,7 +747,7 @@ class _LocationEventPageState extends State<LocationEventPage> {
                     margin: EdgeInsets.only(bottom: 10),
                     child: Center(
                       child: Text(
-                        LocationEventCommon.OFFLINE_OPEN_LOCATION_SERVICE,
+                        LocationEventConstants.OFFLINE_OPEN_LOCATION_SERVICE,
                         textAlign: TextAlign.center,
                         style: TextStyle(color: Colors.grey, fontSize: 18),
                       ),
@@ -766,7 +764,7 @@ class _LocationEventPageState extends State<LocationEventPage> {
                       style:
                           ElevatedButton.styleFrom(fixedSize: Size(width, 30)),
                       child: Text(
-                        LocationEventCommon
+                        LocationEventConstants
                             .OFFLINE_OPEN_LOCATION_SERVICE_BUTTON,
                         style: TextStyle(color: Colors.white),
                       )),

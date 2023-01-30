@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:self_facebook_project/general/common_page.dart';
+import 'package:self_facebook_project/general/page_constants.dart';
 import 'package:self_facebook_project/modules/page/blocs/category_bloc.dart';
 import 'package:self_facebook_project/modules/page/blocs/current_number_page.dart';
 import 'package:self_facebook_project/modules/page/blocs/name_bloc.dart';
 import 'package:self_facebook_project/modules/page/blocs/search_category_bloc.dart';
 import 'package:self_facebook_project/modules/page/model/category_model.dart';
-import 'package:self_facebook_project/modules/page/model/name_model.dart';
-import 'package:self_facebook_project/modules/page/export_page.dart';import 'package:self_facebook_project/test_widget.dart';
+import 'package:self_facebook_project/modules/page/export_page.dart';
 
 class CategoryPage extends StatefulWidget {
   @override
@@ -54,11 +53,11 @@ class _CategoryPageState extends State<CategoryPage> {
                           child: Container(
                               padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
                               child: Column(children: [
-                                //question 
+                                //question
                                 Wrap(
                                   children: [
                                     Text(
-                                      CategoryPageCommon.QUESTION_NAME[0],
+                                      CategoryPageConstants.QUESTION_NAME[0],
                                       style: const TextStyle(
                                           color: Colors.white,
                                           fontSize: 22,
@@ -70,7 +69,7 @@ class _CategoryPageState extends State<CategoryPage> {
                                   height: 10,
                                 ),
                                 // description for question
-                                Text(CategoryPageCommon.QUESTION_NAME[1],
+                                Text(CategoryPageConstants.QUESTION_NAME[1],
                                     style: const TextStyle(
                                         color: Colors.white, fontSize: 20)),
                                 const SizedBox(
@@ -129,8 +128,9 @@ class _CategoryPageState extends State<CategoryPage> {
                                                       decoration: InputDecoration(
                                                           border:
                                                               InputBorder.none,
-                                                          hintText: CategoryPageCommon
-                                                              .PLACEHOLDER_CATEGORY,
+                                                          hintText:
+                                                              CategoryPageConstants
+                                                                  .PLACEHOLDER_CATEGORY,
                                                           hintStyle: TextStyle(
                                                               color:
                                                                   Colors.grey,
@@ -176,7 +176,7 @@ class _CategoryPageState extends State<CategoryPage> {
                                   child: Row(
                                     children: [
                                       Text(
-                                        CategoryPageCommon.TITLE,
+                                        CategoryPageConstants.TITLE,
                                         style: TextStyle(
                                             color: Colors.white, fontSize: 15),
                                       ),
@@ -184,13 +184,13 @@ class _CategoryPageState extends State<CategoryPage> {
                                   ),
                                 ),
                                 selectedArea(context, false,
-                                    CategoryPageCommon.POPULAR_CATEGORY[0]),
+                                    CategoryPageConstants.POPULAR_CATEGORY[0]),
                                 selectedArea(context, false,
-                                    CategoryPageCommon.POPULAR_CATEGORY[1]),
+                                    CategoryPageConstants.POPULAR_CATEGORY[1]),
                                 selectedArea(context, false,
-                                    CategoryPageCommon.POPULAR_CATEGORY[2]),
+                                    CategoryPageConstants.POPULAR_CATEGORY[2]),
                                 selectedArea(context, false,
-                                    CategoryPageCommon.POPULAR_CATEGORY[3]),
+                                    CategoryPageConstants.POPULAR_CATEGORY[3]),
                               ]))),
                     ],
                   ),
@@ -231,8 +231,8 @@ class _CategoryPageState extends State<CategoryPage> {
                                   builder: (_) => InformationPagePage()));
                             },
                             child: Text(currentNumberPage == 7
-                                ? CommonPage.DONE
-                                : CommonPage.NEXT)),
+                                ? PageConstants.DONE
+                                : PageConstants.NEXT)),
                       ),
                       const SizedBox(
                         height: 5,
@@ -284,7 +284,7 @@ class _CategoryPageState extends State<CategoryPage> {
                 context: context,
                 builder: ((context) {
                   return AlertDialog(
-                    title: Text(CategoryPageCommon.WARNING_MESSAGE[0]),
+                    title: Text(CategoryPageConstants.WARNING_MESSAGE[0]),
                     actions: [
                       GestureDetector(
                           onTap: () {
@@ -306,7 +306,7 @@ class _CategoryPageState extends State<CategoryPage> {
                   context: context,
                   builder: ((context) {
                     return AlertDialog(
-                      title: Text(CategoryPageCommon.WARNING_MESSAGE[1]),
+                      title: Text(CategoryPageConstants.WARNING_MESSAGE[1]),
                       actions: [
                         GestureDetector(
                             onTap: () {
@@ -403,7 +403,7 @@ class _CategoryPageState extends State<CategoryPage> {
                 context: context,
                 builder: ((context) {
                   return AlertDialog(
-                    title: Text(CategoryPageCommon.WARNING_MESSAGE[0]),
+                    title: Text(CategoryPageConstants.WARNING_MESSAGE[0]),
                   );
                 }));
           } else {

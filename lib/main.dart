@@ -35,21 +35,33 @@ class MyApp extends StatelessWidget {
           BlocProvider<CurrentNumberPageCubit>(
               create: ((context) => CurrentNumberPageCubit())),
           BlocProvider<CategoryBloc>(create: ((context) => CategoryBloc())),
-          BlocProvider<SelectionPrivateEventBloc>(create: ((context) => SelectionPrivateEventBloc())),
-           BlocProvider<SelectionPrivateGroupBloc>(create: ((context) => SelectionPrivateGroupBloc())),
+          BlocProvider<SelectionPrivateEventBloc>(
+              create: ((context) => SelectionPrivateEventBloc())),
+          BlocProvider<SelectionPrivateGroupBloc>(
+              create: ((context) => SelectionPrivateGroupBloc())),
           BlocProvider<HideGroupBloc>(create: ((context) => HideGroupBloc())),
-          BlocProvider<SelectTargetGroupBloc>(create: ((context) => SelectTargetGroupBloc())),
-         BlocProvider<SelectProvinceBloc>(create: ((context) => SelectProvinceBloc())),
-         
+          BlocProvider<SelectTargetGroupBloc>(
+              create: ((context) => SelectTargetGroupBloc())),
+          BlocProvider<SelectProvinceBloc>(
+              create: ((context) => SelectProvinceBloc())),
         ],
         child: MaterialApp(
           title: 'Flutter Demo',
           theme: ThemeData(
               primarySwatch: Colors.blue, backgroundColor: Colors.black87),
+          // test
           // home: TestWidget(),
+
+          // begin group
           // home: CreateGroupPage(),
-          // home: CreateEventPage(),
-          home: PrimaryPage(),
+
+          // begin event
+          home: CreateEventPage(),
+
+          // begin page
+          // home: PrimaryPage(),
+
+          // part
           // home:RequestFriendsGroupPage()
         ));
   }

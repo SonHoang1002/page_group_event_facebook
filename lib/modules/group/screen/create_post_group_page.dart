@@ -3,9 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:self_facebook_project/general/common_group.dart';
-import 'package:self_facebook_project/general/common_page.dart';
-import 'package:self_facebook_project/modules/group/export_group_page.dart';
+import 'package:self_facebook_project/general/group_constants.dart';
+import 'package:self_facebook_project/general/page_constants.dart';
 import 'package:self_facebook_project/modules/group/widgets/information_user_group_widget.dart';
 import 'package:self_facebook_project/modules/page/blocs/current_number_page.dart';
 import 'package:self_facebook_project/modules/page/blocs/name_bloc.dart';
@@ -57,7 +56,7 @@ class _CreatePostGroupPageState extends State<CreatePostGroupPage> {
                     Row(
                       children: [
                         Text(
-                          CreatePostGroupCommon.TITLE[0],
+                          CreatePostGroupConstants.TITLE[0],
                           style: const TextStyle(
                               color: Colors.white,
                               fontSize: 22,
@@ -68,7 +67,7 @@ class _CreatePostGroupPageState extends State<CreatePostGroupPage> {
                     const SizedBox(
                       height: 10,
                     ),
-                    Text(CreatePostGroupCommon.SUBTITLE[0],
+                    Text(CreatePostGroupConstants.SUBTITLE[0],
                         style:
                             const TextStyle(color: Colors.white, fontSize: 18)),
                     const SizedBox(
@@ -107,7 +106,7 @@ class _CreatePostGroupPageState extends State<CreatePostGroupPage> {
                                         child: InformationUserGroupWidget(
                                           [
                                             Text(
-                                              CreatePostGroupCommon
+                                              CreatePostGroupConstants
                                                   .CONTENT_LIST[index],
                                               style: TextStyle(
                                                   color: Colors.white,
@@ -120,9 +119,9 @@ class _CreatePostGroupPageState extends State<CreatePostGroupPage> {
                                             width: 20,
                                             margin: EdgeInsets.only(right: 10),
                                             child: SvgPicture.asset(
-                                              CreatePostGroupCommon
+                                              CreatePostGroupConstants
                                                   .ICON_PATH_LIST[index],
-                                              color: CreatePostGroupCommon
+                                              color: CreatePostGroupConstants
                                                   .COLOR_LIST[index],
                                               fit: BoxFit.fitWidth,
                                             ),
@@ -198,7 +197,7 @@ class _CreatePostGroupPageState extends State<CreatePostGroupPage> {
                                     //     MaterialPageRoute(
                                     //         builder: (_) => TargetGroupPage()));
                                   },
-                                  child: Text(CommonPage.NEXT)),
+                                  child: Text(PageConstants.NEXT)),
                             ),
                             const SizedBox(
                               height: 5,
@@ -237,7 +236,7 @@ class _CreatePostGroupPageState extends State<CreatePostGroupPage> {
                       ]),
                     ),
                     Text(
-                      CreatePostGroupCommon.TITLE[1],
+                      CreatePostGroupConstants.TITLE[1],
                       style: TextStyle(color: Colors.white, fontSize: 18),
                     ),
                     Container(
@@ -274,7 +273,7 @@ class _CreatePostGroupPageState extends State<CreatePostGroupPage> {
                 child: InformationUserGroupWidget(
                   [
                     Text(
-                      CreatePostGroupCommon.USER_EXAMPLE[0],
+                      CreatePostGroupConstants.USER_EXAMPLE[0],
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 15,
@@ -304,7 +303,7 @@ class _CreatePostGroupPageState extends State<CreatePostGroupPage> {
                                         width: 10,
                                       ),
                                       Text(
-                                        CreatePostGroupCommon.USER_EXAMPLE[1],
+                                        CreatePostGroupConstants.USER_EXAMPLE[1],
                                         style: TextStyle(
                                             color: Colors.grey, fontSize: 13),
                                       ),
@@ -326,7 +325,7 @@ class _CreatePostGroupPageState extends State<CreatePostGroupPage> {
                                     style: BorderStyle.solid),
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(5))),
-                            child: Text(CreatePostGroupCommon.USER_EXAMPLE[1],
+                            child: Text(CreatePostGroupConstants.USER_EXAMPLE[1],
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 13,
@@ -345,7 +344,7 @@ class _CreatePostGroupPageState extends State<CreatePostGroupPage> {
                         ),
                         color: Colors.grey[800]),
                     child: Image.asset(
-                      CommonGroup.PATH_IMG + "cat_1.png",
+                      GroupConstants.PATH_IMG + "cat_1.png",
                       color: Colors.white,
                     ),
                   ),
@@ -368,7 +367,7 @@ class _CreatePostGroupPageState extends State<CreatePostGroupPage> {
                   style: TextStyle(
                       color: Colors.white, overflow: TextOverflow.visible),
                   decoration: InputDecoration(
-                      hintText: CreatePostGroupCommon.PLACEHOLDER_LIST[0],
+                      hintText: CreatePostGroupConstants.PLACEHOLDER_LIST[0],
                       hintStyle: TextStyle(color: Colors.grey, fontSize: 20),
                       border: InputBorder.none,
                       fillColor: Colors.transparent,
@@ -382,7 +381,7 @@ class _CreatePostGroupPageState extends State<CreatePostGroupPage> {
               //     width: width,
               //     color: Colors.white,
               //     child: Image.asset(
-              //       CommonGroup.PATH_IMG + "back_1.jpg",
+              //       ConstantsGroup.PATH_IMG + "back_1.jpg",
               //       fit: BoxFit.fitWidth,
               //     )),
             ],

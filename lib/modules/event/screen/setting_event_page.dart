@@ -1,8 +1,6 @@
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:self_facebook_project/general/common_event.dart';
+import 'package:self_facebook_project/general/event_constants.dart';
 import 'package:self_facebook_project/modules/event/widget/information_user_event_widget.dart';
 
 class SettingEventPage extends StatefulWidget {
@@ -30,7 +28,7 @@ class _SettingEventPageState extends State<SettingEventPage> {
                     Navigator.of(context).pop();
                   }),
                   child: Icon(
-                    CommonEvent.ICON_PRIVIOUS,
+                    EventConstants.ICON_PRIVIOUS,
                     color: Colors.grey,
                     size: 18,
                   ),
@@ -45,7 +43,7 @@ class _SettingEventPageState extends State<SettingEventPage> {
             child: Row(
               children: [
                 Text(
-                  SettingEventCommon.SETTING_TITLE,
+                  SettingEventConstants.SETTING_TITLE,
                   style: const TextStyle(
                       color: Colors.white,
                       fontSize: 23,
@@ -61,7 +59,7 @@ class _SettingEventPageState extends State<SettingEventPage> {
             child: InformationUserEventWidget(
               [
                 Text(
-                  SettingEventCommon.CO_ORGANIZER[1],
+                  SettingEventConstants.CO_ORGANIZER[1],
                   style: TextStyle(color: Colors.white, fontSize: 15),
                 ),
               ],
@@ -73,12 +71,12 @@ class _SettingEventPageState extends State<SettingEventPage> {
                       color: Colors.grey[700],
                       borderRadius: BorderRadius.all(Radius.circular(20))),
                   child: Icon(
-                    SettingEventCommon.CO_ORGANIZER[0],
+                    SettingEventConstants.CO_ORGANIZER[0],
                     color: Colors.white,
                     size: 15,
                   )),
               suffixWidget: Icon(
-                CommonEvent.ICON_DATA_NEXT,
+                EventConstants.ICON_DATA_NEXT,
                 color: Colors.grey,
                 size: 20,
               ),
@@ -96,7 +94,7 @@ class _SettingEventPageState extends State<SettingEventPage> {
                 Container(
                   width: 280,
                   child: Text(
-                    SettingEventCommon.SHARE_LINK_CONTENT,
+                    SettingEventConstants.SHARE_LINK_CONTENT,
                     style: TextStyle(color: Colors.white, fontSize: 17),
                   ),
                 ),
@@ -122,7 +120,7 @@ class _SettingEventPageState extends State<SettingEventPage> {
             child: Wrap(
               children: [
                 Text(
-                  SettingEventCommon.DESCRIPTION_FOR_SHARE_LINK_CONTENT,
+                  SettingEventConstants.DESCRIPTION_FOR_SHARE_LINK_CONTENT,
                   style: const TextStyle(
                     color: Colors.grey,
                     fontSize: 13,

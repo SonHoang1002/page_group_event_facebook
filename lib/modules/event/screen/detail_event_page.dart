@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+// import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
-import 'package:self_facebook_project/general/common_event.dart';
+import 'package:self_facebook_project/general/event_constants.dart';
 import 'package:self_facebook_project/modules/event/blocs/selection_private_event_bloc.dart';
 import 'package:self_facebook_project/modules/event/screen/location_event_page.dart';
 import 'package:self_facebook_project/modules/event/widget/information_user_event_widget.dart';
@@ -17,12 +17,12 @@ class DetailEventPage extends StatefulWidget {
 
 class _DetailEventPageState extends State<DetailEventPage> {
   List<dynamic> listRadio =
-      DetailEventCommon.SELECTION_FOR_PRIVATE_OF_EVENT.map((e) {
+      DetailEventConstants.SELECTION_FOR_PRIVATE_OF_EVENT.map((e) {
     return e[1];
   }).toList();
 
   List<dynamic> listSelectionGroup =
-      DetailEventCommon.SELECTION_FOR_CHOOSE_GROUP_EVENT.map((e) {
+      DetailEventConstants.SELECTION_FOR_CHOOSE_GROUP_EVENT.map((e) {
     return e[1];
   }).toList();
 
@@ -77,7 +77,7 @@ class _DetailEventPageState extends State<DetailEventPage> {
                                 Navigator.of(context).pop();
                               }),
                               child: Icon(
-                                CommonEvent.ICON_PRIVIOUS,
+                                EventConstants.ICON_PRIVIOUS,
                                 color: Colors.grey,
                                 size: 18,
                               ),
@@ -86,7 +86,7 @@ class _DetailEventPageState extends State<DetailEventPage> {
                           Container(
                             margin: EdgeInsets.only(right: 10),
                             child: Text(
-                              CommonEvent.CANCEL,
+                              EventConstants.CANCEL,
                               style: TextStyle(
                                   color: Colors.grey[200], fontSize: 18),
                             ),
@@ -100,7 +100,7 @@ class _DetailEventPageState extends State<DetailEventPage> {
                     child: Row(
                       children: [
                         Text(
-                          DetailEventCommon.DETAIL_EVENT_TITLE,
+                          DetailEventConstants.DETAIL_EVENT_TITLE,
                           style: TextStyle(
                               fontSize: 27,
                               fontWeight: FontWeight.bold,
@@ -116,7 +116,7 @@ class _DetailEventPageState extends State<DetailEventPage> {
                   //user example
                   InformationUserEventWidget(
                     [
-                      Text(DetailEventCommon.USER_EXAMPLE[1],
+                      Text(DetailEventConstants.USER_EXAMPLE[1],
                           style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
@@ -124,7 +124,7 @@ class _DetailEventPageState extends State<DetailEventPage> {
                       SizedBox(
                         height: 5,
                       ),
-                      Text(DetailEventCommon.USER_EXAMPLE[2],
+                      Text(DetailEventConstants.USER_EXAMPLE[2],
                           style: TextStyle(fontSize: 16, color: Colors.grey)),
                     ],
                     prefixWidget: Container(
@@ -134,7 +134,8 @@ class _DetailEventPageState extends State<DetailEventPage> {
                         decoration: BoxDecoration(
                             borderRadius:
                                 BorderRadius.all(Radius.circular(20))),
-                        child: Image.asset(DetailEventCommon.USER_EXAMPLE[0])),
+                        child:
+                            Image.asset(DetailEventConstants.USER_EXAMPLE[0])),
                     changeBackground: Colors.transparent,
                     padding: EdgeInsets.zero,
                   ),
@@ -159,8 +160,9 @@ class _DetailEventPageState extends State<DetailEventPage> {
                                   BorderRadius.all(Radius.circular(5))),
                           contentPadding: EdgeInsets.fromLTRB(10, 0, 0, 0),
                           border: InputBorder.none,
-                          hintText: DetailEventCommon.EVENT_NAME_PLACEHOLDER,
-                          labelText: DetailEventCommon.EVENT_NAME_PLACEHOLDER,
+                          hintText: DetailEventConstants.EVENT_NAME_PLACEHOLDER,
+                          labelText:
+                              DetailEventConstants.EVENT_NAME_PLACEHOLDER,
                           labelStyle: TextStyle(color: Colors.white),
                           hintStyle: TextStyle(color: Colors.white)),
                     ),
@@ -193,8 +195,10 @@ class _DetailEventPageState extends State<DetailEventPage> {
                                   BorderRadius.all(Radius.circular(5))),
                           contentPadding: EdgeInsets.fromLTRB(10, 0, 0, 0),
                           border: InputBorder.none,
-                          hintText: DetailEventCommon.DAY_AND_TIME_BEGIN_TITLE,
-                          labelText: DetailEventCommon.DAY_AND_TIME_BEGIN_TITLE,
+                          hintText:
+                              DetailEventConstants.DAY_AND_TIME_BEGIN_TITLE,
+                          labelText:
+                              DetailEventConstants.DAY_AND_TIME_BEGIN_TITLE,
                           labelStyle: TextStyle(color: Colors.white),
                           hintStyle: TextStyle(color: Colors.white)),
                     ),
@@ -227,9 +231,9 @@ class _DetailEventPageState extends State<DetailEventPage> {
                                     EdgeInsets.fromLTRB(10, 0, 0, 0),
                                 border: InputBorder.none,
                                 hintText:
-                                    DetailEventCommon.DAY_AND_TIME_END_TITLE,
+                                    DetailEventConstants.DAY_AND_TIME_END_TITLE,
                                 labelText:
-                                    DetailEventCommon.DAY_AND_TIME_END_TITLE,
+                                    DetailEventConstants.DAY_AND_TIME_END_TITLE,
                                 labelStyle: TextStyle(color: Colors.white),
                                 hintStyle: TextStyle(color: Colors.white)),
                           ),
@@ -253,7 +257,7 @@ class _DetailEventPageState extends State<DetailEventPage> {
                           child: Row(
                             children: [
                               Text(
-                                "+ ${DetailEventCommon.DAY_AND_TIME_END_TITLE}",
+                                "+ ${DetailEventConstants.DAY_AND_TIME_END_TITLE}",
                                 style: TextStyle(color: Colors.blue),
                               )
                             ],
@@ -280,7 +284,7 @@ class _DetailEventPageState extends State<DetailEventPage> {
                     },
                     child: InformationUserEventWidget(
                       [
-                        Text(DetailEventCommon.PRIVATE_RULE_COMPONENT[1],
+                        Text(DetailEventConstants.PRIVATE_RULE_COMPONENT[1],
                             style: TextStyle(
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold,
@@ -297,7 +301,8 @@ class _DetailEventPageState extends State<DetailEventPage> {
                                         context)
                                     .state
                                     .selection
-                                : DetailEventCommon.PRIVATE_RULE_COMPONENT[2],
+                                : DetailEventConstants
+                                    .PRIVATE_RULE_COMPONENT[2],
                             style: TextStyle(fontSize: 16, color: Colors.grey)),
                       ],
                       prefixWidget: Container(
@@ -309,7 +314,7 @@ class _DetailEventPageState extends State<DetailEventPage> {
                               borderRadius:
                                   BorderRadius.all(Radius.circular(20))),
                           child: Icon(
-                            DetailEventCommon.PRIVATE_RULE_COMPONENT[0],
+                            DetailEventConstants.PRIVATE_RULE_COMPONENT[0],
                             color: Colors.white,
                             size: 15,
                           )),
@@ -319,7 +324,7 @@ class _DetailEventPageState extends State<DetailEventPage> {
                         alignment: Alignment.centerRight,
                         margin: EdgeInsets.only(right: 10),
                         child: Icon(
-                          CommonEvent.ICON_DATA_NEXT,
+                          EventConstants.ICON_DATA_NEXT,
                           color: Colors.white,
                           size: 13,
                         ),
@@ -402,7 +407,7 @@ class _DetailEventPageState extends State<DetailEventPage> {
                                                 LocationEventPage()));
                                   }
                                 },
-                                child: Text(CommonEvent.NEXT)),
+                                child: Text(EventConstants.NEXT)),
                           ),
                           const SizedBox(
                             height: 5,
@@ -459,7 +464,7 @@ class _DetailEventPageState extends State<DetailEventPage> {
                       Container(
                           child: Center(
                         child: Text(
-                          DetailEventCommon.PRIVATE_OF_EVENT,
+                          DetailEventConstants.PRIVATE_OF_EVENT,
                           style: TextStyle(color: Colors.white, fontSize: 18),
                         ),
                       )),
@@ -476,7 +481,7 @@ class _DetailEventPageState extends State<DetailEventPage> {
                 Container(
                     child: Center(
                   child: Text(
-                    DetailEventCommon.DESCRIPTION_FOR_PRIVATE_OF_EVENT,
+                    DetailEventConstants.DESCRIPTION_FOR_PRIVATE_OF_EVENT,
                     style: TextStyle(color: Colors.grey, fontSize: 16),
                   ),
                 )),
@@ -488,17 +493,17 @@ class _DetailEventPageState extends State<DetailEventPage> {
                   return Container(
                     height: 200,
                     child: ListView.builder(
-                        itemCount: DetailEventCommon
+                        itemCount: DetailEventConstants
                             .SELECTION_FOR_PRIVATE_OF_EVENT.length,
                         itemBuilder: ((context, index) {
                           return GestureDetector(
                             onTap: (() {
                               context.read<SelectionPrivateEventBloc>().add(
                                   UpdateSelectionPrivateEventEvent(
-                                      DetailEventCommon
+                                      DetailEventConstants
                                               .SELECTION_FOR_PRIVATE_OF_EVENT[
                                           index][1]));
-                              if (DetailEventCommon
+                              if (DetailEventConstants
                                           .SELECTION_FOR_PRIVATE_OF_EVENT[index]
                                       [1] ==
                                   "Nhóm") {
@@ -510,7 +515,7 @@ class _DetailEventPageState extends State<DetailEventPage> {
                             child: InformationUserEventWidget(
                               [
                                 Text(
-                                  DetailEventCommon
+                                  DetailEventConstants
                                       .SELECTION_FOR_PRIVATE_OF_EVENT[index][1],
                                   style: TextStyle(
                                       color: Colors.white,
@@ -518,7 +523,7 @@ class _DetailEventPageState extends State<DetailEventPage> {
                                       fontWeight: FontWeight.bold),
                                 ),
                                 Text(
-                                  DetailEventCommon
+                                  DetailEventConstants
                                       .SELECTION_FOR_PRIVATE_OF_EVENT[index][2],
                                   style: TextStyle(
                                     color: Colors.grey,
@@ -535,7 +540,7 @@ class _DetailEventPageState extends State<DetailEventPage> {
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(20))),
                                 child: Icon(
-                                  DetailEventCommon
+                                  DetailEventConstants
                                       .SELECTION_FOR_PRIVATE_OF_EVENT[index][0],
                                   color: Colors.white,
                                   size: 14,
@@ -549,7 +554,7 @@ class _DetailEventPageState extends State<DetailEventPage> {
                                 onChanged: ((value) {
                                   context.read<SelectionPrivateEventBloc>().add(
                                       UpdateSelectionPrivateEventEvent(
-                                          DetailEventCommon
+                                          DetailEventConstants
                                                   .SELECTION_FOR_PRIVATE_OF_EVENT[
                                               index][1]));
                                   setStateFull(() {});
@@ -663,7 +668,7 @@ class _DetailEventPageState extends State<DetailEventPage> {
                     Container(
                         child: Center(
                       child: Text(
-                        DetailEventCommon.SELECTION_GROUP,
+                        DetailEventConstants.SELECTION_GROUP,
                         style: TextStyle(color: Colors.white, fontSize: 18),
                       ),
                     )),
@@ -680,13 +685,13 @@ class _DetailEventPageState extends State<DetailEventPage> {
               Container(
                 height: 335,
                 child: ListView.builder(
-                    itemCount: DetailEventCommon
+                    itemCount: DetailEventConstants
                         .SELECTION_FOR_CHOOSE_GROUP_EVENT.length,
                     itemBuilder: ((context1, index) {
                       return InformationUserEventWidget(
                         [
                           Text(
-                            DetailEventCommon
+                            DetailEventConstants
                                 .SELECTION_FOR_CHOOSE_GROUP_EVENT[index][1],
                             style: TextStyle(
                                 color: Colors.white,
@@ -694,7 +699,7 @@ class _DetailEventPageState extends State<DetailEventPage> {
                                 fontWeight: FontWeight.bold),
                           ),
                           Text(
-                            DetailEventCommon
+                            DetailEventConstants
                                 .SELECTION_FOR_CHOOSE_GROUP_EVENT[index][2],
                             style: TextStyle(
                               color: Colors.grey,
@@ -711,7 +716,7 @@ class _DetailEventPageState extends State<DetailEventPage> {
                               borderRadius:
                                   BorderRadius.all(Radius.circular(10))),
                           child: Image.asset(
-                            DetailEventCommon
+                            DetailEventConstants
                                 .SELECTION_FOR_CHOOSE_GROUP_EVENT[index][0],
                           ),
                         ),
@@ -745,14 +750,14 @@ class _DetailEventPageState extends State<DetailEventPage> {
 
   // bottom sheet show day and time table for user  choose for day and time input
   _showBottomSheetDayAndTimePicker(BuildContext context) {
-    showMaterialModalBottomSheet(
+    showModalBottomSheet(
         backgroundColor: Colors.grey[900],
         context: context,
         builder: (context) {
           return StatefulBuilder(builder: (context, setStateFull) {
             return Container(
               padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-              height: height,
+              height: 600,
               decoration: BoxDecoration(
                   color: Colors.grey[900],
                   borderRadius: BorderRadius.only(

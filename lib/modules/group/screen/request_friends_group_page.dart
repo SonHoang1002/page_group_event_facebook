@@ -1,12 +1,10 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/gestures.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
-import 'package:self_facebook_project/general/common_event.dart';
-import 'package:self_facebook_project/general/common_group.dart';
+// import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+import 'package:self_facebook_project/general/group_constants.dart';
 import 'package:self_facebook_project/modules/group/blocs/hide_group_bloc.dart';
 import 'package:self_facebook_project/modules/group/blocs/select_private_rule_bloc.dart';
 import 'package:self_facebook_project/modules/group/export_group_page.dart';
@@ -54,7 +52,7 @@ class _RequestFriendsGroupPageState extends State<RequestFriendsGroupPage> {
                       children: [
                         Center(
                             child: Text(
-                          RequestFriendsGroupCommon.TITLE_APPBAR,
+                          RequestFriendsGroupConstants.TITLE_APPBAR,
                           style: TextStyle(color: Colors.white, fontSize: 17),
                         )),
                         SizedBox(
@@ -111,7 +109,7 @@ class _RequestFriendsGroupPageState extends State<RequestFriendsGroupPage> {
                                   // build email widget
                                   InformationUserGroupWidget([
                                     Text(
-                                      RequestFriendsGroupCommon
+                                      RequestFriendsGroupConstants
                                           .EMAIL_REQUEST_TITLE,
                                       style: TextStyle(
                                           color: Colors.white,
@@ -121,7 +119,7 @@ class _RequestFriendsGroupPageState extends State<RequestFriendsGroupPage> {
                                     Container(
                                       margin: EdgeInsets.only(),
                                       child: Text(
-                                          RequestFriendsGroupCommon
+                                          RequestFriendsGroupConstants
                                               .EMAIL_REQUEST_SUBTITLE,
                                           style: TextStyle(
                                               color: Colors.white,
@@ -254,7 +252,7 @@ class _RequestFriendsGroupPageState extends State<RequestFriendsGroupPage> {
                                   InformationUserGroupWidget(
                                     [
                                       Text(
-                                        RequestFriendsGroupCommon
+                                        RequestFriendsGroupConstants
                                             .EMAIL_REQUEST_TITLE,
                                         style: TextStyle(
                                             color: Colors.white,
@@ -264,7 +262,7 @@ class _RequestFriendsGroupPageState extends State<RequestFriendsGroupPage> {
                                       Container(
                                         margin: EdgeInsets.only(),
                                         child: Text(
-                                            RequestFriendsGroupCommon
+                                            RequestFriendsGroupConstants
                                                 .EMAIL_REQUEST_SUBTITLE,
                                             style: TextStyle(
                                                 color: Colors.white,
@@ -284,7 +282,7 @@ class _RequestFriendsGroupPageState extends State<RequestFriendsGroupPage> {
                                   Row(
                                     children: [
                                       Text(
-                                        RequestFriendsGroupCommon
+                                        RequestFriendsGroupConstants
                                             .PRIVATE_TITLE[0],
                                         style: const TextStyle(
                                             color: Colors.white,
@@ -298,7 +296,7 @@ class _RequestFriendsGroupPageState extends State<RequestFriendsGroupPage> {
                                   ),
                                   // request friend subtitle
                                   Text(
-                                      RequestFriendsGroupCommon
+                                      RequestFriendsGroupConstants
                                           .PRIVATE_SUB_TITLE[0],
                                       style: const TextStyle(
                                           color: Colors.white, fontSize: 21)),
@@ -309,7 +307,7 @@ class _RequestFriendsGroupPageState extends State<RequestFriendsGroupPage> {
                                   Row(
                                     children: [
                                       Text(
-                                        RequestFriendsGroupCommon
+                                        RequestFriendsGroupConstants
                                             .PRIVATE_TITLE[1],
                                         style: const TextStyle(
                                             color: Colors.white,
@@ -323,7 +321,7 @@ class _RequestFriendsGroupPageState extends State<RequestFriendsGroupPage> {
                                   ),
                                   // request friend subtitle 2
                                   Text(
-                                      RequestFriendsGroupCommon
+                                      RequestFriendsGroupConstants
                                           .PRIVATE_SUB_TITLE[1],
                                       style: const TextStyle(
                                           color: Colors.white, fontSize: 16)),
@@ -336,7 +334,7 @@ class _RequestFriendsGroupPageState extends State<RequestFriendsGroupPage> {
                                       RichText(
                                           text: TextSpan(children: [
                                         TextSpan(
-                                            text: RequestFriendsGroupCommon
+                                            text: RequestFriendsGroupConstants
                                                 .PRIVATE_LINK_EXAMPLE,
                                             style: TextStyle(
                                                 color: Colors.grey[400],
@@ -349,7 +347,7 @@ class _RequestFriendsGroupPageState extends State<RequestFriendsGroupPage> {
                                       RichText(
                                           text: TextSpan(children: [
                                         TextSpan(
-                                            text: RequestFriendsGroupCommon
+                                            text: RequestFriendsGroupConstants
                                                 .PRIVATE_DESCRIPTION_FOR_LINK_EXAMPLE,
                                             style: TextStyle(
                                               color: Colors.grey[400],
@@ -360,7 +358,7 @@ class _RequestFriendsGroupPageState extends State<RequestFriendsGroupPage> {
                                     prefixWidget: GestureDetector(
                                       onTap: () {
                                         Clipboard.setData(ClipboardData(
-                                            text: RequestFriendsGroupCommon
+                                            text: RequestFriendsGroupConstants
                                                 .PRIVATE_LINK_EXAMPLE));
                                       },
                                       child: Container(
@@ -404,7 +402,7 @@ class _RequestFriendsGroupPageState extends State<RequestFriendsGroupPage> {
                                 fillColor: Colors.grey[800],
                                 filled: true,
                                 contentPadding: EdgeInsets.fromLTRB(0, 5, 0, 0),
-                                hintText: RequestFriendsGroupCommon
+                                hintText: RequestFriendsGroupConstants
                                     .PLACEHOLDER_LIST[0],
                                 hintStyle:
                                     TextStyle(color: Colors.grey, fontSize: 14),
@@ -420,7 +418,7 @@ class _RequestFriendsGroupPageState extends State<RequestFriendsGroupPage> {
                         Row(
                           children: [
                             Text(
-                              RequestFriendsGroupCommon.PUBLIC_TITLE[3],
+                              RequestFriendsGroupConstants.PUBLIC_TITLE[3],
                               style: const TextStyle(
                                   color: Colors.white,
                                   fontSize: 20,
@@ -448,7 +446,7 @@ class _RequestFriendsGroupPageState extends State<RequestFriendsGroupPage> {
                                       height: 100,
                                       margin: EdgeInsets.only(bottom: 10),
                                       child: Image.asset(
-                                          CommonGroup.PATH_IMG + "cat_1.png",
+                                          GroupConstants.PATH_IMG + "cat_1.png",
                                           fit: BoxFit.fitWidth),
                                     ),
                                     Container(
@@ -529,7 +527,7 @@ class _RequestFriendsGroupPageState extends State<RequestFriendsGroupPage> {
                                               ),
                                               color: Colors.grey[800]),
                                           child: Image.asset(
-                                              RequestFriendsGroupCommon
+                                              RequestFriendsGroupConstants
                                                   .IMG_PATH_LIST[index])),
                                       padding: EdgeInsets.zero,
                                     ));
@@ -554,7 +552,7 @@ class _RequestFriendsGroupPageState extends State<RequestFriendsGroupPage> {
                         Navigator.of(context).push(MaterialPageRoute(
                             builder: (_) => CoverImageGroupPage()));
                       },
-                      child: Text(CommonGroup.NEXT)),
+                      child: Text(GroupConstants.NEXT)),
                 ),
               )
             ]),
@@ -564,7 +562,7 @@ class _RequestFriendsGroupPageState extends State<RequestFriendsGroupPage> {
 }
 
 _showBottomSheetForShareComponent(BuildContext context) {
-  showMaterialModalBottomSheet(
+  showModalBottomSheet(
       backgroundColor: Colors.transparent,
       context: context,
       builder: (context) {
@@ -635,13 +633,13 @@ _showBottomSheetForShareComponent(BuildContext context) {
                 // height: 100,
                 child: ListView.builder(
                     padding: EdgeInsets.zero,
-                    itemCount: RequestFriendsGroupCommon
+                    itemCount: RequestFriendsGroupConstants
                         .SHARE_BOTTOM_SHEET_CONTENT_LIST.length,
                     itemBuilder: ((context, index) {
                       return InformationUserGroupWidget(
                         [
                           Text(
-                            RequestFriendsGroupCommon
+                            RequestFriendsGroupConstants
                                 .SHARE_BOTTOM_SHEET_CONTENT_LIST[index][1],
                             style: TextStyle(
                                 color: Colors.white,
@@ -661,7 +659,7 @@ _showBottomSheetForShareComponent(BuildContext context) {
                               ),
                               color: Colors.grey[800]),
                           child: Icon(
-                            RequestFriendsGroupCommon
+                            RequestFriendsGroupConstants
                                 .SHARE_BOTTOM_SHEET_CONTENT_LIST[index][0],
                             color: Colors.white,
                             size: 14,
@@ -780,12 +778,12 @@ _showBottomSheetSelectionGroupForRequestFriend(
             Expanded(
               child: ListView.builder(
                   itemCount:
-                      DetailEventCommon.SELECTION_FOR_CHOOSE_GROUP_EVENT.length,
+                      RequestFriendsGroupConstants.SELECTION_FOR_CHOOSE_GROUP_GROUP.length,
                   itemBuilder: ((context1, index) {
                     return InformationUserGroupWidget(
                       [
                         Text(
-                          RequestFriendsGroupCommon
+                          RequestFriendsGroupConstants
                               .SELECTION_FOR_CHOOSE_GROUP_GROUP[index][1],
                           style: TextStyle(
                               color: Colors.white,
@@ -793,7 +791,7 @@ _showBottomSheetSelectionGroupForRequestFriend(
                               fontWeight: FontWeight.bold),
                         ),
                         Text(
-                          RequestFriendsGroupCommon
+                          RequestFriendsGroupConstants
                               .SELECTION_FOR_CHOOSE_GROUP_GROUP[index][2],
                           style: TextStyle(
                             color: Colors.grey,
@@ -810,7 +808,7 @@ _showBottomSheetSelectionGroupForRequestFriend(
                             borderRadius:
                                 BorderRadius.all(Radius.circular(10))),
                         child: Image.asset(
-                          RequestFriendsGroupCommon
+                          RequestFriendsGroupConstants
                               .SELECTION_FOR_CHOOSE_GROUP_GROUP[index][0],
                         ),
                       ),
@@ -838,7 +836,7 @@ _showBottomSheetSelectionGroupForRequestFriend(
 }
 
 _showBottomSheetForRequestFriendByEmail(BuildContext context, double height) {
-  showMaterialModalBottomSheet(
+  showModalBottomSheet(
       backgroundColor: Colors.transparent,
       context: context,
       builder: (context) {

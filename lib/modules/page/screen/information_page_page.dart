@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
-import 'package:self_facebook_project/general/common_page.dart';
+// import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+import 'package:self_facebook_project/general/page_constants.dart';
 import 'package:self_facebook_project/modules/page/blocs/current_number_page.dart';
 import 'package:self_facebook_project/modules/page/blocs/name_bloc.dart';
 import 'package:self_facebook_project/modules/page/blocs/select_province_page_bloc.dart';
@@ -64,7 +64,7 @@ class _InformationPagePageState extends State<InformationPagePage> {
                             Row(
                               children: [
                                 Text(
-                                  InformationPageCommon.TITLE_INFO[0],
+                                  InformationPageConstants.TITLE_INFO[0],
                                   style: const TextStyle(
                                       color: Colors.white,
                                       fontSize: 20,
@@ -76,7 +76,7 @@ class _InformationPagePageState extends State<InformationPagePage> {
                               height: 10,
                             ),
                             // congratulation subtitle
-                            Text(InformationPageCommon.TITLE_INFO[1],
+                            Text(InformationPageConstants.TITLE_INFO[1],
                                 style: const TextStyle(
                                     color: Colors.white, fontSize: 18)),
                             const SizedBox(
@@ -84,9 +84,9 @@ class _InformationPagePageState extends State<InformationPagePage> {
                             ),
                             // chung
                             _buildTitlePart(CupertinoIcons.info_circle_fill,
-                                [InformationPageCommon.TITLE_INFO[2]]),
+                                [InformationPageConstants.TITLE_INFO[2]]),
                             _buildTextFormField(
-                                InformationPageCommon.PLACEHOLDER_INFO[0]),
+                                InformationPageConstants.PLACEHOLDER_INFO[0]),
                             // mo ta ve trang cua ban
                             Container(
                               margin: EdgeInsets.only(top: 10),
@@ -104,50 +104,50 @@ class _InformationPagePageState extends State<InformationPagePage> {
                             // Thong tin lien he
                             // trang web input
                             _buildTitlePart(Icons.person,
-                                [InformationPageCommon.TITLE_INFO[3]]),
+                                [InformationPageConstants.TITLE_INFO[3]]),
                             _buildTextFormField(
-                                InformationPageCommon.PLACEHOLDER_INFO[1]),
+                                InformationPageConstants.PLACEHOLDER_INFO[1]),
                             SizedBox(
                               height: 10,
                             ),
                             //email input
                             _buildTextFormField(
-                                InformationPageCommon.PLACEHOLDER_INFO[2]),
+                                InformationPageConstants.PLACEHOLDER_INFO[2]),
                             SizedBox(
                               height: 10,
                             ),
                             //sdt input
                             _buildTextFormField(
-                                InformationPageCommon.PLACEHOLDER_INFO[3]),
+                                InformationPageConstants.PLACEHOLDER_INFO[3]),
                             SizedBox(
                               height: 10,
                             ),
                       
                             // Vi tri title
                             _buildTitlePart(Icons.location_on,
-                                [InformationPageCommon.TITLE_INFO[4]]),
+                                [InformationPageConstants.TITLE_INFO[4]]),
                             //vi tri input
                             _buildTextFormField(
-                                InformationPageCommon.PLACEHOLDER_INFO[4]),
+                                InformationPageConstants.PLACEHOLDER_INFO[4]),
                             SizedBox(
                               height: 10,
                             ),
                             // tinh, thanh pho input
                             _buildProviceInput(context,
-                                InformationPageCommon.PLACEHOLDER_INFO[5]),
+                                InformationPageConstants.PLACEHOLDER_INFO[5]),
                             SizedBox(
                               height: 10,
                             ),
                             // ma zip input
                             _buildTextFormField(
-                                InformationPageCommon.PLACEHOLDER_INFO[6]),
+                                InformationPageConstants.PLACEHOLDER_INFO[6]),
                             SizedBox(
                               height: 10,
                             ),
                             // gio lam viec
                             _buildTitlePart(Icons.timelapse_rounded, [
-                              InformationPageCommon.TITLE_INFO[5],
-                              InformationPageCommon.SUB_TITLE_WORK_TIME
+                              InformationPageConstants.TITLE_INFO[5],
+                              InformationPageConstants.SUB_TITLE_WORK_TIME
                             ]),
                             // ko co gio lam viec
                             _buildRadioWorkTime(0),
@@ -185,8 +185,8 @@ class _InformationPagePageState extends State<InformationPagePage> {
                               MaterialPageRoute(builder: (_) => AvatarPage()));
                         },
                         child: Text(currentNumberPage == 7
-                            ? CommonPage.DONE
-                            : CommonPage.NEXT)),
+                            ? PageConstants.DONE
+                            : PageConstants.NEXT)),
                   ),
                   const SizedBox(
                     height: 5,
@@ -269,13 +269,13 @@ class _InformationPagePageState extends State<InformationPagePage> {
       // controller: controller,
       onChanged: ((value) {}),
       validator: (value) {
-        if(placeHolder == InformationPageCommon.PLACEHOLDER_INFO[1]){
+        if(placeHolder == InformationPageConstants.PLACEHOLDER_INFO[1]){
           // validate web link
-        }else if(placeHolder ==InformationPageCommon.PLACEHOLDER_INFO[2]){
+        }else if(placeHolder ==InformationPageConstants.PLACEHOLDER_INFO[2]){
           // validate web link
-        }else if(placeHolder ==InformationPageCommon.PLACEHOLDER_INFO[3]){
+        }else if(placeHolder ==InformationPageConstants.PLACEHOLDER_INFO[3]){
           // validate phone 
-        }else if(placeHolder ==InformationPageCommon.PLACEHOLDER_INFO[6]){
+        }else if(placeHolder ==InformationPageConstants.PLACEHOLDER_INFO[6]){
           // validate ma zip
         }else{
 
@@ -283,7 +283,7 @@ class _InformationPagePageState extends State<InformationPagePage> {
       },
       style: const TextStyle(color: Colors.white),
       decoration: InputDecoration(
-          suffix: placeHolder == InformationPageCommon.PLACEHOLDER_INFO[5]
+          suffix: placeHolder == InformationPageConstants.PLACEHOLDER_INFO[5]
               ? Icon(
                   // Icons.next_plan,
                   CupertinoIcons.greaterthan,
@@ -308,11 +308,11 @@ class _InformationPagePageState extends State<InformationPagePage> {
     return RadioListTile(
       groupValue: currentValue,
       title: Text(
-        InformationPageCommon.CONTENT_OF_WORK_TIME[indexOfRadio][0],
+        InformationPageConstants.CONTENT_OF_WORK_TIME[indexOfRadio][0],
         style: TextStyle(color: Colors.white, fontSize: 17),
       ),
       subtitle: Text(
-        InformationPageCommon.CONTENT_OF_WORK_TIME[indexOfRadio][1],
+        InformationPageConstants.CONTENT_OF_WORK_TIME[indexOfRadio][1],
         style: TextStyle(color: Colors.grey, fontSize: 15),
       ),
       onChanged: ((value) {
@@ -353,7 +353,7 @@ class _InformationPagePageState extends State<InformationPagePage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: listValue.map(
                   (value) {
-                    if (value == InformationPageCommon.SUB_TITLE_WORK_TIME) {
+                    if (value == InformationPageConstants.SUB_TITLE_WORK_TIME) {
                       return Row(
                         children: [
                           Text(value,
@@ -378,7 +378,7 @@ class _InformationPagePageState extends State<InformationPagePage> {
   }
 
   _showBottomSheetForSelectProvince(BuildContext context) {
-    showMaterialModalBottomSheet(
+    showModalBottomSheet(
         backgroundColor: Colors.transparent,
         context: context,
         builder: (context) {
@@ -418,6 +418,7 @@ class _InformationPagePageState extends State<InformationPagePage> {
                         context
                             .read<SelectProvinceBloc>()
                             .add(UpdateSelectProvinceEvent(value));
+                            
                       }),
                       style: const TextStyle(color: Colors.white),
                       decoration: InputDecoration(

@@ -1,11 +1,11 @@
-class CommonPage {
+class PageConstants {
   static String PATH_IMG = "assets/images/";
   static const String NEXT = "Tiếp";
   static const String DONE = "Xong";
   static const String SKIP = "Bỏ qua";
 }
 
-class CategoryPageCommon {
+class CategoryPageConstants {
   static const List<String> QUESTION_NAME = [
     "Hạng mục nào mô tả chính xác nhất về NAME_OF_PAGE ?",
     "Nhờ hạng mục, mọi người sẽ tìm thấy Trang này trong kết quả tìm kiếm. Bạn có thể thêm đến 3 hạng mục",
@@ -168,7 +168,7 @@ class CategoryPageCommon {
   ];
 }
 
-class InformationPageCommon {
+class InformationPageConstants {
   static const List<String> TITLE_INFO = [
     "Hoàn tất thiết lập Trang của bạn",
     "Thành công rồi! Bạn đã tạo được NAME_OF_PAGE. Hãy bổ sung thông tin chi tiết để mọi người dễ dàng kết nối với bạn nhé",
@@ -207,7 +207,7 @@ class InformationPageCommon {
   ];
 }
 
-class AvatarPageCommon {
+class AvatarPageConstants {
   static const List<String> TITLE_AVATAR = [
     "Tùy chỉnh trang",
     "Ảnh đại diện của bạn là một trong những thứ đầu tiên mọi người nhìn thấy. Hãy thử dùng logo hoặc hình ảnh đơn giản khiến họ dễ liên tưởng dến bạn",
@@ -215,7 +215,7 @@ class AvatarPageCommon {
   ];
 }
 
-class PhonePageCommon {
+class PhonePageConstants {
   static const List<String> TITLE_PHONE = [
     "Kết nối WhatsApp với Trang của bạn",
     "Sau khi kết nối tài khoản WhatsApp, bạn có thể thêm nút để đối tượng của Trang nhắn tin cho bạn trên WhatsApp",
@@ -247,7 +247,7 @@ class PhonePageCommon {
   ];
 }
 
-class RequestFriendPageCommon {
+class RequestFriendPageConstants {
   static const List<String> TITLE_REQUEST = [
     "Xây dựng đối tượng cho Trang",
     "Hãy mời bạn bè kết nối với NAME_OF_PAGE để phát triển trang",
@@ -266,17 +266,17 @@ class RequestFriendPageCommon {
   static const FIRST_WORD_OF_PAGE_NAME = "B";
 
   static List<String> IMG_PATH_LIST = [
-    "${CommonPage.PATH_IMG}cat_1.png",
-    "${CommonPage.PATH_IMG}cat_2.png",
-    "${CommonPage.PATH_IMG}cat_3.png",
-    "${CommonPage.PATH_IMG}cat_4.png",
-    "${CommonPage.PATH_IMG}cat_5.png",
-    "${CommonPage.PATH_IMG}cat_6.png",
-    "${CommonPage.PATH_IMG}cat_7.png",
+    "${PageConstants.PATH_IMG}cat_1.png",
+    "${PageConstants.PATH_IMG}cat_2.png",
+    "${PageConstants.PATH_IMG}cat_3.png",
+    "${PageConstants.PATH_IMG}cat_4.png",
+    "${PageConstants.PATH_IMG}cat_5.png",
+    "${PageConstants.PATH_IMG}cat_6.png",
+    "${PageConstants.PATH_IMG}cat_7.png",
   ];
 }
 
-class SettingsPageCommon {
+class SettingsPageConstants {
   static const List<int> COUNTER_CONTENT = [0, 1];
   static const List<String> TITLE_SETTINGS = [
     "Luôn cập nhật thông tin về Trang của bạn",

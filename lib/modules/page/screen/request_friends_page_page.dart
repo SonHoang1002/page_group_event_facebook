@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:self_facebook_project/general/common_page.dart';
-import 'package:self_facebook_project/general/format_input.dart';
+import 'package:self_facebook_project/general/page_constants.dart';
 import 'package:self_facebook_project/modules/page/blocs/current_number_page.dart';
-import 'package:self_facebook_project/modules/page/blocs/name_bloc.dart';
 import 'package:self_facebook_project/modules/page/export_page.dart';
 import 'package:self_facebook_project/modules/page/model/name_model.dart';
 
@@ -57,7 +55,7 @@ class _RequestFriendsState extends State<RequestFriends> {
                                     BorderRadius.all(Radius.circular(25))),
                             child: Center(
                               child: Text(
-                                RequestFriendPageCommon.FIRST_WORD_OF_PAGE_NAME,
+                                RequestFriendPageConstants.FIRST_WORD_OF_PAGE_NAME,
                                 style: TextStyle(
                                     fontSize: 20, color: Colors.black),
                               ),
@@ -67,7 +65,7 @@ class _RequestFriendsState extends State<RequestFriends> {
                       ),
                       Center(
                         child: Text(
-                          RequestFriendPageCommon.TITLE_REQUEST[0],
+                          RequestFriendPageConstants.TITLE_REQUEST[0],
                           style: const TextStyle(
                               color: Colors.white,
                               fontSize: 20,
@@ -78,7 +76,7 @@ class _RequestFriendsState extends State<RequestFriends> {
                         height: 10,
                       ),
                       Center(
-                        child: Text(RequestFriendPageCommon.TITLE_REQUEST[1],
+                        child: Text(RequestFriendPageConstants.TITLE_REQUEST[1],
                             textAlign: TextAlign.center,
                             style: const TextStyle(
                                 color: Colors.white, fontSize: 16)),
@@ -93,7 +91,7 @@ class _RequestFriendsState extends State<RequestFriends> {
                           // color: Colors.red,
                           child: Center(
                             child: Stack(
-                                children: RequestFriendPageCommon.LIST_DEMO.map((e) {
+                                children: RequestFriendPageConstants.LIST_DEMO.map((e) {
                               return Container(
                                 margin: EdgeInsets.only(right: width * 0.25),
                                 child: Align(
@@ -109,7 +107,7 @@ class _RequestFriendsState extends State<RequestFriends> {
                                         color: Colors.white,
                                       ),
                                       child: Image.asset(
-                                        RequestFriendPageCommon.IMG_PATH_LIST[
+                                        RequestFriendPageConstants.IMG_PATH_LIST[
                                             int.parse(e.toStringAsFixed(0))],
                                         fit: BoxFit.contain,
                                       ),
@@ -125,7 +123,7 @@ class _RequestFriendsState extends State<RequestFriends> {
                               backgroundColor: Colors.blue),
                           onPressed: () {},
                           child: Text(
-                            RequestFriendPageCommon.TITLE_REQUEST[2],
+                            RequestFriendPageConstants.TITLE_REQUEST[2],
                             style: TextStyle(color: Colors.white, fontSize: 15),
                           )),
                     ],
@@ -154,7 +152,7 @@ class _RequestFriendsState extends State<RequestFriends> {
                           Navigator.of(context).push(MaterialPageRoute(
                               builder: (_) => SettingsPage()));
                         },
-                        child: Text(CommonPage.NEXT)),
+                        child: Text(PageConstants.NEXT)),
                   ),
                   const SizedBox(
                     height: 5,

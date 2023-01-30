@@ -42,7 +42,7 @@ dependencies:
   image_picker: ^0.8.5+3
   file_picker: ^5.0.1
   font_awesome_flutter: ^10.3.0
-  modal_bottom_sheet: ^2.1.2
+  # modal_bottom_sheet: ^2.1.2
   flutter_svg: ^1.1.6
   table_calendar: ^3.0.9
   flutter_cupertino_date_picker: ^1.0.26+2

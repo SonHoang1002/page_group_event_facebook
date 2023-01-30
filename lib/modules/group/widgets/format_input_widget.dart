@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:self_facebook_project/general/common_group.dart';
+import 'package:self_facebook_project/general/group_constants.dart';
 import 'package:self_facebook_project/modules/group/blocs/hide_group_bloc.dart';
 import 'package:self_facebook_project/modules/group/blocs/select_private_rule_bloc.dart';
 import 'package:self_facebook_project/modules/group/export_group_page.dart';
@@ -26,7 +26,7 @@ Widget buildEmptyInput(BuildContext context) {
                 SizedBox(
                   width: 10,
                 ),
-                Text(CreateGroupCommon.PLACEHOLDER_LIST[1],
+                Text(CreateGroupConstants.PLACEHOLDER_LIST[1],
                     style: TextStyle(color: Colors.grey, fontSize: 16)),
               ],
             ),

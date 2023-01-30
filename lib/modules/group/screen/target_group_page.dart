@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:self_facebook_project/general/common_group.dart';
-import 'package:self_facebook_project/general/common_page.dart';
+import 'package:self_facebook_project/general/group_constants.dart';
 import 'package:self_facebook_project/modules/group/blocs/select_target_group.dart';
 import 'package:self_facebook_project/modules/group/export_group_page.dart';
 import 'package:self_facebook_project/modules/page/blocs/current_number_page.dart';
@@ -29,7 +28,7 @@ class _TargetGroupPageState extends State<TargetGroupPage> {
         actions: [
           Center(
               child: Container(
-            child: Text(CommonGroup.CONTINUE_AFTER),
+            child: Text(GroupConstants.CONTINUE_AFTER),
             margin: EdgeInsets.only(right: 20),
           ))
         ],
@@ -57,7 +56,7 @@ class _TargetGroupPageState extends State<TargetGroupPage> {
                     Row(
                       children: [
                         Text(
-                          TargetGroupCommon.TITLE[0],
+                          TargetGroupConstants.TITLE[0],
                           style: const TextStyle(
                               color: Colors.white,
                               fontSize: 20,
@@ -68,7 +67,7 @@ class _TargetGroupPageState extends State<TargetGroupPage> {
                     const SizedBox(
                       height: 10,
                     ),
-                    Text(TargetGroupCommon.SUBTITLE[0],
+                    Text(TargetGroupConstants.SUBTITLE[0],
                         style:
                             const TextStyle(color: Colors.white, fontSize: 15)),
                     const SizedBox(
@@ -87,9 +86,9 @@ class _TargetGroupPageState extends State<TargetGroupPage> {
                                   // margin: EdgeInsets.symmetric(vertical: 5),
                                   child: _buildFlexibleComponent(
                                       context,
-                                      Icon(TargetGroupCommon
+                                      Icon(TargetGroupConstants
                                           .ICON_DATA_LIST[index]),
-                                      [TargetGroupCommon.CONTENT_LIST[index]],
+                                      [TargetGroupConstants.CONTENT_LIST[index]],
                                       Checkbox(
                                           value: BlocProvider.of<
                                                       SelectTargetGroupBloc>(
@@ -178,7 +177,7 @@ class _TargetGroupPageState extends State<TargetGroupPage> {
                                             builder: (_) =>
                                                 CreatePostGroupPage()));
                                   },
-                                  child: Text(CommonPage.NEXT)),
+                                  child: Text(GroupConstants.NEXT)),
                             ),
                             const SizedBox(
                               height: 5,

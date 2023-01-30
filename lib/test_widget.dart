@@ -1,15 +1,8 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:self_facebook_project/general/common_event.dart';
-import 'package:self_facebook_project/general/common_group.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:self_facebook_project/general/event_constants.dart';
 import 'package:self_facebook_project/modules/event/blocs/selection_private_event_bloc.dart';
 import 'package:self_facebook_project/modules/event/widget/information_user_event_widget.dart';
-import 'package:self_facebook_project/modules/group/widgets/addtional_information_group_widget.dart';
 
 class TestWidget extends StatefulWidget {
   @override
@@ -18,7 +11,7 @@ class TestWidget extends StatefulWidget {
 
 class _TestWidgetState extends State<TestWidget> {
   List<dynamic> listRadio =
-      DetailEventCommon.SELECTION_FOR_PRIVATE_OF_EVENT.map((e) {
+      DetailEventConstants.SELECTION_FOR_PRIVATE_OF_EVENT.map((e) {
     return e[1];
   }).toList();
 
@@ -41,7 +34,7 @@ class _TestWidgetState extends State<TestWidget> {
                   children: [
                     Container(
                       child: Icon(
-                        CommonEvent.ICON_PRIVIOUS,
+                        EventConstants.ICON_PRIVIOUS,
                         color: Colors.grey,
                         size: 18,
                       ),
@@ -49,7 +42,7 @@ class _TestWidgetState extends State<TestWidget> {
                     Container(
                       margin: EdgeInsets.only(right: 10),
                       child: Text(
-                        CommonEvent.CANCEL,
+                        EventConstants.CANCEL,
                         style: TextStyle(color: Colors.grey[200], fontSize: 18),
                       ),
                     )
@@ -61,7 +54,7 @@ class _TestWidgetState extends State<TestWidget> {
               child: Row(
                 children: [
                   Text(
-                    DetailEventCommon.DETAIL_EVENT_TITLE,
+                    DetailEventConstants.DETAIL_EVENT_TITLE,
                     style: TextStyle(
                         fontSize: 27,
                         fontWeight: FontWeight.bold,
@@ -75,7 +68,7 @@ class _TestWidgetState extends State<TestWidget> {
             ),
             InformationUserEventWidget(
               [
-                Text(DetailEventCommon.USER_EXAMPLE[1],
+                Text(DetailEventConstants.USER_EXAMPLE[1],
                     style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
@@ -83,7 +76,7 @@ class _TestWidgetState extends State<TestWidget> {
                 SizedBox(
                   height: 5,
                 ),
-                Text(DetailEventCommon.USER_EXAMPLE[2],
+                Text(DetailEventConstants.USER_EXAMPLE[2],
                     style: TextStyle(fontSize: 16, color: Colors.grey)),
               ],
               prefixWidget: Container(
@@ -92,7 +85,7 @@ class _TestWidgetState extends State<TestWidget> {
                   margin: EdgeInsets.only(right: 10),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.all(Radius.circular(20))),
-                  child: Image.asset(DetailEventCommon.USER_EXAMPLE[0])),
+                  child: Image.asset(DetailEventConstants.USER_EXAMPLE[0])),
               changeBackground: Colors.transparent,
               padding: EdgeInsets.zero,
             ),
@@ -113,8 +106,8 @@ class _TestWidgetState extends State<TestWidget> {
                         borderRadius: BorderRadius.all(Radius.circular(5))),
                     contentPadding: EdgeInsets.fromLTRB(10, 0, 0, 0),
                     border: InputBorder.none,
-                    hintText: DetailEventCommon.EVENT_NAME_PLACEHOLDER,
-                    labelText: DetailEventCommon.EVENT_NAME_PLACEHOLDER,
+                    hintText: DetailEventConstants.EVENT_NAME_PLACEHOLDER,
+                    labelText: DetailEventConstants.EVENT_NAME_PLACEHOLDER,
                     labelStyle: TextStyle(color: Colors.white),
                     hintStyle: TextStyle(color: Colors.white)),
               ),
@@ -135,8 +128,8 @@ class _TestWidgetState extends State<TestWidget> {
                         borderRadius: BorderRadius.all(Radius.circular(5))),
                     contentPadding: EdgeInsets.fromLTRB(10, 0, 0, 0),
                     border: InputBorder.none,
-                    hintText: DetailEventCommon.DAY_AND_TIME_BEGIN_TITLE,
-                    labelText: DetailEventCommon.DAY_AND_TIME_BEGIN_TITLE,
+                    hintText: DetailEventConstants.DAY_AND_TIME_BEGIN_TITLE,
+                    labelText: DetailEventConstants.DAY_AND_TIME_BEGIN_TITLE,
                     labelStyle: TextStyle(color: Colors.white),
                     hintStyle: TextStyle(color: Colors.white)),
               ),
@@ -147,7 +140,7 @@ class _TestWidgetState extends State<TestWidget> {
             Row(
               children: [
                 Text(
-                  "+ ${DetailEventCommon.DAY_AND_TIME_END_TITLE}",
+                  "+ ${DetailEventConstants.DAY_AND_TIME_END_TITLE}",
                   style: TextStyle(color: Colors.blue),
                 )
               ],
@@ -168,7 +161,7 @@ class _TestWidgetState extends State<TestWidget> {
               },
               child: InformationUserEventWidget(
                 [
-                  Text(DetailEventCommon.PRIVATE_RULE_COMPONENT[1],
+                  Text(DetailEventConstants.PRIVATE_RULE_COMPONENT[1],
                       style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
@@ -176,7 +169,7 @@ class _TestWidgetState extends State<TestWidget> {
                   SizedBox(
                     height: 5,
                   ),
-                  Text(DetailEventCommon.PRIVATE_RULE_COMPONENT[2],
+                  Text(DetailEventConstants.PRIVATE_RULE_COMPONENT[2],
                       style: TextStyle(fontSize: 16, color: Colors.grey)),
                 ],
                 prefixWidget: Container(
@@ -187,7 +180,7 @@ class _TestWidgetState extends State<TestWidget> {
                         color: Colors.grey[700],
                         borderRadius: BorderRadius.all(Radius.circular(20))),
                     child: Icon(
-                      DetailEventCommon.PRIVATE_RULE_COMPONENT[0],
+                      DetailEventConstants.PRIVATE_RULE_COMPONENT[0],
                       color: Colors.white,
                       size: 15,
                     )),
@@ -197,7 +190,7 @@ class _TestWidgetState extends State<TestWidget> {
                   alignment: Alignment.centerRight,
                   margin: EdgeInsets.only(right: 10),
                   child: Icon(
-                    CommonEvent.ICON_DATA_NEXT,
+                    EventConstants.ICON_DATA_NEXT,
                     color: Colors.white,
                     size: 13,
                   ),
@@ -245,7 +238,7 @@ class _TestWidgetState extends State<TestWidget> {
                       Container(
                           child: Center(
                         child: Text(
-                          DetailEventCommon.PRIVATE_OF_EVENT,
+                          DetailEventConstants.PRIVATE_OF_EVENT,
                           style: TextStyle(color: Colors.white, fontSize: 18),
                         ),
                       )),
@@ -262,7 +255,7 @@ class _TestWidgetState extends State<TestWidget> {
                 Container(
                     child: Center(
                   child: Text(
-                    DetailEventCommon.DESCRIPTION_FOR_PRIVATE_OF_EVENT,
+                    DetailEventConstants.DESCRIPTION_FOR_PRIVATE_OF_EVENT,
                     style: TextStyle(color: Colors.grey, fontSize: 16),
                   ),
                 )),
@@ -274,21 +267,21 @@ class _TestWidgetState extends State<TestWidget> {
                   return Container(
                     height: 200,
                     child: ListView.builder(
-                        itemCount: DetailEventCommon
+                        itemCount: DetailEventConstants
                             .SELECTION_FOR_PRIVATE_OF_EVENT.length,
                         itemBuilder: ((context, index) {
                           return GestureDetector(
                             onTap: (() {
                                context.read<SelectionPrivateEventBloc>().add(
                                         UpdateSelectionPrivateEventEvent(
-                                            DetailEventCommon
+                                            DetailEventConstants
                                                     .SELECTION_FOR_PRIVATE_OF_EVENT[
                                                 index][1]));
                             }),
                             child: InformationUserEventWidget(
                               [
                                 Text(
-                                  DetailEventCommon
+                                  DetailEventConstants
                                       .SELECTION_FOR_PRIVATE_OF_EVENT[index][1],
                                   style: TextStyle(
                                       color: Colors.white,
@@ -296,7 +289,7 @@ class _TestWidgetState extends State<TestWidget> {
                                       fontWeight: FontWeight.bold),
                                 ),
                                 Text(
-                                  DetailEventCommon
+                                  DetailEventConstants
                                       .SELECTION_FOR_PRIVATE_OF_EVENT[index][2],
                                   style: TextStyle(
                                     color: Colors.grey,
@@ -313,7 +306,7 @@ class _TestWidgetState extends State<TestWidget> {
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(20))),
                                 child: Icon(
-                                  DetailEventCommon
+                                  DetailEventConstants
                                       .SELECTION_FOR_PRIVATE_OF_EVENT[index][0],
                                   color: Colors.white,
                                   size: 14,
@@ -328,7 +321,7 @@ class _TestWidgetState extends State<TestWidget> {
                                   setStatefull(() {
                                     context.read<SelectionPrivateEventBloc>().add(
                                         UpdateSelectionPrivateEventEvent(
-                                            DetailEventCommon
+                                            DetailEventConstants
                                                     .SELECTION_FOR_PRIVATE_OF_EVENT[
                                                 index][1]));
                                   });

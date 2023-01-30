@@ -1,13 +1,11 @@
 import 'dart:io';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:self_facebook_project/general/common_event.dart';
-import 'package:self_facebook_project/modules/event/blocs/selection_private_event_bloc.dart';
+import 'package:self_facebook_project/general/event_constants.dart';
 import 'package:self_facebook_project/modules/event/export_event_page.dart';
 import 'package:self_facebook_project/modules/event/screen/description_event_page.dart';
 import 'package:self_facebook_project/modules/event/screen/location_event_page.dart';
@@ -56,7 +54,7 @@ class _ReviewEventPageState extends State<ReviewEventPage> {
                                 Navigator.of(context).pop();
                               }),
                               child: Icon(
-                                CommonEvent.ICON_PRIVIOUS,
+                                EventConstants.ICON_PRIVIOUS,
                                 color: Colors.grey,
                                 size: 18,
                               ),
@@ -64,7 +62,7 @@ class _ReviewEventPageState extends State<ReviewEventPage> {
                           ),
                           Container(
                             child: Text(
-                              ReviewEventCommon.REVIEW_EVENT_APPBAR_TITLE,
+                              ReviewEventConstants.REVIEW_EVENT_APPBAR_TITLE,
                               style:
                                   TextStyle(color: Colors.white, fontSize: 16),
                             ),
@@ -72,7 +70,7 @@ class _ReviewEventPageState extends State<ReviewEventPage> {
                           Container(
                             margin: EdgeInsets.only(right: 10),
                             child: Text(
-                              CommonEvent.CANCEL,
+                              EventConstants.CANCEL,
                               style: TextStyle(
                                   color: Colors.grey[200], fontSize: 18),
                             ),
@@ -155,7 +153,7 @@ class _ReviewEventPageState extends State<ReviewEventPage> {
                             child: Row(
                               children: [
                                 Text(
-                                  ReviewEventCommon.TIME_EVENT,
+                                  ReviewEventConstants.TIME_EVENT,
                                   style: TextStyle(
                                       color: Colors.red,
                                       fontSize: 15,
@@ -169,7 +167,7 @@ class _ReviewEventPageState extends State<ReviewEventPage> {
                             child: Row(
                               children: [
                                 Text(
-                                  ReviewEventCommon.NAME_EVENT,
+                                  ReviewEventConstants.NAME_EVENT,
                                   style: TextStyle(
                                       color: Colors.white,
                                       fontSize: 18,
@@ -192,13 +190,13 @@ class _ReviewEventPageState extends State<ReviewEventPage> {
                                   ),
                                 ),
                               ),
-                              Text(ReviewEventCommon.RANGE_EVENT,
+                              Text(ReviewEventConstants.RANGE_EVENT,
                                   style: TextStyle(
                                     color: Colors.grey,
                                     fontSize: 14,
                                     fontWeight: FontWeight.bold,
                                   )),
-                              Text(ReviewEventCommon.ORGANIZE_PERSON,
+                              Text(ReviewEventConstants.ORGANIZE_PERSON,
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 15,
@@ -211,7 +209,7 @@ class _ReviewEventPageState extends State<ReviewEventPage> {
                           alignment: Alignment.centerRight,
                           margin: EdgeInsets.only(right: 10),
                           child: Icon(
-                            CommonEvent.ICON_DATA_NEXT,
+                            EventConstants.ICON_DATA_NEXT,
                             color: Colors.white,
                             size: 15,
                           ),
@@ -227,17 +225,17 @@ class _ReviewEventPageState extends State<ReviewEventPage> {
                     child: ListView.builder(
                         padding: EdgeInsets.zero,
                         itemCount:
-                            ReviewEventCommon.REVIEW_EVENT_CONTENT_LIST.length,
+                            ReviewEventConstants.REVIEW_EVENT_CONTENT_LIST.length,
                         itemBuilder: ((context, index) {
                           return GestureDetector(
                             onTap: () {
-                              if (ReviewEventCommon
+                              if (ReviewEventConstants
                                       .REVIEW_EVENT_CONTENT_LIST[index][1] ==
                                   "Mô tả") {
                                 Navigator.of(context).push(MaterialPageRoute(
                                     builder: (_) => DescriptionEventPage()));
                                 return;
-                              } else if (ReviewEventCommon
+                              } else if (ReviewEventConstants
                                       .REVIEW_EVENT_CONTENT_LIST[index][1] ==
                                   "Vị trí") {
                                 Navigator.of(context).push(MaterialPageRoute(
@@ -251,16 +249,16 @@ class _ReviewEventPageState extends State<ReviewEventPage> {
                             child: InformationUserEventWidget(
                               [
                                 Text(
-                                    ReviewEventCommon
+                                    ReviewEventConstants
                                         .REVIEW_EVENT_CONTENT_LIST[index][1],
                                     style: TextStyle(
                                         fontSize: 17,
                                         fontWeight: FontWeight.bold,
                                         color: Colors.white)),
-                                ReviewEventCommon.REVIEW_EVENT_CONTENT_LIST[
+                                ReviewEventConstants.REVIEW_EVENT_CONTENT_LIST[
                                                 index][2] ==
                                             "" ||
-                                        ReviewEventCommon
+                                        ReviewEventConstants
                                                     .REVIEW_EVENT_CONTENT_LIST[
                                                 index][2] ==
                                             null
@@ -271,7 +269,7 @@ class _ReviewEventPageState extends State<ReviewEventPage> {
                                             height: 5,
                                           ),
                                           Text(
-                                              ReviewEventCommon
+                                              ReviewEventConstants
                                                       .REVIEW_EVENT_CONTENT_LIST[
                                                   index][2],
                                               style: TextStyle(
@@ -288,17 +286,17 @@ class _ReviewEventPageState extends State<ReviewEventPage> {
                                       color: Colors.grey[700],
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(20))),
-                                  child: ReviewEventCommon
+                                  child: ReviewEventConstants
                                               .REVIEW_EVENT_CONTENT_LIST[index]
                                           [0] is String
                                       ? SvgPicture.asset(
-                                          ReviewEventCommon
+                                          ReviewEventConstants
                                                   .REVIEW_EVENT_CONTENT_LIST[
                                               index][0],
                                           color: Colors.white,
                                         )
                                       : Icon(
-                                          ReviewEventCommon
+                                          ReviewEventConstants
                                                   .REVIEW_EVENT_CONTENT_LIST[
                                               index][0],
                                           color: Colors.white,
@@ -311,7 +309,7 @@ class _ReviewEventPageState extends State<ReviewEventPage> {
                                 alignment: Alignment.centerRight,
                                 margin: EdgeInsets.only(right: 10),
                                 child: Icon(
-                                  CommonEvent.ICON_DATA_NEXT,
+                                  EventConstants.ICON_DATA_NEXT,
                                   color: Colors.grey,
                                   size: 16,
                                 ),
@@ -377,7 +375,7 @@ class _ReviewEventPageState extends State<ReviewEventPage> {
                                       fixedSize: Size(width * 0.9, 40),
                                       backgroundColor: Colors.grey[800]),
                                   onPressed: () {},
-                                  child: Text(CommonEvent.NEXT)),
+                                  child: Text(EventConstants.NEXT)),
                             ),
                             const SizedBox(
                               height: 5,
